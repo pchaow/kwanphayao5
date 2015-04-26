@@ -269,7 +269,7 @@ div .ui.popup > div {
 }
 
 #menu-main {
-  font-family: supermarketregular;
+  font-family: KunlasatriBold;
   background-color: $strongcyan;
   color: $white;
   border-radius: 0.2857rem;
@@ -279,6 +279,7 @@ div .ui.popup > div {
 
 #menu-main .item {
   font-size: 1.3rem;
+  color: $white;
 }
 
 #menu-main .active.item {
@@ -337,18 +338,29 @@ footer > div > div > div > div > h4 > a {
 
 }
 /* Masonry container */
+.masonr {
+
+}
+.brick {
+  //margin-right: 12px;
+  //margin-bottom: 12px;
+  float: left;
+}
+.zen {
+  margin: 0 auto;
+}
 .masonry {
+  -moz-column-gap: .6em;
+  -webkit-column-gap: .6em;
+  column-gap: .6em;
   -moz-column-count: 4;
   -webkit-column-count: 4;
   column-count: 4;
-  -moz-column-gap: 1em;
-  -webkit-column-gap: 1em;
-  column-gap: 1em;
 }
 /* Masonry bricks or child elements */
-.brick {
+.brick2 {
   display: inline-block;
-  margin: 0 0 1em;
+  margin: 0 0 .6em;
   width: 100%;
 }
 
@@ -543,6 +555,13 @@ div.call-cancel-account:hover
 // Error Page
 
 /* Mobile Sizing Combinations */
+@media only screen and (min-width: 320px) and (max-width: 499px) {
+  .masonry {
+    -moz-column-count: 1;
+    -webkit-column-count: 1;
+    column-count: 1;
+  }
+}
 @media only screen and (min-width: 320px) and (max-width: 767px) {
   .heading-register > div {
     text-align: left;
@@ -566,17 +585,10 @@ div.call-cancel-account:hover
   .break-mobile {
     display: inline !important;
   }
-
-  .masonry {
-    -moz-column-count: 1;
-    -webkit-column-count: 1;
-    column-count: 1;
-  }
-
 }
 
 /* Mobile & Tablet Sizing Combinations */
-@media only screen and (min-width: 767px) {
+@media only screen and (min-width: 500px) and (max-width: 767px) {
   .masonry {
     -moz-column-count: 2;
     -webkit-column-count: 2;
@@ -593,6 +605,12 @@ div.call-cancel-account:hover
   .break-computer {
     display: none !important;
   }
+
+  .masonry {
+    -moz-column-count: 3;
+    -webkit-column-count: 3;
+    column-count: 3;
+  }
 }
 /* Computer/Desktop Sizing Combinations */
 @media only screen and (min-width: 992px) {
@@ -608,6 +626,15 @@ div.call-cancel-account:hover
   .search-form > input {
     width: 400px !important;
   }
+
+  .masonry {
+    -moz-column-count: 3;
+    -webkit-column-count: 3;
+    column-count: 3;
+  }
+}
+@media only screen and (min-width: 992px) {
+
 }
 /* Large Monitor Sizing Combinations */
 @media only screen and (min-width: 1400px) and (max-width: 1919px) {
