@@ -1,0 +1,30 @@
+<div>
+    <div class="row">
+        <h3>Create new category</h3>
+    </div>
+
+    <div class="row">
+        <form ng-submit="save()">
+            <div class="form-group">
+                <label>Cateogry Name</label>
+                <input ng-model="category.name" type="text" class="form-control"  placeholder="Category Name">
+            </div>
+
+            <div class="form-group">
+                <label>Category Description :</label>
+                <textarea ng-model="category.description" class="form-control" rows="7" placeholder="Category Description"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Main Category :</label>
+                <select class="form-control" ng-model="category.parent" ng-change="selMainCategoryChanged()" ng-options="opt as opt.name for opt in mainCategories">
+                </select>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="button" ui-sref="list" class="btn btn-default">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>

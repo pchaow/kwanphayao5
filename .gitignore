@@ -1,0 +1,15 @@
+/bootstrap/compiled.php
+/vendor
+composer.phar
+composer.lock
+.env.*.php
+.env.php
+.env
+.DS_Store
+Thumbs.db
+/.idea
+/app/config/local/database.php
+Procfile
+.cfignore
+manifest.yml
+favicon.ico

@@ -1,0 +1,71 @@
+<div>
+
+    <div class="row">
+        <div class="pull-left">
+            <button ui-sref="create" type="button" class="btn btn-primary">Create New Category</button>
+        </div>
+        <div class="pull-right">
+            <form class="form-inline">
+                <div class="input-group">
+                    <form ng-submit="filterChange()">
+                    <input type="text" ng-model="filterWord" class="form-control" placeholder="Search for..."/>
+                            <span class="input-group-btn">
+                                <button ng-click="filterChange()" class="btn btn-primary" type="submit">Go!</button>
+                            </span>
+                    </form>
+                </div>
+                <!-- /input-group -->
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Main Category</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="c in categories">
+                <td>{{c.id}}</td>
+                <td>{{c.name}}</td>
+                <td>{{c.parent.name}}</td>
+                <td>
+                    <div class="btn-group btn-group-sm" role="group">
+                        <button type="button" ui-sref="edit({id:c.id})" class="btn">Edit</button>
+                        <button type="button" class="btn btn-danger" ng-click="delete(c)">Delete</button>
+                    </div>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <div class="">
+
+            <div class="pull-left">
+                <span ng-if="dt.count >0">
+                    Showing {{ dt.skip * dt.take + 1}} to {{dt.skip * dt.take + dt.count}} of {{dt.total}} entries
+                </span>
+
+                <span ng-if="dt.count <=0">
+                    Showing 0 to 0 of {{dt.total}} entries
+                </span>
+            </div>
+
+            <div class="pull-right">
+                <pagination ng-change="pageChange()" total-items="dt.total" items-per-page="dt.take"
+                            ng-model="currentPage" class="pagination-sm" boundary-links="true"
+                            rotate="false"></pagination>
+            </div>
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,53 @@
+<div ng-controller="UserController as userCRU">
+    <div class="row">
+        <h3>Create New User or Edit User</h3>
+    </div>
+
+    <div class="row">
+        <form name="userForm" ng-submit="save()">
+
+            <div class="form-group">
+                <label>Username</label>
+                <input required name="username" ng-model="user.username" type="text" class="form-control" placeholder="Username">
+            </div>
+
+            <div class="form-group">
+                <label>Password</label>
+                <input required name="password" ng-model="user.password" type="password" class="form-control" placeholder="Password">
+            </div>
+
+            <div class="form-group">
+                <label>Confirm Password</label>
+                <input required name="repassword" ng-model="userCRU.user.repassword" type="password" class="form-control" placeholder="Confirm Password" compare-to="user.password">
+            <div ng-messages="userForm.repassword.$error" ng-messages-include="/app/admin/user/messages.html"></div>
+
+            <div class="form-group">
+                <label>Email address</label>
+                <input required ng-model="user.email" type="email" class="form-control" placeholder="Email">
+            </div>
+
+            <div class="row form-group">
+                <div class="col-md-12"><label>Name</label></div>
+                <div class=" col-md-2"><input required ng-model="user.title" type="text" class="form-control" placeholder="Title"></div>
+                <div class="col-md-5"><input required ng-model="user.firstname" type="text" class="form-control" placeholder="Firstname"></div>
+                <div class="col-md-5"><input required ng-model="user.lastname" type="text" class="form-control" placeholder="Lastname"></div>
+            </div>
+
+            <div class="form-group">
+                <label>Organization</label>
+                <input ng-model="user.organization" type="text" class="form-control" placeholder="Organization">
+            </div>
+
+            <div class="form-group">
+                <label>Role</label>
+                <select class="form-control" ng-model="user.role" ng-change="selRoleChanged()" ng-options="opt as opt.name for opt in roles"></select>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="button" ui-sref="list" class="btn btn-default">Cancel</button>
+            </div>
+
+        </form>
+    </div>
+</div>

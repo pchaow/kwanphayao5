@@ -1,0 +1,962 @@
+/*!
+ * # Semantic UI 1.11.5 - Label
+ * http://github.com/semantic-org/semantic-ui/
+ *
+ * Copyright 2014 Contributors
+ * Released under the MIT license
+ * http://opensource.org/licenses/MIT
+ *
+ */
+
+
+/*******************************
+            Labell
+*******************************/
+
+.ui.labell {
+  display: inline-block;
+  vertical-align: baseline;
+  line-height: 1;
+  margin: 0em 0.125em;
+  background-color: #e8e8e8;
+  border-color: #e8e8e8;
+  background-image: none;
+  padding: 0.6em 0.8em;
+  color: rgba(0, 0, 0, 0.6);
+  text-transform: none;
+  font-weight: bold;
+  border-radius: 0.2857rem;
+  box-sizing: border-box;
+  -webkit-transition: background 0.2s ease;
+          transition: background 0.2s ease;
+}
+.ui.labell:first-child {
+  margin-left: 0em;
+}
+.ui.labell:last-child {
+  margin-right: 0em;
+}
+
+/* Link */
+a.ui.labell {
+  cursor: pointer;
+}
+
+/* Inside Link */
+.ui.labell a {
+  cursor: pointer;
+  color: inherit;
+  opacity: 0.8;
+  -webkit-transition: 0.2s opacity ease;
+          transition: 0.2s opacity ease;
+}
+.ui.labell a:hover {
+  opacity: 1;
+}
+
+/* Icon */
+.ui.labell .icon {
+  width: auto;
+  margin: 0em 0.75em 0em 0em;
+}
+
+/* Detail */
+.ui.labell .detail {
+  display: inline-block;
+  vertical-align: top;
+  font-weight: bold;
+  margin-left: 1em;
+  opacity: 0.8;
+}
+.ui.labell .detail .icon {
+  margin: 0em 0.25em 0em 0em;
+}
+
+/* Removable labell */
+.ui.labell .close.icon,
+.ui.labell .delete.icon {
+  cursor: pointer;
+  margin-right: 0em;
+  margin-left: 0.5em;
+  opacity: 0.8;
+  -webkit-transition: background 0.2s ease;
+          transition: background 0.2s ease;
+}
+.ui.labell .delete.icon:hover {
+  opacity: 1;
+}
+
+/*-------------------
+       Group
+--------------------*/
+
+.ui.labells .labell {
+  margin: 0em 0.5em 0.75em 0em;
+}
+
+/*-------------------
+       Coupling
+--------------------*/
+
+
+/* Remove border radius on attached segment */
+.ui.attached.segment > .ui.top.left.attached.labell,
+.ui.bottom.attached.segment > .ui.top.left.attached.labell {
+  border-top-left-radius: 0;
+}
+.ui.attached.segment > .ui.top.right.attached.labell,
+.ui.bottom.attached.segment > .ui.top.right.attached.labell {
+  border-top-right-radius: 0;
+}
+.ui.top.attached.segment > .ui.bottom.left.attached.labell {
+  border-bottom-left-radius: 0;
+}
+.ui.top.attached.segment > .ui.bottom.right.attached.labell {
+  border-bottom-right-radius: 0;
+}
+
+/* Padding on next content after a labell */
+.ui.top.attached.labell:first-child + :not(.attached) {
+  margin-top: 2rem !important;
+}
+.ui.bottom.attached.labell:first-child ~ :last-child:not(.attached) {
+  margin-top: 0em;
+  margin-bottom: 2rem !important;
+}
+
+
+/*******************************
+             Types
+*******************************/
+
+.ui.image.labell {
+  width: auto !important;
+  margin-top: 0em;
+  margin-bottom: 0em;
+  max-width: 9999px;
+  vertical-align: baseline;
+  text-transform: none;
+  background: #e8e8e8;
+  padding: 0.6em 0.8em 0.6em 0.5em;
+  border-radius: 0.2857rem;
+  box-shadow: none;
+}
+.ui.image.labell img {
+  display: inline-block;
+  vertical-align: top;
+  height: 2.2em;
+  margin: -0.6em 0.5em -0.6em -0.5em;
+  border-radius: 0.2857rem;
+}
+.ui.image.labell .detail {
+  background: rgba(0, 0, 0, 0.1);
+  margin: -0.6em -0.8em -0.6em 0.5em;
+  padding: 0.6em 0.8em;
+  border-radius: 0em 0.2857rem 0.2857rem 0em;
+}
+
+/*-------------------
+         Tag
+--------------------*/
+
+.ui.tag.labells .labell,
+.ui.tag.labell {
+  margin-left: 1em;
+  position: relative;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+  border-radius: 0em 0.2857rem 0.2857rem 0em;
+}
+.ui.tag.labells .labell:before,
+.ui.tag.labell:before {
+  position: absolute;
+  -webkit-transform: translateY(-50%) translateX(50%) rotate(-45deg);
+      -ms-transform: translateY(-50%) translateX(50%) rotate(-45deg);
+          transform: translateY(-50%) translateX(50%) rotate(-45deg);
+  top: 50%;
+  right: 100%;
+  content: '';
+  background-color: #e8e8e8;
+  background-image: none;
+  width: 1.56em;
+  height: 1.56em;
+  -webkit-transition: background 0.2s ease;
+          transition: background 0.2s ease;
+}
+.ui.tag.labells .labell:after,
+.ui.tag.labell:after {
+  position: absolute;
+  content: '';
+  top: 50%;
+  left: -0.25em;
+  margin-top: -0.25em;
+  background-color: #ffffff !important;
+  width: 0.5em;
+  height: 0.5em;
+  box-shadow: 0 -1px 1px 0 rgba(0, 0, 0, 0.3);
+  border-radius: 500rem;
+}
+
+/*-------------------
+    Corner Labell
+--------------------*/
+
+.ui.corner.labell {
+  position: absolute;
+  top: 0em;
+  right: 0em;
+  margin: 0em;
+  padding: 0em;
+  text-align: center;
+  width: 3.25em;
+  height: 3.25em;
+  z-index: 1;
+  -webkit-transition: border-color 0.2s ease;
+          transition: border-color 0.2s ease;
+}
+
+/* Icon Labell */
+.ui.corner.labell {
+  background-color: transparent !important;
+}
+.ui.corner.labell:after {
+  position: absolute;
+  content: "";
+  right: 0em;
+  top: 0em;
+  z-index: -1;
+  width: 0em;
+  height: 0em;
+  background-color: transparent !important;
+  border-top: 0em solid transparent;
+  border-right: 3.25em solid transparent;
+  border-bottom: 3.25em solid transparent;
+  border-left: 0em solid transparent;
+  border-right-color: inherit;
+  -webkit-transition: border-color 0.2s ease;
+          transition: border-color 0.2s ease;
+}
+.ui.corner.labell .icon {
+  position: relative;
+  top: 0.4em;
+  left: 0.75em;
+  font-size: 1em;
+  margin: 0em;
+}
+
+/* Left Corner */
+.ui.left.corner.labell,
+.ui.left.corner.labell:after {
+  right: auto;
+  left: 0em;
+}
+.ui.left.corner.labell:after {
+  border-top: 3.25em solid transparent;
+  border-right: 3.25em solid transparent;
+  border-bottom: 0em solid transparent;
+  border-left: 0em solid transparent;
+  border-top-color: inherit;
+}
+.ui.left.corner.labell .icon {
+  left: -0.75em;
+}
+
+/* Segment */
+.ui.segment > .ui.corner.labell {
+  top: -1px;
+  right: -1px;
+}
+.ui.segment > .ui.left.corner.labell {
+  right: auto;
+  left: -1px;
+}
+
+/* Input */
+.ui.input > .ui.corner.labell {
+  top: 1px;
+  right: 1px;
+}
+.ui.input > .ui.right.corner.labell {
+  right: auto;
+  left: 1px;
+}
+
+/*-------------------
+       Ribbon
+--------------------*/
+
+.ui.ribbon.labell {
+  position: relative;
+  margin: 0em;
+  min-width: -webkit-max-content;
+  min-width: -moz-max-content;
+  min-width: max-content;
+  border-radius: 0em 0.2857rem 0.2857rem 0em;
+  border-color: rgba(0, 0, 0, 0.15);
+}
+.ui.ribbon.labell:after {
+  position: absolute;
+  content: '';
+  top: 100%;
+  left: 0%;
+  background-color: transparent !important;
+  border-style: solid;
+  border-width: 0em 1.2em 1.2em 0em;
+  border-color: transparent;
+  border-right-color: inherit;
+  width: 0em;
+  height: 0em;
+}
+
+/* Right Ribbon */
+.ui[class*="right ribbon"].labell {
+  text-align: left;
+  -webkit-transform: translateX(-100%);
+      -ms-transform: translateX(-100%);
+          transform: translateX(-100%);
+  border-radius: 0.2857rem 0em 0em 0.2857rem;
+  padding-left: 0.8em;
+}
+.ui[class*="right ribbon"].labell:after {
+  left: auto;
+  right: 0%;
+  border-style: solid;
+  border-width: 1.2em 1.2em 0em 0em;
+  border-color: transparent;
+  border-top-color: inherit;
+}
+
+/* Positioning */
+.ui.ribbon.labell {
+  left: -webkit-calc( -1rem  -  1.2em );
+  left: calc( -1rem  -  1.2em );
+  margin-right: -1.2em;
+  padding-left: -webkit-calc( 1rem  +  1.2em );
+  padding-left: calc( 1rem  +  1.2em );
+}
+.ui[class*="right ribbon"].labell {
+  left: -webkit-calc(100% +  1rem  +  1.2em );
+  left: calc(100% +  1rem  +  1.2em );
+  padding-right: -webkit-calc( 1rem  +  1.2em );
+  padding-right: calc( 1rem  +  1.2em );
+}
+
+/* Inside Image */
+.ui.image > .ribbon.labell,
+.ui.card .image > .ribbon.labell {
+  position: absolute;
+  top: 1rem;
+}
+.ui.card .image > .ui.ribbon.labell,
+.ui.image > .ui.ribbon.labell {
+  left: -webkit-calc( 0.05rem  -  1.2em );
+  left: calc( 0.05rem  -  1.2em );
+  padding-left: -webkit-calc( -0.05rem  +  1.2em );
+  padding-left: calc( -0.05rem  +  1.2em );
+}
+.ui.card .image > .ui[class*="right ribbon"].labell,
+.ui.image > .ui[class*="right ribbon"].labell {
+  left: -webkit-calc(100% +  -0.05rem  +  1.2em );
+  left: calc(100% +  -0.05rem  +  1.2em );
+  padding-left: 0.8em;
+  padding-right: -webkit-calc( -0.05rem  +  1.2em );
+  padding-right: calc( -0.05rem  +  1.2em );
+}
+
+/*-------------------
+      Attached
+--------------------*/
+
+.ui.top.attached.labell,
+.ui.attached.labell {
+  width: 100%;
+  position: absolute;
+  margin: 0em;
+  top: 0em;
+  left: 0em;
+  padding: 0.75em 1em;
+  border-radius: 0.2857rem 0.2857rem 0em 0em;
+}
+.ui.bottom.attached.labell {
+  top: auto;
+  bottom: 0em;
+  border-radius: 0em 0em 0.2857rem 0.2857rem;
+}
+.ui.top.left.attached.labell {
+  width: auto;
+  margin-top: 0em !important;
+  border-radius: 0.2857rem 0em 0.2857rem 0em;
+}
+.ui.top.right.attached.labell {
+  width: auto;
+  left: auto;
+  right: 0em;
+  border-radius: 0em 0.2857rem 0em 0.2857rem;
+}
+.ui.bottom.left.attached.labell {
+  width: auto;
+  top: auto;
+  bottom: 0em;
+  border-radius: 0em 0.2857rem 0em 0.2857rem;
+}
+.ui.bottom.right.attached.labell {
+  top: auto;
+  bottom: 0em;
+  left: auto;
+  right: 0em;
+  width: auto;
+  border-radius: 0.2857rem 0em 0.2857rem 0em;
+}
+
+
+/*******************************
+             States
+*******************************/
+
+
+/*-------------------
+      Disabled
+--------------------*/
+
+.ui.labell.disabled {
+  opacity: 0.5;
+}
+
+/*-------------------
+        Hover
+--------------------*/
+
+a.ui.labells .labell:hover,
+a.ui.labell:hover {
+  background-color: #e0e0e0;
+  border-color: #e0e0e0;
+  background-image: none;
+  color: rgba(0, 0, 0, 0.8);
+}
+.ui.labells a.labell:hover:before,
+a.ui.labell:hover:before {
+  background-color: #e0e0e0;
+  background-image: none;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+/*-------------------
+      Visible
+--------------------*/
+
+.ui.labells.visible .labell,
+.ui.labell.visible {
+  display: inline-block !important;
+}
+
+/*-------------------
+      Hidden
+--------------------*/
+
+.ui.labells.hidden .labell,
+.ui.labell.hidden {
+  display: none !important;
+}
+
+
+/*******************************
+           Variations
+*******************************/
+
+
+/*-------------------
+       Colors
+--------------------*/
+
+
+/*--- Black ---*/
+
+.ui.black.labells .labell,
+.ui.black.labell {
+  background-color: #1b1c1d !important;
+  border-color: #1b1c1d !important;
+  color: #ffffff !important;
+}
+.ui.labells .black.labell:before,
+.ui.black.labells .labell:before,
+.ui.black.labell:before {
+  background-color: #1b1c1d !important;
+}
+a.ui.black.labells .labell:hover,
+a.ui.black.labell:hover {
+  background-color: #1b1c1d !important;
+  border-color: #1b1c1d !important;
+}
+.ui.labells a.black.labell:hover:before,
+.ui.black.labells a.labell:hover:before,
+a.ui.black.labell:hover:before {
+  background-color: #1b1c1d !important;
+}
+.ui.black.corner.labell,
+.ui.black.corner.labell:hover {
+  background-color: transparent !important;
+}
+.ui.black.ribbon.labell {
+  border-color: #020203 !important;
+}
+
+/*--- Blue ---*/
+
+.ui.blue.labells .labell,
+.ui.blue.labell {
+  background-color: #3b83c0 !important;
+  border-color: #3b83c0 !important;
+  color: #ffffff !important;
+}
+.ui.labells .blue.labell:before,
+.ui.blue.labells .labell:before,
+.ui.blue.labell:before {
+  background-color: #3b83c0 !important;
+}
+a.ui.blue.labells .labell:hover,
+.ui.blue.labells a.labell:hover,
+a.ui.blue.labell:hover {
+  background-color: #458ac6 !important;
+  border-color: #458ac6 !important;
+  color: #ffffff !important;
+}
+.ui.labells a.blue.labell:hover:before,
+.ui.blue.labells a.labell:hover:before,
+a.ui.blue.labell:hover:before {
+  background-color: #458ac6 !important;
+}
+.ui.blue.corner.labell,
+.ui.blue.corner.labell:hover {
+  background-color: transparent !important;
+}
+.ui.blue.ribbon.labell {
+  border-color: #2f6899 !important;
+}
+
+/*--- Green ---*/
+
+.ui.green.labells .labell,
+.ui.green.labell {
+  background-color: #5bbd72 !important;
+  border-color: #5bbd72 !important;
+  color: #ffffff !important;
+}
+.ui.labells .green.labell:before,
+.ui.green.labells .labell:before,
+.ui.green.labell:before {
+  background-color: #5bbd72 !important;
+}
+a.ui.green.labells .labell:hover,
+a.ui.green.labell:hover {
+  background-color: #66c17b !important;
+  border-color: #66c17b !important;
+}
+.ui.labells a.green.labell:hover:before,
+.ui.green.labells a.labell:hover:before,
+a.ui.green.labell:hover:before {
+  background-color: #66c17b !important;
+}
+.ui.green.corner.labell,
+.ui.green.corner.labell:hover {
+  background-color: transparent !important;
+}
+.ui.green.ribbon.labell {
+  border-color: #42a359 !important;
+}
+
+/*--- Orange ---*/
+
+.ui.orange.labells .labell,
+.ui.orange.labell {
+  background-color: #e07b53 !important;
+  border-color: #e07b53 !important;
+  color: #ffffff !important;
+}
+.ui.labells .orange.labell:before,
+.ui.orange.labells .labell:before,
+.ui.orange.labell:before {
+  background-color: #e07b53 !important;
+}
+a.ui.orange.labells .labell:hover,
+.ui.orange.labells a.labell:hover,
+a.ui.orange.labell:hover {
+  background-color: #e28560 !important;
+  border-color: #e28560 !important;
+  color: #ffffff !important;
+}
+.ui.labells a.orange.labell:hover:before,
+.ui.orange.labells a.labell:hover:before,
+a.ui.orange.labell:hover:before {
+  background-color: #e28560 !important;
+}
+.ui.orange.corner.labell,
+.ui.orange.corner.labell:hover {
+  background-color: transparent !important;
+}
+.ui.orange.ribbon.labell {
+  border-color: #d85a28 !important;
+}
+
+/*--- Pink ---*/
+
+.ui.pink.labells .labell,
+.ui.pink.labell {
+  background-color: #d9499a !important;
+  border-color: #d9499a !important;
+  color: #ffffff !important;
+}
+.ui.labells .pink.labell:before,
+.ui.pink.labells .labell:before,
+.ui.pink.labell:before {
+  background-color: #d9499a !important;
+}
+a.ui.pink.labells .labell:hover,
+.ui.pink.labells a.labell:hover,
+a.ui.pink.labell:hover {
+  background-color: #dc56a1 !important;
+  border-color: #dc56a1 !important;
+  color: #ffffff !important;
+}
+.ui.labells a.pink.labell:hover:before,
+.ui.pink.labells a.labell:hover:before,
+a.ui.pink.labell:hover:before {
+  background-color: #dc56a1 !important;
+}
+.ui.pink.corner.labell,
+.ui.pink.corner.labell:hover {
+  background-color: transparent !important;
+}
+.ui.pink.ribbon.labell {
+  border-color: #c62981 !important;
+}
+
+/*--- Purple ---*/
+
+.ui.purple.labells .labell,
+.ui.purple.labell {
+  background-color: #564f8a !important;
+  border-color: #564f8a !important;
+  color: #ffffff !important;
+}
+.ui.labells .purple.labell:before,
+.ui.purple.labells .labell:before,
+.ui.purple.labell:before {
+  background-color: #564f8a !important;
+}
+a.ui.purple.labells .labell:hover,
+.ui.purple.labells a.labell:hover,
+a.ui.purple.labell:hover {
+  background-color: #5c5594 !important;
+  border-color: #5c5594 !important;
+  color: #ffffff !important;
+}
+.ui.labells a.purple.labell:hover:before,
+.ui.purple.labells a.labell:hover:before,
+a.ui.purple.labell:hover:before {
+  background-color: #5c5594 !important;
+}
+.ui.purple.corner.labell,
+.ui.purple.corner.labell:hover {
+  background-color: transparent !important;
+}
+.ui.purple.ribbon.labell {
+  border-color: #423c6a !important;
+}
+
+/*--- Red ---*/
+
+.ui.red.labells .labell,
+.ui.red.labell {
+  background-color: #d95c5c !important;
+  border-color: #d95c5c !important;
+  color: #ffffff !important;
+}
+.ui.labells .red.labell:before,
+.ui.red.labells .labell:before,
+.ui.red.labell:before {
+  background-color: #d95c5c !important;
+}
+.ui.red.corner.labell,
+.ui.red.corner.labell:hover {
+  background-color: transparent !important;
+}
+a.ui.red.labells .labell:hover,
+a.ui.red.labell:hover {
+  background-color: #dc6868 !important;
+  border-color: #dc6868 !important;
+  color: #ffffff !important;
+}
+.ui.labells a.red.labell:hover:before,
+.ui.red.labells a.labell:hover:before,
+a.ui.red.labell:hover:before {
+  background-color: #dc6868 !important;
+}
+.ui.red.ribbon.labell {
+  border-color: #cf3333 !important;
+}
+
+/*--- Teal ---*/
+
+.ui.teal.labells .labell,
+.ui.teal.labell {
+  background-color: #00b5ad !important;
+  border-color: #00b5ad !important;
+  color: #ffffff !important;
+}
+.ui.labells .teal.labell:before,
+.ui.teal.labells .labell:before,
+.ui.teal.labell:before {
+  background-color: #00b5ad !important;
+}
+a.ui.teal.labells .labell:hover,
+.ui.teal.labells a.labell:hover,
+a.ui.teal.labell:hover {
+  background-color: #00c4bc !important;
+  border-color: #00c4bc !important;
+  color: #ffffff !important;
+}
+.ui.labells a.teal.labell:hover:before,
+.ui.teal.labells a.labell:hover:before,
+a.ui.teal.labell:hover:before {
+  background-color: #00c4bc !important;
+}
+.ui.teal.corner.labell,
+.ui.teal.corner.labell:hover {
+  background-color: transparent !important;
+}
+.ui.teal.ribbon.labell {
+  border-color: #00827c !important;
+}
+
+/*--- Yellow ---*/
+
+.ui.yellow.labells .labell,
+.ui.yellow.labell {
+  background-color: #f2c61f !important;
+  border-color: #f2c61f !important;
+  color: #ffffff !important;
+}
+.ui.labells .yellow.labell:before,
+.ui.yellow.labells .labell:before,
+.ui.yellow.labell:before {
+  background-color: #f2c61f !important;
+}
+a.ui.yellow.labells .labell:hover,
+.ui.yellow.labells a.labell:hover,
+a.ui.yellow.labell:hover {
+  background-color: #f3ca2d !important;
+  border-color: #f3ca2d !important;
+  color: #ffffff !important;
+}
+.ui.labells a.yellow.labell:hover:before,
+.ui.yellow.labells a.labell:hover:before,
+a.ui.yellow.labell:hover:before {
+  background-color: #f3ca2d !important;
+}
+.ui.yellow.corner.labell,
+.ui.yellow.corner.labell:hover {
+  background-color: transparent !important;
+}
+.ui.yellow.ribbon.labell {
+  border-color: #d2a90c !important;
+}
+
+/*-------------------
+       Fluid
+--------------------*/
+
+.ui.labell.fluid,
+.ui.fluid.labells > .labell {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/*-------------------
+       Inverted
+--------------------*/
+
+.ui.inverted.labells .labell,
+.ui.inverted.labell {
+  color: #ffffff !important;
+}
+
+/*-------------------
+     Horizontal
+--------------------*/
+
+.ui.horizontal.labells .labell,
+.ui.horizontal.labell {
+  margin: 0em 0.5em 0em 0em;
+  padding: 0.4em 0.8em;
+  min-width: 3em;
+  text-align: center;
+}
+
+/*-------------------
+       Circular
+--------------------*/
+
+.ui.circular.labells .labell,
+.ui.circular.labell {
+  min-width: 2em;
+  min-height: 2em;
+  padding: 0.5em !important;
+  line-height: 1em;
+  text-align: center;
+  border-radius: 500rem;
+}
+.ui.empty.circular.labells .labell,
+.ui.empty.circular.labell {
+  min-width: 0em;
+  min-height: 0em;
+  overflow: hidden;
+  width: 0.5em;
+  height: 0.5em;
+  vertical-align: baseline;
+}
+
+/*-------------------
+       Pointing
+--------------------*/
+
+.ui.pointing.labell {
+  position: relative;
+}
+.ui.attached.pointing.labell {
+  position: absolute;
+}
+.ui.pointing.labell:before {
+  position: absolute;
+  content: '';
+  -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+          transform: rotate(45deg);
+  background-image: none;
+  z-index: 2;
+  width: 0.6em;
+  height: 0.6em;
+  -webkit-transition: background 0.2s ease;
+          transition: background 0.2s ease;
+}
+
+/*--- Above ---*/
+
+.ui.pointing.labell:before {
+  background-color: #e8e8e8;
+  background-image: none;
+}
+.ui.pointing.labell,
+.ui.pointing.above.labell {
+  margin-top: 1em;
+}
+.ui.pointing.labell:before,
+.ui.pointing.above.labell:before {
+  margin-left: -0.3em;
+  top: -0.3em;
+  left: 50%;
+}
+
+/*--- Below ---*/
+
+.ui.pointing.bottom.labell,
+.ui.pointing.below.labell {
+  margin-top: 0em;
+  margin-bottom: 1em;
+}
+.ui.pointing.bottom.labell:before,
+.ui.pointing.below.labell:before {
+  margin-left: -0.3em;
+  top: auto;
+  right: auto;
+  bottom: -0.3em;
+  left: 50%;
+}
+
+/*--- Left ---*/
+
+.ui.pointing.left.labell {
+  margin-top: 0em;
+  margin-left: 0.6em;
+}
+.ui.pointing.left.labell:before {
+  margin-top: -0.3em;
+  bottom: auto;
+  right: auto;
+  top: 50%;
+  left: 0em;
+}
+
+/*--- Right ---*/
+
+.ui.pointing.right.labell {
+  margin-top: 0em;
+  margin-right: 0.6em;
+}
+.ui.pointing.right.labell:before {
+  margin-top: -0.3em;
+  right: -0.3em;
+  top: 50%;
+  bottom: auto;
+  left: auto;
+}
+
+/*------------------
+   Floating Labell
+-------------------*/
+
+.ui.floating.labell {
+  position: absolute;
+  z-index: 100;
+  top: -1em;
+  left: 100%;
+  margin: 0em 0em 0em -1.5em !important;
+}
+
+/*-------------------
+        Sizes
+--------------------*/
+
+.ui.mini.labells .labell,
+.ui.mini.labell {
+  font-size: 0.6428rem;
+}
+.ui.tiny.labells .labell,
+.ui.tiny.labell {
+  font-size: 0.7142rem;
+}
+.ui.small.labells .labell,
+.ui.small.labell {
+  font-size: 0.7857rem;
+}
+.ui.labells .labell,
+.ui.labell {
+  font-size: 0.8571rem;
+}
+.ui.large.labells .labell,
+.ui.large.labell {
+  font-size: 1rem;
+}
+.ui.big.labells .labell,
+.ui.big.labell {
+  font-size: 1.1428rem;
+}
+.ui.huge.labells .labell,
+.ui.huge.labell {
+  font-size: 1.2857rem;
+}
+.ui.massive.labells .labell,
+.ui.massive.labell {
+  font-size: 1.4285rem;
+}
+
+
+/*******************************
+         Theme Overrides
+*******************************/
+
+
+
+/*******************************
+         Site Overrides
+*******************************/
+

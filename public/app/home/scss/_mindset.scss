@@ -1,0 +1,679 @@
+// Font
+@font-face {
+  font-family: 'KunlasatriBold';
+  src: url('/fonts/KunlasatriBold.eot');
+  src: url('/fonts/KunlasatriBold.eot?#iefix') format('embedded-opentype'),
+  url('/fonts/KunlasatriBold.woff2') format('woff2'),
+  url('/fonts/KunlasatriBold.woff') format('woff'),
+  url('/fonts/KunlasatriBold.svg#KunlasatriBold') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@font-face {
+  font-family: 'supermarketregular';
+  src: url('/fonts/supermarket.eot');
+  src: url('/fonts/supermarket.eot?#iefix') format('embedded-opentype'),
+  url('/fonts/supermarket.woff2') format('woff2'),
+  url('/fonts/supermarket.woff') format('woff'),
+  url('/fonts/supermarket.svg#supermarketregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.kunlasatri-bold-font {
+  font-family: KunlasatriBold;
+}
+.kunlasatri-regular-font {
+  font-family: KunlasatriRegular;
+}
+
+.supermarket-font {
+  font-family: supermarketregular !important;
+}
+
+// Font Size
+// Use in  
+// - Main Category Button
+// - Step in register
+.large-font {
+  font-size: 1.125em !important;
+}
+.big-font {
+  font-size: 1.2em !important;
+}
+
+// Use in Sign in/up Button
+.bigger-font {
+  font-size: 1.4em !important;
+}
+.huge-font {
+  font-size: 1.7em !important;
+}
+// Use in error code in error page
+.max-font {
+  font-size: 4em !important;
+}
+
+// Font Weight
+.bold-font {
+  font-weight: bold;
+}
+
+// Color
+$black         : #000000;
+$white         : #ffffff;
+$red           : #ff0000;
+$verydarkgray  : #343434;
+$strongcyan    : #009696;
+$mediumgray    : #B4B4B4;
+
+.black-font {
+  color: $black;
+}
+.red-font {
+  color: $red;
+}
+.verydarkgray {
+  color: $verydarkgray;
+}
+.strongcyan {
+  color: $strongcyan;
+}
+.mediumgray {
+  color: $mediumgray;
+}
+
+// Use in error code description in error page
+// Display incorrect in Chrome Android. And use underline
+.overline-font {
+  text-decoration: overline;
+}
+// Use in link log in/up in 403 error page
+.underline-font {
+  text-decoration: underline;
+}
+
+// fix input form
+#{text-inputs(all, 'input')} {
+  // -webkit-appearance: none;
+  // border-radius: 0;
+  // height: 2.31rem;
+  // display: block;
+  // box-sizing: border-box;
+  // border-style: solid;
+  // border-width: 1px;
+  // border-color: #cccccc;
+}
+
+// Alignment
+// Use in
+// - Form in register
+.height-line {
+  line-height: 2.5em;
+}
+
+.center-grid {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.center-text {
+  text-align: center;
+}
+
+// Section in Body
+header {
+//    margin-top: 0.5rem;
+}
+
+#logo-search-profile-category {
+  padding-top: 1rem;
+}
+
+//fix logo size
+.smallp120 {
+  width: 120px;
+}
+
+#search-profile-category {
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.search-form > input::-webkit-input-placeholder {
+  font-family: supermarketregular;
+  font-size: 1.3em;
+}
+.search-form > input:-ms-input-placeholder {
+  font-family: supermarketregular;
+  font-size: 1.3em;
+}
+.search-form > input::-moz-placeholder {
+  font-family: supermarketregular;
+  font-size: 1.3em;
+}
+.search-form > input:-moz-placeholder {
+  font-family: supermarketregular;
+  font-size: 1.3em;
+}
+
+#profile-frame {
+  margin-left: 0;
+  padding-left: 0;
+}
+
+#profile-icon {
+  text-align: right;
+  //display: inline-block;
+  position:relative;
+}
+
+.profile-shelf {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  white-space: nowrap;
+//  display: flex;
+  display: inline-block;
+  line-height: normal;
+  position: relative;
+  text-align: left;
+}
+
+.profile-book-first {
+  display: inline-block;
+  padding: 0 0 0 15px;
+  vertical-align: middle;
+  line-height: normal;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+//  flex: 0 0 auto;
+  text-align: left;
+}
+
+.profile-book-last {
+  //flex: 0 1 auto;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  white-space: nowrap;
+  padding-left: 1rem;
+}
+
+.profilename {
+  //flex: 0 1 auto;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  white-space: nowrap;
+  //display: flex;
+  display: inline-block;
+  //line-height: normal;
+  padding-right: 15px;
+}
+
+#profile {
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 1rem;
+  padding-right: 0;
+}
+
+#profile-setting {
+  margin-left: 0;
+  padding-left: 1rem;
+}
+
+.icon.menu > a.active > span {
+  color: $verydarkgray;
+}
+
+#category-general-mobile:hover > i:before,
+#category-general-tablet:hover > i:before,
+#category-general:hover > i:before
+{
+  content: "\e600";
+}
+#category-ecology-mobile:hover > i:before,
+#category-ecology-tablet:hover > i:before,
+#category-ecology:hover > i:before
+{
+  content: "\e602";
+}
+#category-travel-mobile:hover > i:before,
+#category-travel-tablet:hover > i:before,
+#category-travel:hover > i:before
+{
+  content: "\e604";
+}
+#category-water-mobile:hover > i:before,
+#category-water-tablet:hover > i:before,
+#category-water:hover > i:before
+{
+  content: "\e606";
+}
+#category-history-mobile:hover > i:before,
+#category-history-tablet:hover > i:before,
+#category-history:hover > i:before
+{
+  content: "\e608";
+}
+
+div .ui.popup > div {
+  font-family: supermarketregular !important;
+  font-size: 1.2em !important;
+}
+
+#menu-main {
+  font-family: supermarketregular;
+  background-color: $strongcyan;
+  color: $white;
+  border-radius: 0.2857rem;
+  box-shadow: 0px 0px 0px 1px rgba(39, 41, 43, 0.15), 0px 1px 2px 0 rgba(0, 0, 0, 0.05);
+  border-bottom: 3px solid rgba(255, 255, 255, 0.9);
+}
+
+#menu-main .item {
+  font-size: 1.3rem;
+}
+
+#menu-main .active.item {
+  background-color: $black;
+  color: $white;
+//  box-shadow: 0em 2px 0em inset;
+  border-bottom: 5px solid rgba(255, 0, 0, 1);
+}
+
+#menu-main .item:first-child {
+  border-radius: 0.2857rem 0px 0px 0.2857rem;
+}
+
+#breadcrumb {
+  margin-top: 1rem;
+}
+
+#main-content {
+  padding: 1rem 0;
+}
+
+#main-category-header {
+  background-color: $strongcyan !important;
+  border-color: $verydarkgray !important;
+}
+
+#relate-content-header {
+  background-color: $strongcyan;
+}
+
+p + p {
+  text-indent: 1.5em;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+footer {
+  background-color: $verydarkgray;
+  padding: 1rem 2rem;
+}
+
+footer > div > div > div > div > h4 > a {
+  color: $white;
+}
+
+// home page style
+.pin-share {
+  border-color: transparent !important;
+}
+.pin-icon {
+  font-size: 2em !important;
+  top: 0.2em !important;
+  left: 0.1em !important;
+}
+.pin-card {
+
+}
+/* Masonry container */
+.masonry {
+  -moz-column-count: 4;
+  -webkit-column-count: 4;
+  column-count: 4;
+  -moz-column-gap: 1em;
+  -webkit-column-gap: 1em;
+  column-gap: 1em;
+}
+/* Masonry bricks or child elements */
+.brick {
+  display: inline-block;
+  margin: 0 0 1em;
+  width: 100%;
+}
+
+.dawning {
+  background: rgba(255, 255, 255, 0.2) !important;
+}
+
+.dark-border {
+  border-top: 1px solid $mediumgray !important;
+}
+
+.rt-conner-card {
+  position: absolute !important;
+  top: 8px !important;
+  right: 4px !important;
+}
+
+.verydarkgray-bg-bt,
+.verydarkgray-bg-bt:hover
+{
+  background: $strongcyan !important;
+}
+
+
+// register page
+// define format for placeholder
+.fill-form > input::-webkit-input-placeholder {
+  font-family: supermarketregular;
+  font-size: 1.05em;
+  line-height: 1.6;
+  //line-height: 1;
+}
+.fill-form > input:-ms-input-placeholder {
+  font-family: supermarketregular;
+  font-size: 1.05em;
+}
+.fill-form > input::-moz-placeholder {
+  font-family: supermarketregular;
+  font-size: 1.05em;
+}
+.fill-form > input:-moz-placeholder {
+  font-family: supermarketregular;
+  font-size: 1.05em;
+}
+input::-moz-placeholder {
+  color: $strongcyan !important;
+}
+input:-moz-placeholder {
+  color: $strongcyan !important;
+}
+input:-ms-input-placeholder {
+  color: $mediumgray !important;
+}
+
+.fill-form > input[type="text"],
+.fill-form > input[type="password"]
+{
+  height: 2.3rem;
+  font-family: supermarketregular;
+  font-size: 1.1em !important;
+  vertical-align: middle !important;
+  padding-top: 0.3em !important;
+  padding-bottom: 0.3em !important;
+}
+
+.fill-form > textarea
+{
+  font-family: supermarketregular;
+  font-size: 1.1em !important;
+  padding-top: 0.3em !important;
+  padding-bottom: 0.3em !important;
+}
+
+#biography,
+#mysuggestion
+{
+  height: 6em !important;
+  min-height: 6em !important;
+}
+
+.register-button {
+  margin-top: 1em;
+}
+
+.register-button > button {
+  //for quark
+  //padding-top: 0.7em !important;
+  //padding-bottom: 0.68em !important;
+  //for kunlasatribold
+  padding-top: 0.7em !important;
+  padding-bottom: 0.66em !important;
+}
+
+.register-button > button > span {
+  font-family: KunlasatriBold !important;
+  font-size: 1.2rem !important;
+}
+.register-button > button.submit {
+  width: 15em !important;
+  background-color: $strongcyan !important;
+  color: $white !important;
+}
+
+.register-button > button.submit:hover {
+  background-color: #008282 !important;
+  color: $white;
+  text-shadow: none;
+}
+
+.field-leading {
+  margin-top: 1rem;
+}
+
+.profile-choose-picture {
+
+}
+
+div.call-change-password,
+div.call-cancel-account
+{
+  background-color: $strongcyan !important;
+}
+
+div.call-change-password:hover,
+div.call-cancel-account:hover
+{
+  background-color: #008282 !important;
+  text-shadow: none;
+}
+
+.call-change-password > span,
+.call-cancel-account > span
+{
+  font-family: KunlasatriBold !important;
+  font-size: 1.1rem !important;
+  color: $white !important;
+}
+
+//Thai word segmentation in confirm-cancel-account-modal
+.break-mobile {
+  display: none !important;
+}
+
+.suggestionoff {
+  margin-top: -2px !important;
+  padding-top: 0px !important;
+}
+
+.accepttruth {
+  margin-top: -5px !important;
+  padding-top: 0px !important;
+  padding-left: 1em !important;
+}
+
+// Modal Semantic : login/logup
+#password-login {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+#checkbox-label {
+  padding-left: 1.5em;
+  margin-left: 0;
+}
+
+#modal-editor-box {
+  position: relative;
+  padding: 1rem;
+}
+
+#modal-login-box {
+  //  margin-top: 1rem;
+  //  margin-bottom: 1rem;
+}
+
+#modal-login-button {
+  //padding-bottom: 0.3rem;
+}
+
+#modal-register-box {
+  //  position: relative;
+}
+
+#modal-register-button {
+  padding-bottom: 0.5rem;
+}
+
+.warn-old-password-wrong {
+  display: none !important;
+}
+
+// Error Page
+
+/* Mobile Sizing Combinations */
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  .heading-register > div {
+    text-align: left;
+  }
+  .fill-form > input[type="text"]
+  {
+    line-height: 1.7 !important;
+    padding-top: 0.6em !important;
+  }
+
+  .field-label {
+    padding-top: 1em;
+    text-align: left !important;
+    line-height: 1.4em;
+  }
+
+  // class for text segmentation
+  .break-computer {
+    display: none !important;
+  }
+  .break-mobile {
+    display: inline !important;
+  }
+
+  .masonry {
+    -moz-column-count: 1;
+    -webkit-column-count: 1;
+    column-count: 1;
+  }
+
+}
+
+/* Mobile & Tablet Sizing Combinations */
+@media only screen and (min-width: 767px) {
+  .masonry {
+    -moz-column-count: 2;
+    -webkit-column-count: 2;
+    column-count: 2;
+  }
+}
+
+/* Tablet Sizing Combinations */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  #relate-content {
+    margin-left: -1rem;
+  }
+
+  .break-computer {
+    display: none !important;
+  }
+}
+/* Computer/Desktop Sizing Combinations */
+@media only screen and (min-width: 992px) {
+  #relate-content {
+    margin-left: -1rem;
+  }
+
+  .break-computer {
+    display: none !important;
+  }
+
+  // set long search form
+  .search-form > input {
+    width: 400px !important;
+  }
+}
+/* Large Monitor Sizing Combinations */
+@media only screen and (min-width: 1400px) and (max-width: 1919px) {
+  #relate-content {
+    margin-left: -1rem;
+  }
+}
+/* Widescreen Sizing Combinations */
+@media only screen and (min-width: 1920px) {
+  #relate-content {
+    margin-left: -1rem;
+  }
+}
+
+// Modal Bootstrap
+.modal-header {
+    background-color: #009696;
+    padding: 7px 7px 7px 15px;
+}
+
+.modal-header .close {
+    margin-top: 4px;
+    margin-right: 5px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    background-color: #000000;
+    padding: 0 5px 0 5px;
+    font-size: 24px;
+    text-shadow: 0;
+    color: transparent;
+}
+
+.modal-title {
+    color: #ffffff;
+}
+
+.modal-desc {
+    border-bottom: 1px solid #E5E5E5;
+    color: #009696;
+    padding: 7px;
+}
+
+.modal-contact {
+  padding: 7px;
+}
+
+.modal-form {
+  border-top: 1px solid #E5E5E5;
+  padding: 7px;
+}
+
+.modal-footer {
+  padding: 7px;
+}
+
+.modal-footer .btn {
+    font-size: 16px;
+}
+
+// Button
+.btn {
+  font-family: KunlasatriBold;
+}
+
+// Header text
+h1,h2,h3,h4,h5,h6 {
+  font-family: supermarketregular !important;
+}

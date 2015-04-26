@@ -1,0 +1,1107 @@
+/*!
+ * # Semantic UI 1.11.5 - Dropdown
+ * http://github.com/semantic-org/semantic-ui/
+ *
+ * Copyright 2014 Contributors
+ * Released under the MIT license
+ * http://opensource.org/licenses/MIT
+ *
+ */
+
+
+/*******************************
+            Dropdow
+*******************************/
+
+.ui.dropdow {
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  line-height: 1em;
+  tap-highlight-color: rgba(0, 0, 0, 0);
+  outline: none;
+  text-align: left;
+  -webkit-transition: border-radius 0.1s ease, width 0.2s ease;
+          transition: border-radius 0.1s ease, width 0.2s ease;
+}
+
+
+/*******************************
+            Content
+*******************************/
+
+
+/*--------------
+      Menu
+---------------*/
+
+.ui.dropdow .menu {
+  cursor: auto;
+  position: absolute;
+  display: none;
+  outline: none;
+  top: 100%;
+  margin: 0em;
+  padding: 0em 0em;
+  background: #ffffff;
+  min-width: 100%;
+  white-space: nowrap;
+  font-size: 1rem;
+  text-shadow: none;
+  text-align: left;
+  box-shadow: 0px 1px 4px 0px rgba(39, 41, 43, 0.15);
+  border: 1px solid rgba(39, 41, 43, 0.15);
+  border-radius: 0em 0em 0.2857rem 0.2857rem;
+  -webkit-transition: opacity 0.2s ease;
+          transition: opacity 0.2s ease;
+  z-index: 11;
+  will-change: transform, opacity;
+}
+
+/*--------------
+  Hidden Input
+---------------*/
+
+.ui.dropdow > input:not(.search):first-child,
+.ui.dropdow > select {
+  display: none !important;
+}
+
+/*--------------
+ Dropdow Icon
+---------------*/
+
+.ui.dropdow > .dropdow.icon {
+  width: auto;
+  margin: 0em 0em 0em 1em;
+}
+.ui.dropdow .menu > .item .dropdow.icon {
+  width: auto;
+  float: right;
+  margin: 0.2em 0em 0em 1em;
+}
+.ui.dropdow .menu > .item .dropdow.icon + .text {
+  margin-right: 1em;
+}
+
+/*--------------
+      Text
+---------------*/
+
+.ui.dropdow > .text {
+  display: inline-block;
+  -webkit-transition: color 0.2s ease;
+          transition: color 0.2s ease;
+}
+
+/*--------------
+    Menu Item
+---------------*/
+
+.ui.dropdow .menu > .item {
+  position: relative;
+  cursor: pointer;
+  display: block;
+  border: none;
+  height: auto;
+  border-top: none;
+  line-height: 1em;
+  color: rgba(0, 0, 0, 0.8);
+  padding: 0.71428571em 1.14285714em !important;
+  font-size: 1rem;
+  text-transform: none;
+  font-weight: normal;
+  box-shadow: none;
+  -webkit-touch-callout: none;
+}
+.ui.dropdow .menu > .item:first-child {
+  border-top-width: 0px;
+}
+
+/*--------------
+  Floated Content
+---------------*/
+
+.ui.dropdow > .text > [class*="right floated"],
+.ui.dropdow .menu .item > [class*="right floated"] {
+  float: right !important;
+  margin-right: 0em !important;
+  margin-left: 1em !important;
+}
+.ui.dropdow > .text > [class*="left floated"],
+.ui.dropdow .menu .item > [class*="left floated"] {
+  float: left !important;
+  margin-left: 0em !important;
+  margin-right: 1em !important;
+}
+.ui.dropdow .menu .item > .icon.floated,
+.ui.dropdow .menu .item > .flag.floated,
+.ui.dropdow .menu .item > .image.floated,
+.ui.dropdow .menu .item > img.floated {
+  margin-top: 0em;
+}
+
+/*--------------
+  Menu Divider
+---------------*/
+
+.ui.dropdow .menu > .header {
+  margin: 1rem 0rem 0.75rem;
+  padding: 0em 1.25rem;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 0.8em;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.ui.dropdow .menu > .divider {
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  height: 0em;
+  margin: 0.5em 0em;
+}
+.ui.dropdow .menu > .input {
+  margin: 0.75rem 1.14285714em;
+  min-width: 200px;
+}
+.ui.dropdow .menu > .header + .input {
+  margin-top: 0em;
+}
+.ui.dropdow .menu > .input:not(.transparent) input {
+  padding: 0.5em 1em;
+}
+.ui.dropdow .menu > .input:not(.transparent) .button,
+.ui.dropdow .menu > .input:not(.transparent) .icon,
+.ui.dropdow .menu > .input:not(.transparent) .label {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
+
+/*-----------------
+  Item Description
+-------------------*/
+
+.ui.dropdow > .text > .description,
+.ui.dropdow .menu > .item > .description {
+  margin: 0em 0em 0em 1em;
+  color: rgba(0, 0, 0, 0.4);
+}
+
+/*--------------
+    Sub Menu
+---------------*/
+
+.ui.dropdow .menu .menu {
+  top: 0% !important;
+  left: 100% !important;
+  right: auto !important;
+  margin: 0em 0em 0em -0.5em !important;
+  border-radius: 0em 0.2857rem 0.2857rem 0em !important;
+  z-index: 21 !important;
+}
+
+/* Hide Arrow */
+.ui.dropdow .menu .menu:after {
+  display: none;
+}
+
+
+/*******************************
+            Coupling
+*******************************/
+
+
+/*--------------
+   Sub Elements
+---------------*/
+
+
+/* Icons / Flags / Labels / Image */
+.ui.dropdow > .text > .icon,
+.ui.dropdow > .text > .label,
+.ui.dropdow > .text > .flag,
+.ui.dropdow > .text > img,
+.ui.dropdow > .text > .image {
+  margin-top: 0em;
+}
+.ui.dropdow .menu > .item > .icon,
+.ui.dropdow .menu > .item > .label,
+.ui.dropdow .menu > .item > .flag,
+.ui.dropdow .menu > .item > .image,
+.ui.dropdow .menu > .item > img {
+  margin-top: 0em;
+}
+.ui.dropdow > .text > .icon,
+.ui.dropdow > .text > .label,
+.ui.dropdow > .text > .flag,
+.ui.dropdow > .text > img,
+.ui.dropdow > .text > .image,
+.ui.dropdow .menu > .item > .icon,
+.ui.dropdow .menu > .item > .label,
+.ui.dropdow .menu > .item > .flag,
+.ui.dropdow .menu > .item > .image,
+.ui.dropdow .menu > .item > img {
+  margin-left: 0em;
+  float: none;
+  margin-right: 0.75em;
+}
+
+/*--------------
+     Image
+---------------*/
+
+.ui.dropdow > .text > img,
+.ui.dropdow > .text > .image,
+.ui.dropdow .menu > .item > .image,
+.ui.dropdow .menu > .item > img {
+  display: inline-block;
+  vertical-align: middle;
+  width: auto;
+  max-height: 2.5em;
+}
+
+/*--------------
+      Menu
+---------------*/
+
+
+/* Remove Menu Item Divider */
+.ui.dropdow .ui.menu > .item:before,
+.ui.menu .ui.dropdow .menu > .item:before {
+  display: none;
+}
+
+/* Prevent Menu Item Border */
+.ui.menu .ui.dropdow .menu .active.item {
+  border-left: none;
+}
+
+/* Automatically float dropdow menu right on last menu item */
+.ui.menu .right.menu .dropdow:last-child .menu,
+.ui.menu .right.dropdow.item .menu,
+.ui.buttons > .ui.dropdow:last-child .menu {
+  left: auto;
+  right: 0em;
+}
+
+/*--------------
+     Button
+---------------*/
+
+
+/* No Margin On Icon Button */
+.ui.dropdow.icon.button > .dropdow.icon {
+  margin: 0em;
+}
+.ui.dropdow.button:not(.pointing):not(.floating).active,
+.ui.dropdow.button:not(.pointing):not(.floating).visible {
+  border-bottom-left-radius: 0em;
+  border-bottom-right-radius: 0em;
+}
+
+
+/*******************************
+              Types
+*******************************/
+
+
+/*--------------
+    Selection
+---------------*/
+
+
+/* Displays like a select box */
+.ui.selection.dropdow {
+  cursor: pointer;
+  word-wrap: break-word;
+  white-space: normal;
+  outline: 0;
+  -webkit-transform: rotateZ(0deg);
+          transform: rotateZ(0deg);
+  min-width: 180px;
+  background: #ffffff;
+  display: inline-block;
+  padding: 0.8em 1.1em;
+  color: rgba(0, 0, 0, 0.8);
+  box-shadow: none;
+  border: 1px solid rgba(39, 41, 43, 0.15);
+  border-radius: 0.2857rem;
+  -webkit-transition: border-radius 0.1s ease, width 0.2s ease, box-shadow 0.2s ease, border 0.2s ease;
+          transition: border-radius 0.1s ease, width 0.2s ease, box-shadow 0.2s ease, border 0.2s ease;
+}
+.ui.selection.dropdow.visible,
+.ui.selection.dropdow.active {
+  z-index: 10;
+}
+select.ui.dropdow {
+  height: 38px;
+  padding: 0.5em;
+  border: 1px solid rgba(39, 41, 43, 0.15);
+  visibility: visible;
+}
+.ui.selection.dropdow > .text {
+  margin-right: 2em;
+}
+.ui.selection.dropdow > .search.icon,
+.ui.selection.dropdow > .delete.icon,
+.ui.selection.dropdow > .dropdow.icon {
+  cursor: pointer;
+  position: absolute;
+  top: auto;
+  width: auto;
+  margin: -0.8em;
+  padding: 0.8em;
+  right: 1.1em;
+  opacity: 0.8;
+  -webkit-transition: opacity 0.2s ease;
+          transition: opacity 0.2s ease;
+}
+
+/* Compact */
+.ui.compact.selection.dropdow {
+  min-width: 0px;
+}
+
+/*  Selection Menu */
+.ui.selection.dropdow .menu {
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  -webkit-overflow-scrolling: touch;
+  border-top-width: 0px !important;
+  width: auto;
+  margin: 0px -1px;
+  min-width: -webkit-calc(100% +  2px );
+  min-width: calc(100% +  2px );
+  outline: none;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.08);
+  -webkit-transition: box-shadow 0.2s ease, border 0.2s ease;
+          transition: box-shadow 0.2s ease, border 0.2s ease;
+}
+.ui.selection.dropdow .menu:after,
+.ui.selection.dropdow .menu:before {
+  display: none;
+}
+
+/* Scrollbar in IE */
+@media all and (-ms-high-contrast: none) {
+  .ui.selection.dropdown .menu {
+    min-width: -webkit-calc(100% -  15px );
+    min-width: calc(100% -  15px );
+  }
+}
+@media only screen and (max-width: 767px) {
+  .ui.selection.dropdow .menu {
+    max-height: 7.49991429em;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .ui.selection.dropdow .menu {
+    max-height: 9.99988571em;
+  }
+}
+@media only screen and (min-width: 992px) {
+  .ui.selection.dropdow .menu {
+    max-height: 14.99982857em;
+  }
+}
+@media only screen and (min-width: 1920px) {
+  .ui.selection.dropdow .menu {
+    max-height: 19.99977143em;
+  }
+}
+
+/* Menu Item */
+.ui.selection.dropdow .menu > .item {
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  padding-left: 1.1em !important;
+  
+/* Add in spacing for scroll bar */
+  padding-right: -webkit-calc( 1.1em  + 1em) !important~;
+  padding-right: calc( 1.1em  + 1em) !important~;
+  white-space: normal;
+  word-wrap: normal;
+}
+
+/* Hover */
+.ui.selection.dropdow:hover {
+  border-color: rgba(39, 41, 43, 0.3);
+  box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.05);
+}
+
+/* Disabled */
+.ui.selection.dropdow.disabled,
+.ui.selection.dropdow.disabled:hover {
+  cursor: default;
+  box-shadow: none;
+  color: rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(39, 41, 43, 0.15);
+  opacity: 0.3 !important;
+}
+
+/* Visible */
+.ui.selection.dropdow.visible {
+  border-color: rgba(39, 41, 43, 0.3);
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.08);
+}
+.ui.selection.visible.dropdow .menu {
+  border-color: rgba(39, 41, 43, 0.3);
+  box-shadow: 0px 2px 6px 0px rgba(39, 41, 43, 0.15);
+}
+
+/* Visible Hover */
+.ui.selection.visible.dropdow:hover {
+  border-color: rgba(39, 41, 43, 0.3);
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.08);
+}
+.ui.selection.visible.dropdow .menu {
+  border-color: rgba(39, 41, 43, 0.3);
+  box-shadow: 0px 2px 6px 0px rgba(39, 41, 43, 0.15);
+}
+
+/* Active Item */
+.ui.selection.active.dropdow > .text:not(.default),
+.ui.selection.visible.dropdow > .text:not(.default) {
+  font-weight: normal;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+/* Dropdow Icon */
+.ui.active.selection.dropdow > .dropdow.icon,
+.ui.visible.selection.dropdow > .dropdow.icon {
+  opacity: 1;
+  z-index: 3;
+}
+
+/* Connecting Border */
+.ui.active.selection.dropdow,
+.ui.visible.selection.dropdow {
+  border-bottom-left-radius: 0em !important;
+  border-bottom-right-radius: 0em !important;
+}
+
+/*--------------
+   Searchable
+---------------*/
+
+
+/* Search Selection */
+.ui.search.dropdow {
+  min-width: '';
+}
+
+/* Search Dropdow */
+.ui.search.dropdow > input.search {
+  background: none transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0em !important;
+  cursor: pointer;
+  top: 0em;
+  left: 0em;
+  width: 100%;
+  outline: none;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  padding: inherit;
+}
+
+/* Text Layering */
+.ui.search.dropdow > input.search {
+  position: absolute;
+  z-index: 2;
+}
+.ui.search.dropdow > .text {
+  cursor: text;
+  position: relative;
+  z-index: 3;
+}
+
+/* Search Selection */
+.ui.search.selection.dropdow > input.search {
+  line-height: 1.2142em;
+  padding: 0.6929em 1.1em;
+}
+
+/* Active/Visible Search */
+.ui.search.dropdow.active > input.search,
+.ui.search.dropdow.visible > input.search {
+  cursor: auto;
+}
+.ui.search.dropdow.active > .text,
+.ui.search.dropdow.visible > .text {
+  pointer-events: none;
+}
+.ui.active.search.dropdow > input.search:focus + .text {
+  color: rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Search Menu */
+.ui.search.dropdow .menu {
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+@media only screen and (max-width: 767px) {
+  .ui.search.dropdow .menu {
+    max-height: 7.49991429em;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .ui.search.dropdow .menu {
+    max-height: 9.99988571em;
+  }
+}
+@media only screen and (min-width: 992px) {
+  .ui.search.dropdow .menu {
+    max-height: 14.99982857em;
+  }
+}
+@media only screen and (min-width: 1920px) {
+  .ui.search.dropdow .menu {
+    max-height: 19.99977143em;
+  }
+}
+
+/*--------------
+     Inline
+---------------*/
+
+.ui.inline.dropdow {
+  cursor: pointer;
+  display: inline-block;
+  color: inherit;
+}
+.ui.inline.dropdow .dropdow.icon {
+  margin: 0em 0.5em 0em 0.25em;
+  vertical-align: top;
+}
+.ui.inline.dropdow > .text {
+  font-weight: bold;
+}
+.ui.inline.dropdow .menu {
+  cursor: auto;
+  margin-top: 0.25em;
+  border-radius: 0.2857rem;
+}
+
+
+/*******************************
+            States
+*******************************/
+
+
+/*--------------------
+        Hover
+----------------------*/
+
+
+/* Menu Item Hover */
+.ui.dropdow .menu > .item:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: rgba(0, 0, 0, 0.8);
+  z-index: 13;
+}
+
+/*--------------------
+        Active
+----------------------*/
+
+
+/* Menu Item Active */
+.ui.dropdow .menu .active.item {
+  background: transparent;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.8);
+  box-shadow: none;
+  z-index: 12;
+}
+
+/*--------------------
+     Default Text
+----------------------*/
+
+.ui.dropdow > .default.text,
+.ui.default.dropdow > .text {
+  color: rgba(179, 179, 179, 0.7);
+}
+.ui.dropdow:hover > .default.text,
+.ui.default.dropdow:hover > .text {
+  color: rgba(140, 140, 140, 0.7);
+}
+
+/*--------------------
+        Loading
+----------------------*/
+
+.ui.loading.dropdow > .text {
+  -webkit-transition: none;
+          transition: none;
+}
+.ui.dropdow > .loading.menu {
+  display: block;
+  visibility: hidden;
+  z-index: -1;
+}
+
+/*--------------------
+    Keyboard Select
+----------------------*/
+
+
+/* Selected Item */
+.ui.dropdow.selected,
+.ui.dropdow .menu .selected.item {
+  background: rgba(0, 0, 0, 0.03);
+  color: rgba(0, 0, 0, 0.8);
+}
+
+/*--------------------
+    Search Filtered
+----------------------*/
+
+
+/* Filtered Item */
+.ui.dropdow > .filtered.text {
+  visibility: hidden;
+}
+.ui.dropdow .filtered.item {
+  display: none !important;
+}
+
+/*--------------------
+        Error
+----------------------*/
+
+.ui.dropdow.error,
+.ui.dropdow.error > .text,
+.ui.dropdow.error > .default.text {
+  color: #a94442;
+}
+.ui.selection.dropdow.error {
+  background: #fff0f0;
+  border-color: #dbb1b1;
+}
+.ui.selection.dropdow.error:hover {
+  border-color: #dbb1b1;
+}
+.ui.dropdow.error > .menu,
+.ui.dropdow.error > .menu .menu {
+  border-color: #dbb1b1;
+}
+.ui.dropdow.error > .menu > .item {
+  color: #d95c5c;
+}
+
+/* Item Hover */
+.ui.dropdow.error > .menu > .item:hover {
+  background-color: #fff2f2;
+}
+
+/* Item Active */
+.ui.dropdow.error > .menu .active.item {
+  background-color: #fdcfcf;
+}
+
+/*--------------------
+        Disabled
+----------------------*/
+
+
+/* Disabled */
+.ui.disabled.dropdow {
+  cursor: default;
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+
+/*******************************
+           Variations
+*******************************/
+
+
+/*--------------
+    Direction
+---------------*/
+
+
+/* Flyout Direction */
+.ui.dropdow .menu {
+  left: 0px;
+}
+
+/* Default Side (Right) */
+.ui.dropdow .right.menu > .menu,
+.ui.dropdow .menu .right.menu {
+  left: 100% !important;
+  right: auto !important;
+}
+
+/* Left Flyout Menu */
+.ui.dropdow > .left.menu .menu,
+.ui.dropdow .menu .left.menu {
+  left: auto !important;
+  right: 100% !important;
+}
+.ui.dropdow .item .left.dropdow.icon,
+.ui.dropdow .left.menu .item .dropdow.icon {
+  width: auto;
+  float: left;
+  margin: 0em 0.75em 0em 0em;
+}
+.ui.dropdow .item .left.dropdow.icon,
+.ui.dropdow .left.menu .item .dropdow.icon {
+  width: auto;
+  float: left;
+  margin: 0em 0.75em 0em 0em;
+}
+.ui.dropdow .item .left.dropdow.icon + .text,
+.ui.dropdow .left.menu .item .dropdow.icon + .text {
+  margin-left: 1em;
+}
+
+/*--------------
+     Upward
+---------------*/
+
+.ui.upward.dropdow > .menu {
+  top: auto;
+  bottom: 100%;
+  box-shadow: 0px 0px 4px 0px rgba(39, 41, 43, 0.15);
+  border-radius: 0.2857rem 0.2857rem 0em 0em;
+}
+
+/* Active Upward */
+.ui.simple.upward.active.dropdow,
+.ui.simple.upward.dropdow:hover {
+  border-radius: 0.2857rem 0.2857rem 0em 0em !important;
+}
+.ui.upward.dropdow.button:not(.pointing):not(.floating).active,
+.ui.upward.dropdow.button:not(.pointing):not(.floating).visible {
+  border-radius: 0.2857rem 0.2857rem 0em 0em;
+}
+
+/* Selection */
+.ui.upward.selection.dropdow .menu {
+  border-top-width: 1px !important;
+  border-bottom-width: 0px !important;
+}
+.ui.upward.selection.dropdow:hover {
+  box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.05);
+}
+.ui.upward.selection.visible.dropdow:hover {
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.05);
+}
+.ui.active.upward.selection.dropdow,
+.ui.visible.upward.selection.dropdow {
+  border-radius: 0em 0em 0.2857rem 0.2857rem !important;
+}
+.ui.upward.selection.dropdow.visible {
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.08);
+}
+.ui.upward.selection.visible.dropdow:hover .menu {
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.08);
+}
+
+/*--------------
+     Simple
+---------------*/
+
+
+/* Displays without javascript */
+.ui.simple.dropdow .menu:before,
+.ui.simple.dropdow .menu:after {
+  display: none;
+}
+.ui.simple.dropdow .menu {
+  position: absolute;
+  display: block;
+  overflow: hidden;
+  top: -9999px !important;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  -webkit-transition: opacity 0.2s ease;
+          transition: opacity 0.2s ease;
+}
+.ui.simple.active.dropdow,
+.ui.simple.dropdow:hover {
+  border-bottom-left-radius: 0em !important;
+  border-bottom-right-radius: 0em !important;
+}
+.ui.simple.active.dropdow > .menu,
+.ui.simple.dropdow:hover > .menu {
+  overflow: visible;
+  width: auto;
+  height: auto;
+  top: 100% !important;
+  opacity: 1;
+}
+.ui.simple.dropdow > .menu > .item:active > .menu,
+.ui.simple.dropdow:hover > .menu > .item:hover > .menu {
+  overflow: visible;
+  width: auto;
+  height: auto;
+  top: 0% !important;
+  left: 100% !important;
+  opacity: 1;
+}
+.ui.simple.disabled.dropdow:hover .menu {
+  display: none;
+  height: 0px;
+  width: 0px;
+  overflow: hidden;
+}
+
+/* Visible */
+.ui.simple.visible.dropdow > .menu {
+  display: block;
+}
+
+/*--------------
+      Fluid
+---------------*/
+
+.ui.fluid.dropdow {
+  display: block;
+  width: 100%;
+  min-width: 0em;
+}
+.ui.fluid.dropdow > .dropdow.icon {
+  float: right;
+}
+
+/*--------------
+    Floating
+---------------*/
+
+.ui.floating.dropdow .menu {
+  left: 0;
+  right: auto;
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.15);
+  border-radius: 0.2857rem;
+}
+.ui.floating.dropdow > .menu {
+  margin-top: 0.5em !important;
+}
+
+/*--------------
+     Pointing
+---------------*/
+
+.ui.pointing.dropdow > .menu {
+  top: 100%;
+  margin-top: 0.75em;
+  border-radius: 0.2857rem;
+}
+.ui.pointing.dropdow > .menu:after {
+  display: block;
+  position: absolute;
+  pointer-events: none;
+  content: '';
+  visibility: visible;
+  -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+          transform: rotate(45deg);
+  width: 0.5em;
+  height: 0.5em;
+  box-shadow: -1px -1px 0px 1px rgba(0, 0, 0, 0.1);
+  background: #ffffff;
+  z-index: 2;
+}
+.ui.pointing.dropdow > .menu:after {
+  top: -0.25em;
+  left: 50%;
+  margin: 0em 0em 0em -0.25em;
+}
+
+/* Top Left Pointing */
+.ui.top.left.pointing.dropdow > .menu {
+  top: 100%;
+  bottom: auto;
+  left: 0%;
+  right: auto;
+  margin: 1em 0em 0em;
+}
+.ui.top.left.pointing.dropdow > .menu {
+  top: 100%;
+  bottom: auto;
+  left: 0%;
+  right: auto;
+  margin: 1em 0em 0em;
+}
+.ui.top.left.pointing.dropdow > .menu:after {
+  top: -0.25em;
+  left: 1em;
+  right: auto;
+  margin: 0em;
+  -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+/* Top Right  Pointing */
+.ui.top.right.pointing.dropdow > .menu {
+  top: 100%;
+  bottom: auto;
+  right: 0%;
+  left: auto;
+  margin: 1em 0em 0em;
+}
+.ui.top.right.pointing.dropdow > .menu:after {
+  top: -0.25em;
+  left: auto;
+  right: 1em;
+  margin: 0em;
+  -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+/* Left Pointing */
+.ui.left.pointing.dropdow > .menu {
+  top: 0%;
+  left: 100%;
+  right: auto;
+  margin: 0em 0em 0em 1em;
+}
+.ui.left.pointing.dropdow > .menu:after {
+  top: 1em;
+  left: -0.25em;
+  margin: 0em 0em 0em 0em;
+  -webkit-transform: rotate(-45deg);
+      -ms-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+
+/* Right Pointing */
+.ui.right.pointing.dropdow > .menu {
+  top: 0%;
+  left: auto;
+  right: 100%;
+  margin: 0em 1em 0em 0em;
+}
+.ui.right.pointing.dropdow > .menu:after {
+  top: 1em;
+  left: auto;
+  right: -0.25em;
+  margin: 0em 0em 0em 0em;
+  -webkit-transform: rotate(135deg);
+      -ms-transform: rotate(135deg);
+          transform: rotate(135deg);
+}
+
+/* Bottom Pointing */
+.ui.bottom.pointing.dropdow > .menu {
+  top: auto;
+  bottom: 100%;
+  left: 0%;
+  right: auto;
+  margin: 0em 0em 1em;
+}
+.ui.bottom.pointing.dropdow > .menu:after {
+  top: auto;
+  bottom: -0.25em;
+  right: auto;
+  margin: 0em;
+  -webkit-transform: rotate(-135deg);
+      -ms-transform: rotate(-135deg);
+          transform: rotate(-135deg);
+}
+
+/* Reverse Sub-Menu Direction */
+.ui.bottom.pointing.dropdow > .menu .menu {
+  top: auto !important;
+  bottom: 0px !important;
+}
+
+/* Bottom Left */
+.ui.bottom.left.pointing.dropdow > .menu {
+  left: 0%;
+  right: auto;
+}
+.ui.bottom.left.pointing.dropdow > .menu:after {
+  left: 1em;
+  right: auto;
+}
+
+/* Bottom Right */
+.ui.bottom.right.pointing.dropdow > .menu {
+  right: 0%;
+  left: auto;
+}
+.ui.bottom.right.pointing.dropdow > .menu:after {
+  left: auto;
+  right: 1em;
+}
+
+
+/*******************************
+         Theme Overrides
+*******************************/
+
+
+/* Dropdow Carets */
+@font-face {
+  font-family: 'Dropdow';
+  src: url(data:application/x-font-ttf;charset=utf-8;base64,AAEAAAALAIAAAwAwT1MvMggjB5AAAAC8AAAAYGNtYXAPfuIIAAABHAAAAExnYXNwAAAAEAAAAWgAAAAIZ2x5Zjo82LgAAAFwAAABVGhlYWQAQ88bAAACxAAAADZoaGVhAwcB6QAAAvwAAAAkaG10eAS4ABIAAAMgAAAAIGxvY2EBNgDeAAADQAAAABJtYXhwAAoAFgAAA1QAAAAgbmFtZVcZpu4AAAN0AAABRXBvc3QAAwAAAAAEvAAAACAAAwIAAZAABQAAAUwBZgAAAEcBTAFmAAAA9QAZAIQAAAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAAAAAAAABAAADw2gHg/+D/4AHgACAAAAABAAAAAAAAAAAAAAAgAAAAAAACAAAAAwAAABQAAwABAAAAFAAEADgAAAAKAAgAAgACAAEAIPDa//3//wAAAAAAIPDX//3//wAB/+MPLQADAAEAAAAAAAAAAAAAAAEAAf//AA8AAQAAAAAAAAAAAAIAADc5AQAAAAABAAAAAAAAAAAAAgAANzkBAAAAAAEAAAAAAAAAAAACAAA3OQEAAAAAAQAAAIABJQElABMAABM0NzY3BTYXFhUUDwEGJwYvASY1AAUGBwEACAUGBoAFCAcGgAUBEgcGBQEBAQcECQYHfwYBAQZ/BwYAAQAAAG4BJQESABMAADc0PwE2MzIfARYVFAcGIyEiJyY1AAWABgcIBYAGBgUI/wAHBgWABwaABQWABgcHBgUFBgcAAAABABIASQC3AW4AEwAANzQ/ATYXNhcWHQEUBwYnBi8BJjUSBoAFCAcFBgYFBwgFgAbbBwZ/BwEBBwQJ/wgEBwEBB38GBgAAAAABAAAASQClAW4AEwAANxE0NzYzMh8BFhUUDwEGIyInJjUABQYHCAWABgaABQgHBgVbAQAIBQYGgAUIBwWABgYFBwAAAAEAAAABAADZuaKOXw889QALAgAAAAAA0ABHWAAAAADQAEdYAAAAAAElAW4AAAAIAAIAAAAAAAAAAQAAAeD/4AAAAgAAAAAAASUAAQAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAABAAAAASUAAAElAAAAtwASALcAAAAAAAAACgAUAB4AQgBkAIgAqgAAAAEAAAAIABQAAQAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAOAK4AAQAAAAAAAQAOAAAAAQAAAAAAAgAOAEcAAQAAAAAAAwAOACQAAQAAAAAABAAOAFUAAQAAAAAABQAWAA4AAQAAAAAABgAHADIAAQAAAAAACgA0AGMAAwABBAkAAQAOAAAAAwABBAkAAgAOAEcAAwABBAkAAwAOACQAAwABBAkABAAOAFUAAwABBAkABQAWAA4AAwABBAkABgAOADkAAwABBAkACgA0AGMAaQBjAG8AbQBvAG8AbgBWAGUAcgBzAGkAbwBuACAAMQAuADAAaQBjAG8AbQBvAG8Abmljb21vb24AaQBjAG8AbQBvAG8AbgBSAGUAZwB1AGwAYQByAGkAYwBvAG0AbwBvAG4ARgBvAG4AdAAgAGcAZQBuAGUAcgBhAHQAZQBkACAAYgB5ACAASQBjAG8ATQBvAG8AbgAuAAAAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=) format('truetype'), url(data:application/font-woff;charset=utf-8;base64,d09GRk9UVE8AAAVwAAoAAAAABSgAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABDRkYgAAAA9AAAAdkAAAHZLDXE/09TLzIAAALQAAAAYAAAAGAIIweQY21hcAAAAzAAAABMAAAATA9+4ghnYXNwAAADfAAAAAgAAAAIAAAAEGhlYWQAAAOEAAAANgAAADYAQ88baGhlYQAAA7wAAAAkAAAAJAMHAelobXR4AAAD4AAAACAAAAAgBLgAEm1heHAAAAQAAAAABgAAAAYACFAAbmFtZQAABAgAAAFFAAABRVcZpu5wb3N0AAAFUAAAACAAAAAgAAMAAAEABAQAAQEBCGljb21vb24AAQIAAQA6+BwC+BsD+BgEHgoAGVP/i4seCgAZU/+LiwwHi2v4lPh0BR0AAACIDx0AAACNER0AAAAJHQAAAdASAAkBAQgPERMWGyAlKmljb21vb25pY29tb29udTB1MXUyMHVGMEQ3dUYwRDh1RjBEOXVGMERBAAACAYkABgAIAgABAAQABwAKAA0AVgCfAOgBL/yUDvyUDvyUDvuUDvtvi/emFYuQjZCOjo+Pj42Qiwj3lIsFkIuQiY6Hj4iNhouGi4aJh4eHCPsU+xQFiIiGiYaLhouHjYeOCPsU9xQFiI+Jj4uQCA77b4v3FBWLkI2Pjo8I9xT3FAWPjo+NkIuQi5CJjogI9xT7FAWPh42Hi4aLhomHh4eIiIaJhosI+5SLBYaLh42HjoiPiY+LkAgO+92d928Vi5CNkI+OCPcU9xQFjo+QjZCLkIuPiY6Hj4iNhouGCIv7lAWLhomHh4iIh4eJhouGi4aNiI8I+xT3FAWHjomPi5AIDvvdi+YVi/eUBYuQjZCOjo+Pj42Qi5CLkImOhwj3FPsUBY+IjYaLhouGiYeHiAj7FPsUBYiHhomGi4aLh42Hj4iOiY+LkAgO+JQU+JQViwwKAAAAAAMCAAGQAAUAAAFMAWYAAABHAUwBZgAAAPUAGQCEAAAAAAAAAAAAAAAAAAAAARAAAAAAAAAAAAAAAAAAAAAAQAAA8NoB4P/g/+AB4AAgAAAAAQAAAAAAAAAAAAAAIAAAAAAAAgAAAAMAAAAUAAMAAQAAABQABAA4AAAACgAIAAIAAgABACDw2v/9//8AAAAAACDw1//9//8AAf/jDy0AAwABAAAAAAAAAAAAAAABAAH//wAPAAEAAAABAAA5emozXw889QALAgAAAAAA0ABHWAAAAADQAEdYAAAAAAElAW4AAAAIAAIAAAAAAAAAAQAAAeD/4AAAAgAAAAAAASUAAQAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAABAAAAASUAAAElAAAAtwASALcAAAAAUAAACAAAAAAADgCuAAEAAAAAAAEADgAAAAEAAAAAAAIADgBHAAEAAAAAAAMADgAkAAEAAAAAAAQADgBVAAEAAAAAAAUAFgAOAAEAAAAAAAYABwAyAAEAAAAAAAoANABjAAMAAQQJAAEADgAAAAMAAQQJAAIADgBHAAMAAQQJAAMADgAkAAMAAQQJAAQADgBVAAMAAQQJAAUAFgAOAAMAAQQJAAYADgA5AAMAAQQJAAoANABjAGkAYwBvAG0AbwBvAG4AVgBlAHIAcwBpAG8AbgAgADEALgAwAGkAYwBvAG0AbwBvAG5pY29tb29uAGkAYwBvAG0AbwBvAG4AUgBlAGcAdQBsAGEAcgBpAGMAbwBtAG8AbwBuAEYAbwBuAHQAIABnAGUAbgBlAHIAYQB0AGUAZAAgAGIAeQAgAEkAYwBvAE0AbwBvAG4ALgAAAAADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA) format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+.ui.dropdow > .dropdow.icon {
+  font-family: 'Dropdow';
+  line-height: 1;
+  height: 1em;
+  width: 1.23em;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  font-weight: normal;
+  font-style: normal;
+  text-align: center;
+}
+.ui.dropdow > .dropdow.icon {
+  width: auto;
+}
+.ui.dropdow > .dropdow.icon:before {
+  content: '\f0d7';
+}
+
+/* Sub Menu */
+.ui.dropdow .menu .item .dropdow.icon:before {
+  content: '\f0da' /*rtl:'\f0d9'*/;
+}
+.ui.dropdow .item .left.dropdow.icon:before,
+.ui.dropdow .left.menu .item .dropdow.icon:before {
+  content: "\f0d9" /*rtl:"\f0da"*/;
+}
+
+/* Upward Dropdow */
+.ui.upward.dropdow > .dropdow.icon:before {
+  content: "\f0d8";
+}
+
+/* Vertical Menu Dropdow */
+.ui.vertical.menu .dropdow.item > .dropdow.icon:before {
+  content: "\f0da" /*rtl:"\f0d9"*/;
+}
+/* Icons for Reference
+.dropdow.down.icon {
+  content: "\f0d7";
+}
+.dropdow.up.icon {
+  content: "\f0d8";
+}
+.dropdow.left.icon {
+  content: "\f0d9";
+}
+.dropdow.icon.icon {
+  content: "\f0da";
+}
+*/
+
+
+/*******************************
+        User Overrides
+*******************************/
+

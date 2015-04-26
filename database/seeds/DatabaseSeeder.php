@@ -1,0 +1,26 @@
+<?php
+
+use Illuminate\Database\Seeder;
+use Illuminate\Database\Eloquent\Model;
+use App\Models\Faculty;
+
+class DatabaseSeeder extends Seeder {
+
+	/**
+	 * Run the database seeds.
+	 *
+	 * @return void
+	 */
+
+
+	public function run()
+	{
+		Model::unguard();
+
+        $faculty = new Faculty();
+        $faculty->name_th = "คณะเทคโนโลีสารสนเทศแลการสื่อสาร";
+        $faculty->save();
+		// $this->call('UserTableSeeder');
+	}
+
+}
