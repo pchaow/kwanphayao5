@@ -1,79 +1,172 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML5>
+<html>
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap 101 Template</title>
+    <meta name="csrf_token" value="<?php echo csrf_token(); ?>">
+    <link rel="stylesheet" href="/components/semantic-ui/dist/semantic.min.css"/>
+    <link rel="stylesheet" href="/components/semantic-ui/dist/components/dropdown.min.css"/>
 
-    <!-- Bootstrap -->
-    <link href="/components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/components/FroalaWysiwygEditor/css/font-awesome.min.css" rel="stylesheet">
-    <link href="/components/FroalaWysiwygEditor/css/froala_content.min.css" rel="stylesheet">
-    <link href="/components/FroalaWysiwygEditor/css/froala_style.min.css" rel="stylesheet">
-    <link href="/components/FroalaWysiwygEditor/css/froala_editor.min.css" rel="stylesheet">
-    <link href="/css/style.css" rel="stylesheet" type="text/css" charset="utf-8">
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <script src="/components/jquery/dist/jquery.min.js"></script>
+    <script src="/components/semantic-ui/dist/semantic.min.js" type="text/javascript"></script>
+    <script src="/components/semantic-ui/dist/components/dropdown.min.js" type="text/javascript"></script>
+    <style>
+        .avatar-menu {
+            height: 2em !important;
+            width: 2em !important;
+            margin-top: -0.5em;
+            margin-bottom: -0.5em;
+        }
+    </style>
 </head>
+
 <body>
 
-<nav class="navbar navbar-fixed-top navbar-inverse">
-    <div class="navbar-brand">สารานุกรมกว๊านพะเยา</div>
-</nav>
+<div class="ui" style="background-color: #4c1d6e">
 
-<div class="container-fluid">
+    <h2 class="ui header inverted" style="padding: 10px;">
+        <img src="/images/KwanEncyclopaedia.png">
 
+        <div class="content">
+            Kwanphayao Encyclopedia
+            <div class="sub header">ระบบฐานข้อมูลสารานุกรมกว๊านพะเยา</div>
+        </div>
+    </h2>
+
+</div>
+
+<div class="ui">
     <div class="row">
+        <div class="ui large menu " id="MainMenu">
+            <div class="left purple inverted menu">
+                <a class="item active">
+                    Main Menu
+                </a>
+                <a class="item">
+                    About Us
+                </a>
+            </div>
+
+            <div class="right menu">
 
 
-    <div class="col-sm-3 col-md-2 sidebar">
+                <div class="item ui dropdown " ng-controller="UserCtrl">
 
-        <ul class="nav nav-sidebar">
-            <li class="{{Request::path() == 'admin' ? 'active' : ''}}"><a href="/admin">Overview</a></li>
-        </ul>
+                    <div ng-controller="loadCtrl" ng-class="{active:active}" class="ui inverted dimmer ">
+                        <div class="ui small text loader">
+                            Loading
+                        </div>
+                    </div>
 
-        <ul class="nav nav-sidebar">
-            <li class="{{Request::path() == 'admin/main-category' ? 'active' : ''}}"><a href="/admin/main-category">Main Category</a></li>
-            <!--li class="{{Request::path() == 'admin/category' ? 'active' : ''}}"><a href="/admin/category">Category</a></li-->
-            <li class="{{Request::path() == 'admin/content' ? 'active' : ''}}"><a href="/admin/content">Content</a></li>
+                    <img ng-if="!current_user.logo" class="ui avatar avatar-menu image" src="/images/square-image.png">
+                    <img ng-if="current_user.logo" class="ui avatar avatar-menu image" ng-src="{{current_user.logo.url}}?h=200">
+                    <span ng-if="!current_user.email">UserName</span>
+                    <span ng-if="current_user.email" ng-bind="current_user.email"></span>
 
-        </ul>
+                    <div class="menu">
+                        <a class="item">Change Profile</a>
+                        <a class="item" ng-click="logout()">Logout</a>
+                    </div>
 
-        <ul class="nav nav-sidebar">
-            <li class="{{Request::path() == 'admin/user' ? 'active' : ''}}"><a href="/admin/user">User</a></li>
-            <li class="{{Request::path() == 'admin/role' ? 'active' : ''}}"><a href="/admin/role">Role</a></li>
-        </ul>
 
-    </div>
-    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-        @yield('content')
-    </div>
+                </div>
 
+                <div class="item">
+                    Support
+                </div>
+                <a class="item">
+                    FAQ
+                </a>
+                <a class="item">
+                    E-mail Support
+                </a>
+            </div>
+        </div>
     </div>
 
 </div>
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="/components/jquery/dist/jquery.min.js"></script>
-<script src="/components/jquery-ui/jquery-ui.min.js"></script>
-<script src="/components/FroalaWysiwygEditor/js/froala_editor.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="/components/bootstrap/dist/js/bootstrap.min.js"></script>
 
-<script src="/components/angular/angular.js"></script>
-<script src="/components/angular-bootstrap/ui-bootstrap.min.js"></script>
-<script src="/components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
-<script src="/components/angular-resource/angular-resource.min.js"></script>
-<script src="/components/angular-messages/angular-messages.min.js"></script>
-<script src="/components/angular-ui-router/release/angular-ui-router.min.js"></script>
-<script src="/components/angular-ui-sortable/sortable.min.js"></script>
-<script src="/components/angular-froala/src/angular-froala.js"></script>
-<script src="/components/angular-froala/src/froala-sanitize.js"></script>
+
+<div class="ui padded stackable grid">
+    <div class="ui row">
+        <div class="ui three wide column">
+            <div class="ui fluid vertical menu">
+                <div class="header item">
+                    Administrator
+                </div>
+                <a class=" <% Request::is('admin/dashboard') ? 'active' : '' %> item" href="/admin">
+                    <i class="home icon"></i>
+                    Dashboard
+                </a>
+
+                <a class=" <% Request::is('admin/user') ? 'active' : '' %> item" href="/admin/user">
+                    Users
+                </a>
+
+                <a class=" <% Request::is('admin/role') ? 'active' : '' %> item" href="/admin/role">
+                    Roles
+                </a>
+
+            </div>
+            <div class="ui fluid vertical menu">
+                <div class="header item">
+                    Contents
+                </div>
+                <a class=" <% Request::is('admin/contents') ? 'active' : '' %> item" href="/admin/content">
+                    <i class="book icon"></i>
+                    Content
+                </a>
+                <a class=" <% Request::is('admin/category') ? 'active' : '' %> item" href="/admin/category">
+                    Category
+                </a>
+
+
+                <div class="ui dropdown item">
+                    More
+                    <i class="dropdown icon"></i>
+
+                    <div class="menu">
+                        <a class="item"><i class="edit icon"></i> Edit Profile</a>
+                        <a class="item"><i class="globe icon"></i> Choose Language</a>
+                        <a class="item"><i class="settings icon"></i> Account Settings</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ui thirteen wide column">
+            @yield('content')
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $('.ui.dropdown').dropdown();
+</script>
+
+@include('admins.js')
+
+<script type="text/javascript">
+    angular.module("MainMenuApp", ['AppConfig'])
+            .controller("UserCtrl", function ($scope, $http) {
+                $scope.current_user = {};
+                console.log("UserCtrl MainMenuApp Start...")
+
+                $http.get('/api/auth/user').success(function (response) {
+                    $scope.current_user = response;
+                })
+
+                $scope.logout = function () {
+                    var logout = $http.get('/api/auth/user');
+
+                    logout.success(function () {
+                        window.location = '/auth/login';
+                    })
+                }
+            })
+
+    angular.bootstrap($("#MainMenu"), ['MainMenuApp']);
+
+</script>
+
 @yield('javascript')
 
 

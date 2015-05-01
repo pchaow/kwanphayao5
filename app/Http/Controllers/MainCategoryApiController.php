@@ -38,7 +38,7 @@ class MainCategoryApiController extends BaseController
         $input['orderType'] = 'ASC';
 
 
-        return $this->mainCategoryService->getPagination("MainCategory",$input,$colFilter,$relateColFilter,$with,0);
+        return $this->mainCategoryService->getPagination("App\Models\MainCategory",$input,$colFilter,$relateColFilter,$with,0);
     }
 
     public function getView($id)

@@ -11,6 +11,7 @@ class User extends AbstrctIModel implements AuthenticatableContract, CanResetPas
 
     use Authenticatable, CanResetPassword;
 
+    protected  $label = "User";
     /**
      * The database connection used by the model.
      *

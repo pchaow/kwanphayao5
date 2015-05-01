@@ -1,91 +1,156 @@
-var app = angular.module('UserApp', ['ui.router', 'ngResource', 'ngMessages', 'ui.bootstrap']);
+/**
+ * Created by chaow on 4/7/2015.
+ */
+
+var app = angular.module('UserAdmin', ['ui.router','ngCookies',
+    'AppConfig','angularify.semantic', 'flow', 'User']);
+
 app.config(function ($stateProvider, $urlRouterProvider) {
 
-    // For any unmatched url, redirect to /state1
+    $urlRouterProvider.otherwise("/");
 
     $stateProvider
-        .state('list', {
-            url: "/list",
-            templateUrl: "/app/admin/user/list.html",
-            controller: "ListCtrl",
+        .state('home', {
+            url: "/",
+            templateUrl: "/app/admin/user/_home.html",
+            controller: "HomeCtrl",
+            resolve: {
+                users: function (UserService) {
+                    return UserService.all();
+                }
+            }
+        })
+        .state('add', {
+            url: "/add",
+            templateUrl: "/app/admin/user/_add.html",
+            controller: "AddCtrl",
+            resolve: {
+                user: function (UserService) {
+                    return {data: {}}
+                },
+                userTypes: function (UserTypeService) {
+                    return UserTypeService.all();
+                }
+            }
+        })
+        .state('edit', {
+            url: "/edit/:id",
+            templateUrl: "/app/admin/user/_edit.html",
+            controller: "EditCtrl",
             resolve: {
                 user: function (UserService, $stateParams) {
-                    return UserService.list(1,"");
+                    return UserService.edit($stateParams.id)
+                },
+                userTypes: function (UserTypeService) {
+                    return UserTypeService.all();
                 }
             }
         })
-
-        .state('create', {
-            url: "/create",
-            templateUrl: "/app/admin/user/form.html",
-            controller : "FormCtrl",
-            resolve : {
-                user : function(UserService, $stateParams) {
-                    return {data : {} };
-                },
-                roles : function(RoleService) {
-                    return RoleService.all();
-                }
-            }
-        })
-
-        .state('edit',{
-            url : "/edit/:id",
-            templateUrl : "/app/admin/user/form.html",
-            controller : "FormCtrl",
-            resolve : {
-                user : function(UserService, $stateParams) {
-                    return UserService.edit($stateParams.id);
-                },
-                roles : function(RoleService) {
-                    return RoleService.all();
-                }
-            }
-        });
-
-    $urlRouterProvider.otherwise("/list");
-
 });
 
-var UserController = function() {
-    var model = this;
+app.controller("HomeCtrl", function ($scope, $state, users, UserService) {
+    console.log("HomeCtrl Start...");
 
-    model.message = "";
+    $scope.users = users.data;
+    $scope.user = {};
+    $scope.delete_modal = false;
 
-    model.user = {
-        username: "",
-        password: "",
-        repassword: ""
-    };
+    $scope.showDeleteModal = function (user) {
+        $scope.user = user;
+        $scope.delete_modal = true;
+    }
 
-    model.submit = function(isValid) {
-        console.log("h");
-        if (isValid) {
-            model.message = "Submitted " + model.user.username;
-        } else {
-            model.message = "There are still invalid fields below";
-        }
-    };
+    $scope.closeDeleteModal = function () {
+        $scope.delete_modal = false;
+    }
 
-};
-
-var compareTo = function() {
-    return {
-        require : "ngModel",
-        scope : {
-            otherModelValue : "=compareTo"
-        },
-        link : function(scope, element, attributes, ngModel) {
-            ngModel.$validators.compareTo = function(modelValue) {
-                return modelValue == scope.otherModelValue;
-            };
-
-            scope.$watch("otherModelValue", function() {
-                ngModel.$validate();
+    $scope.ajaxDelete = function (user, bool) {
+        $scope.user = user;
+        if (bool) {
+            UserService.delete(user).success(function (response) {
+                $scope.closeDeleteModal();
+                UserService.all().success(function (response) {
+                    $scope.users = response;
+                })
             });
+        } else {
+            $scope.closeDeleteModal();
         }
-    };
-};
 
-app.directive("compareTo", compareTo);
-app.controller("UserController", UserController);
+    }
+});
+
+app.controller("AddCtrl", function ($scope, $state, user, UserService, userTypes) {
+    console.log("AddCtrl Start...");
+
+    $scope.user = user.data;
+    $scope.userTypes = userTypes.data;
+
+    $scope.user.user_type = $scope.userTypes[4];
+
+    console.log($scope.userTypes);
+
+    $scope.save = function () {
+        UserService.store($scope.user).success(function (resposne) {
+            $state.go('home');
+            //$state.go("edit",{id:resposne.id});
+        }).error(function (response) {
+            $scope.message = response;
+        });
+    }
+});
+
+app.controller("EditCtrl", function ($scope, $state, user, UserService,userTypes,$cookieStore,$cookies) {
+    console.log("EditCtrl Start...");
+
+    var cookies = $cookies['XSRF-TOKEN'];
+
+
+    $scope.user = user.data;
+    $scope.userTypes = userTypes.data;
+
+    var setUserType = function(){
+        for(i=0;i<$scope.userTypes.length;i++){
+            if ($scope.user.user_type.key == $scope.userTypes[i].key){
+                $scope.user.user_type = $scope.userTypes[i];
+                break;
+            }
+        }
+    }
+
+    setUserType();
+
+
+    $scope.upload = {};
+    $scope.upload.myFlow = new Flow({
+        target: '/api/user/' + $scope.user.id + '/logo',
+        singleFile: true,
+        method: 'post',
+        testChunks: false,
+        headers: function (file, chunk, isTest) {
+            return {
+                'X-XSRF-TOKEN': cookies// call func for getting a cookie
+            }
+        }
+    })
+
+
+    $scope.upload.uploadFile = function () {
+        $scope.upload.myFlow.upload();
+    }
+
+    $scope.upload.cancelFile = function (file) {
+        var index = $scope.upload.myFlow.files.indexOf(file)
+        $scope.upload.myFlow.files.splice(index, 1);
+
+    }
+
+
+    $scope.save = function () {
+        UserService.save($scope.user).success(function (resposne) {
+            $state.go("home")
+        }).error(function (response) {
+            $scope.message = response;
+        });
+    }
+});

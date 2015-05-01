@@ -1,0 +1,53 @@
+<h2>Add User</h2>
+
+<form class="ui form" ng-submit="save()" >
+
+    <div ng-if="message" class="ui negative message">
+        <div class="header">We had some issues</div>
+        <ul class="list">
+            <li ng-repeat="m in message" ng-bind="m"></li>
+
+        </ul>
+    </div>
+
+    <h4 class="ui dividing header">User Information</h4>
+
+    <div class="field">
+        <label>Title</label>
+        <input ng-model="user.title" type="text" name="title" placeholder="User Title" required="required">
+    </div>
+
+    <div class="field">
+        <label>First Name</label>
+        <input ng-model="user.firstname" type="text" name="firstname" placeholder="User First Name" required="required">
+    </div>
+
+    <div class="field">
+        <label>Last Name</label>
+        <input ng-model="user.lastname" type="text" name="lastname" placeholder="User Last Name" required="required">
+    </div>
+
+    <div class="field">
+        <label>E-mail</label>
+        <input ng-model="user.email" type="text" name="email" placeholder="User E-mail" required="required">
+    </div>
+
+    <div class="field">
+        <label>Password</label>
+        <input ng-model="user.password" type="password" name="password" placeholder="User Password" required="required">
+    </div>
+
+    <div class="field">
+        <label>Verify Password</label>
+        <input ng-model="user.vpassword" type="password" name="vpassword" placeholder="Verify Password" required="required">
+    </div>
+
+    <div class="field">
+        <label>User Type</label>
+        <select ng-model="user.user_type" ng-options="opt.name for opt in userTypes">
+        </select>
+    </div>
+
+    <button type="submit" class="ui primary submit button">Save</button>
+    <button type="button" ui-sref="home" class="ui submit button">Cancel</button>
+</form>
