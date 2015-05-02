@@ -17,10 +17,6 @@ class DatabaseSeeder extends Seeder {
 	{
 		Model::unguard();
 
-        $faculty = new Faculty();
-        $faculty->name_th = "คณะเทคโนโลีสารสนเทศแลการสื่อสาร";
-        $faculty->save();
-		// $this->call('UserTableSeeder');
 	}
 
 }

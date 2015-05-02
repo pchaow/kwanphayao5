@@ -42,6 +42,7 @@ Route::group(['prefix'=>'admin'], function () {
 Route::group(['prefix'=>'/api'], function () {
 
     Route::resource('user',"API\UserApiController");
+    Route::resource('role',"API\RoleApiController");
 
 });
 

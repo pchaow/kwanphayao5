@@ -1,42 +1,29 @@
-var app = angular.module('RoleApp', ['ui.router', 'ngResource', 'ui.bootstrap']);
-app.config(function($stateProvider, $urlRouterProvider) {
+/**
+ * Created by chaow on 4/7/2015.
+ */
 
-    // For any unmatched url, redirect to /state1
+var app = angular.module('RoleAdmin', ['ui.router','AppConfig','angularify.semantic', 'flow', 'Role']);
+
+app.config(function ($stateProvider, $urlRouterProvider) {
+
+    $urlRouterProvider.otherwise("/");
 
     $stateProvider
-        .state('list', {
-            url : "/list",
-            templateUrl : "/app/admin/role/list.html",
-            controller : "ListCtrl",
-            resolve : {
-                roles : function(RoleService, $stateParams) {
-                    return RoleService.list(1,"");
+        .state('home', {
+            url: "/",
+            templateUrl: "/app/admin/role/_home.html",
+            controller: "HomeCtrl",
+            resolve: {
+                roles: function (RoleService) {
+                    return RoleService.all();
                 }
             }
         })
+});
 
-        .state('create', {
-            url : "/create",
-            templateUrl : "/app/admin/role/form.html",
-            controller : "FormCtrl",
-            resolve : {
-                role : function(RoleService, $stateParams) {
-                    return { data : {} };
-                }
-            }
-        })
+app.controller("HomeCtrl", function ($scope, $state, roles) {
+    console.log("HomeCtrl Start...");
 
-        .state('edit', {
-            url : "/edit/:id",
-            templateUrl : "/app/admin/role/form.html",
-            controller : "FormCtrl",
-            resolve : {
-                role : function(RoleService, $stateParams) {
-                    return RoleService.edit($stateParams.id);
-                }
-            }
-        });
-
-    $urlRouterProvider.otherwise("/list");
+    $scope.roles = roles.data;
 
 });

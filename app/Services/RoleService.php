@@ -1,4 +1,5 @@
 <?php namespace App\Services;
+
 /**
  * Created by PhpStorm.
  * User: chaow
@@ -8,18 +9,32 @@
 
 use App\Models\Role as Role;
 
-class RoleService extends BaseService {
+class RoleService extends BaseService
+{
 
-    public function all(){
+    public function all()
+    {
         return Role::all();
     }
-    
 
-    public function getById($id){
+
+    public function getById($id)
+    {
         return Role::find($id);
     }
 
-    public function save(array $input){
+    public function create()
+    {
+        return new Role();
+    }
+
+    public function store(array $input)
+    {
+        return $this->save($input);
+    }
+
+    public function save(array $input)
+    {
 
 
         if (isset($input['id'])) {
@@ -38,17 +53,13 @@ class RoleService extends BaseService {
 
     }
 
-    public function delete(array $input){
+    public function delete($id)
+    {
+        /* @var Role $role */
+        $role = Role::find($id);
+        $role->delete();
+        return $role;
 
-        if (isset($input['id'])) {
-            $id = $input['id'];
-            /* @var $role Role */
-            $role = Role::find($id);
-            $role->delete();
-            return [true];
-        } else {
-            return [false];
-        }
     }
 
 }

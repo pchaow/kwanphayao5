@@ -3,7 +3,7 @@
  */
 
 var app = angular.module('UserAdmin', ['ui.router','ngCookies',
-    'AppConfig','angularify.semantic', 'flow', 'User']);
+    'AppConfig','angularify.semantic', 'flow', 'User','Role']);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
 
@@ -28,8 +28,8 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 user: function (UserService) {
                     return {data: {}}
                 },
-                userTypes: function (UserTypeService) {
-                    return UserTypeService.all();
+                roles : function(RoleService){
+                    return RoleService.all();
                 }
             }
         })
@@ -41,8 +41,8 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 user: function (UserService, $stateParams) {
                     return UserService.edit($stateParams.id)
                 },
-                userTypes: function (UserTypeService) {
-                    return UserTypeService.all();
+                roles: function (RoleService) {
+                    return RoleService.all();
                 }
             }
         })
@@ -80,15 +80,11 @@ app.controller("HomeCtrl", function ($scope, $state, users, UserService) {
     }
 });
 
-app.controller("AddCtrl", function ($scope, $state, user, UserService, userTypes) {
+app.controller("AddCtrl", function ($scope, $state, user, UserService, roles) {
     console.log("AddCtrl Start...");
 
     $scope.user = user.data;
-    $scope.userTypes = userTypes.data;
-
-    $scope.user.user_type = $scope.userTypes[4];
-
-    console.log($scope.userTypes);
+    $scope.roles = roles.data;
 
     $scope.save = function () {
         UserService.store($scope.user).success(function (resposne) {
@@ -100,19 +96,19 @@ app.controller("AddCtrl", function ($scope, $state, user, UserService, userTypes
     }
 });
 
-app.controller("EditCtrl", function ($scope, $state, user, UserService,userTypes,$cookieStore,$cookies) {
+app.controller("EditCtrl", function ($scope, $state, user, UserService,roles,$cookieStore,$cookies) {
     console.log("EditCtrl Start...");
 
     var cookies = $cookies['XSRF-TOKEN'];
 
 
     $scope.user = user.data;
-    $scope.userTypes = userTypes.data;
+    $scope.roles = roles.data;
 
     var setUserType = function(){
-        for(i=0;i<$scope.userTypes.length;i++){
-            if ($scope.user.user_type.key == $scope.userTypes[i].key){
-                $scope.user.user_type = $scope.userTypes[i];
+        for(i=0;i<$scope.roles.length;i++){
+            if ($scope.user.user_type.key == $scope.roles[i].key){
+                $scope.user.user_type = $scope.roles[i];
                 break;
             }
         }
