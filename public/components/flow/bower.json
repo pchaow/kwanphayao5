@@ -1,0 +1,35 @@
+{
+  "name": "flow",
+  "version": "0.0.0",
+  "homepage": "https://github.com/chuwiey/flow",
+  "authors": [
+    "Ben Fonarov <ben.fonarov@gmail.com>"
+  ],
+  "description": "A lightweight Javascript MVC framework determined to make user flow easy",
+  "main": "flow.js",
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "js",
+    "mvc",
+    "framework",
+    "user",
+    "flow"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "modernizr": "~2.6.2",
+    "jquery": "~1.11.0"
+  },
+  "devDependencies": {}
+}
