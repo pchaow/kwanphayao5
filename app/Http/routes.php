@@ -33,7 +33,7 @@ Route::group(["prefix"=>"register"], function () {
 
 Route::group(['prefix'=>'admin'], function () {
     Route::get('', 'AdminController@index');
-    Route::get('main-category', 'AdminController@getMainCategory');
+    Route::get('category', 'AdminController@getCategory');
     Route::get('content', 'AdminController@getContent');
     Route::get('user', 'AdminController@getUser');
     Route::get('role', 'AdminController@getRole');
