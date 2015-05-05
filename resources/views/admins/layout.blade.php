@@ -138,9 +138,6 @@
 </div>
 
 
-<script type="text/javascript">
-    $('.ui.dropdown').dropdown();
-</script>
 
 @include('admins.js')
 
@@ -169,6 +166,14 @@
 
 @yield('javascript')
 
+
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.ui.dropdown').dropdown();
+    })
+</script>
 
 </body>
 </html>

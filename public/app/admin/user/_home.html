@@ -8,8 +8,8 @@
     <thead>
     <tr>
         <th class="center aligned one wide">ID</th>
-        <th class="center aligned wide">email</th>
-        <th class="center aligned two wide">UserType</th>
+        <th class="center aligned four wide">email</th>
+        <th class="center aligned wide">Roles</th>
         <th class="center aligned four wide">Action</th>
     </tr>
     </thead>
@@ -17,7 +17,11 @@
     <tr ng-repeat="user in users">
         <td class="collapsing" ng-bind="user.id"></td>
         <td ng-bind="user.email"></td>
-        <td ng-bind="user.user_type.name"></td>
+        <td>
+            <div class="ui label" ng-repeat="role in user.roles">
+                {{role.name}}
+            </div>
+        </td>
         <td class="center aligned collapsing">
             <div class="ui buttons">
                 <button ui-sref="edit({id:user.id})" class="ui positive button">Edit</button>

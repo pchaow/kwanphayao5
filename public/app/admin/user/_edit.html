@@ -41,6 +41,25 @@
         <input ng-model="user.vpassword" type="password" name="vpassword" placeholder="Verify Password">
     </div>
 
+    <div class="field">
+        <label>Roles</label>
+
+        <div class="ui floating dropdown upward labeled icon button">
+            <i class="world icon"></i>
+            <span class="text">Select Roles</span>
+
+            <div class="menu">
+                <div class="item" ng-repeat="role in roles" ng-click="addRole(role)">{{role.name}}</div>
+            </div>
+        </div>
+
+        <div class="ui label" ng-repeat="role in user.roles">
+            {{role.name}}
+            <i class="delete icon" ng-click="removeRole(role)"></i>
+        </div>
+
+    </div>
+
     <h4 class="ui dividing header">User Profile</h4>
 
     <div class="field" flow-init flow-object="upload.myFlow"

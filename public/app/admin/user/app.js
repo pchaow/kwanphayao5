@@ -2,6 +2,7 @@
  * Created by chaow on 4/7/2015.
  */
 
+
 var app = angular.module('UserAdmin', ['ui.router','ngCookies',
     'AppConfig','angularify.semantic', 'flow', 'User','Role']);
 
@@ -26,7 +27,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             controller: "AddCtrl",
             resolve: {
                 user: function (UserService) {
-                    return {data: {}}
+                    return {data: { roles : []}}
                 },
                 roles : function(RoleService){
                     return RoleService.all();
@@ -86,6 +87,9 @@ app.controller("AddCtrl", function ($scope, $state, user, UserService, roles) {
     $scope.user = user.data;
     $scope.roles = roles.data;
 
+    console.log($scope.roles);
+
+
     $scope.save = function () {
         UserService.store($scope.user).success(function (resposne) {
             $state.go('home');
@@ -94,6 +98,26 @@ app.controller("AddCtrl", function ($scope, $state, user, UserService, roles) {
             $scope.message = response;
         });
     }
+
+    $('.ui.dropdown').dropdown();
+
+    $scope.addRole = function(role){
+        found = false;
+        for(i=0;i<$scope.user.roles.length;i++){
+            if($scope.user.roles[i].id == role.id){
+                found = true;
+                break;
+            }
+        }
+        if (!found){
+            $scope.user.roles.push(role);
+        }
+    }
+
+    $scope.removeRole = function(role){
+        $scope.user.roles.splice($scope.user.roles.indexOf(role),1);
+    }
+
 });
 
 app.controller("EditCtrl", function ($scope, $state, user, UserService,roles,$cookieStore,$cookies) {
@@ -105,17 +129,24 @@ app.controller("EditCtrl", function ($scope, $state, user, UserService,roles,$co
     $scope.user = user.data;
     $scope.roles = roles.data;
 
-    var setUserType = function(){
-        for(i=0;i<$scope.roles.length;i++){
-            if ($scope.user.user_type.key == $scope.roles[i].key){
-                $scope.user.user_type = $scope.roles[i];
+    $scope.addRole = function(role){
+        found = false;
+        for(i=0;i<$scope.user.roles.length;i++){
+            if($scope.user.roles[i].id == role.id){
+                found = true;
                 break;
             }
         }
+        if (!found){
+            $scope.user.roles.push(role);
+        }
     }
 
-    setUserType();
+    $scope.removeRole = function(role){
+        $scope.user.roles.splice($scope.user.roles.indexOf(role),1);
+    }
 
+    $('.ui.dropdown').dropdown();
 
     $scope.upload = {};
     $scope.upload.myFlow = new Flow({

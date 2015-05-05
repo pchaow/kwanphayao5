@@ -1,5 +1,6 @@
 <?php
 namespace App\Services;
+use App\Models\Role;
 use App\Models\User;
 use App\Models\UserType;
 use App\Models\Logo;
@@ -16,7 +17,7 @@ use Rhumsaa\Uuid\Uuid;
 
 class UserService extends Service{
 
-    var $withArr = [];
+    var $withArr = ['roles'];
 
     public function getAll(){
         return User::with($this->withArr)->get();
@@ -27,32 +28,18 @@ class UserService extends Service{
         return $user;
     }
 
-//    private function linkToUserType(User $user, array $input){
-//
-//        if (isset($input['user_type'])){
-//            $id = $input['user_type']['id'];
-//            $userType = UserType::find($id);
-//            $user->userType()->dissociate();
-//            $user->userType()->associate($userType)->save();
-//
-//        }else {
-//            $userType = UserType::where('key','=','user')->first();
-//            $user->userType()->associate($userType)->save();
-//        }
-//        return $user;
-//    }
-//    private function hasUserType(array $input){
-//        $userType = null;
-//        if (isset($input['user_type'])){
-//            $id = $input['user_type']['id'];
-//            $userType = UserType::find($id);
-//        }else {
-//            $userType = UserType::where('key','=','user')->first();
-//        }
-//
-//        if ($userType != null) return true;
-//        else return false;
-//    }
+    private function linkToRole(User $user, array $input){
+
+        if (isset($input['roles'])){
+            $roles = $input['roles'];
+            $user->syncRoles($roles);
+        }else {
+            $user->syncRoles([]);
+        }
+
+        return $user;
+    }
+
 
     private function setPassword(User $user, array $input){
         if(isset($input['password'])){
@@ -64,15 +51,12 @@ class UserService extends Service{
 
     public function store(array $input){
 
-        if (!$this->hasUserType($input)){
-            return null;
-        }
 
         $user = new User();
         $user->fill($input);
         $user = $this->setPassword($user,$input);
         $user->save();
-        //$this->linkToUserType($user,$input);
+        $this->linkToRole($user,$input);
         return $user;
     }
 
@@ -87,7 +71,7 @@ class UserService extends Service{
             $user->fill($input);
             $user = $this->setPassword($user,$input);
             $user->save();
-            //$this->linkToUserType($user,$input);
+            $this->linkToRole($user,$input);
             return $user;
         }else {
             return $this->store($input);

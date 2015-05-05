@@ -1,6 +1,6 @@
 <h2>Add User</h2>
 
-<form class="ui form" ng-submit="save()" >
+<form class="ui form" ng-submit="save()">
 
     <div ng-if="message" class="ui negative message">
         <div class="header">We had some issues</div>
@@ -39,9 +39,28 @@
 
     <div class="field">
         <label>Verify Password</label>
-        <input ng-model="user.vpassword" type="password" name="vpassword" placeholder="Verify Password" required="required">
+        <input ng-model="user.vpassword" type="password" name="vpassword" placeholder="Verify Password"
+               required="required">
     </div>
 
+    <div class="field">
+        <label>Roles</label>
+
+        <div class="ui floating dropdown upward labeled icon button">
+            <i class="world icon"></i>
+            <span class="text">Select Roles</span>
+
+            <div class="menu">
+                <div class="item" ng-repeat="role in roles" ng-click="addRole(role)">{{role.name}}</div>
+            </div>
+        </div>
+
+        <div class="ui label" ng-repeat="role in user.roles">
+            {{role.name}}
+            <i class="delete icon" ng-click="removeRole(role)"></i>
+        </div>
+
+    </div>
 
     <button type="submit" class="ui primary submit button">Save</button>
     <button type="button" ui-sref="home" class="ui submit button">Cancel</button>
