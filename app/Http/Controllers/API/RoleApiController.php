@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 
 class RoleApiController extends Controller {
 
-<<<<<<< HEAD
     function __construct(RoleService $roleService)
     {
         $this->roleService = $roleService;
@@ -17,13 +16,6 @@ class RoleApiController extends Controller {
 
 
     /**
-=======
-    public function __construct(RoleService $roleService){
-        $this->roleService = $roleService;
-    }
-
-	/**
->>>>>>> chaow
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
@@ -40,11 +32,8 @@ class RoleApiController extends Controller {
 	 */
 	public function create()
 	{
-<<<<<<< HEAD
 		return $this->roleService->create();
-=======
-		//
->>>>>>> chaow
+
 	}
 
 	/**
@@ -54,11 +43,7 @@ class RoleApiController extends Controller {
 	 */
 	public function store()
 	{
-<<<<<<< HEAD
 		return $this->roleService->store(Input::all());
-=======
-		//
->>>>>>> chaow
 	}
 
 	/**
@@ -69,11 +54,7 @@ class RoleApiController extends Controller {
 	 */
 	public function show($id)
 	{
-<<<<<<< HEAD
 		return $this->roleService->getById($id);
-=======
-		//
->>>>>>> chaow
 	}
 
 	/**
@@ -84,11 +65,7 @@ class RoleApiController extends Controller {
 	 */
 	public function edit($id)
 	{
-<<<<<<< HEAD
         return $this->roleService->getById($id);
-=======
-		//
->>>>>>> chaow
 	}
 
 	/**
@@ -99,11 +76,7 @@ class RoleApiController extends Controller {
 	 */
 	public function update($id)
 	{
-<<<<<<< HEAD
 		return $this->roleService->save(Input::all());
-=======
-		//
->>>>>>> chaow
 	}
 
 	/**
@@ -114,11 +87,7 @@ class RoleApiController extends Controller {
 	 */
 	public function destroy($id)
 	{
-<<<<<<< HEAD
 		return $this->roleService->delete($id);
-=======
-		//
->>>>>>> chaow
 	}
 
 }
