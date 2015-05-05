@@ -3,18 +3,25 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Services\CategoryService;
 use Illuminate\Http\Request;
 
 class CategoryApiController extends Controller {
 
-	/**
+    function __construct(CategoryService $categoryService)
+    {
+        $this->categoryService = $categoryService;
+    }
+
+
+    /**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
 	 */
 	public function index()
 	{
-		//
+		return $this->categoryService->getAll();
 	}
 
 	/**
@@ -24,7 +31,7 @@ class CategoryApiController extends Controller {
 	 */
 	public function create()
 	{
-		//
+        return $this->categoryService->create();
 	}
 
 	/**
@@ -34,7 +41,7 @@ class CategoryApiController extends Controller {
 	 */
 	public function store()
 	{
-		//
+        return $this->categoryService->store(\Input::all());
 	}
 
 	/**
@@ -45,7 +52,7 @@ class CategoryApiController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+        return $this->categoryService->get($id);
 	}
 
 	/**
@@ -56,7 +63,7 @@ class CategoryApiController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+        return $this->categoryService->get($id);
 	}
 
 	/**
@@ -67,7 +74,7 @@ class CategoryApiController extends Controller {
 	 */
 	public function update($id)
 	{
-		//
+        return $this->categoryService->save(\Input::all());
 	}
 
 	/**
@@ -78,7 +85,7 @@ class CategoryApiController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+        return $this->categoryService->delete($id);
 	}
 
 }

@@ -54,8 +54,8 @@ app.controller("HomeCtrl", function ($scope, $state, users, UserService) {
 
     $scope.users = users.data;
     $scope.user = {};
-    $scope.delete_modal = false;
 
+    $scope.delete_modal = false;
     $scope.showDeleteModal = function (user) {
         $scope.user = user;
         $scope.delete_modal = true;

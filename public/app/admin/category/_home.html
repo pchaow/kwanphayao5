@@ -1,0 +1,54 @@
+<h2>Categories Management</h2>
+
+<div ui-sref="add" class="ui primary button">
+    Add Category
+</div>
+
+<table class="ui celled striped table">
+    <thead>
+    <tr>
+        <th class="center aligned one wide">ID</th>
+        <th class="center aligned  wide">Name</th>
+        <th class="center aligned four wide">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="category in categories">
+        <td class="collapsing" ng-bind="category.id"></td>
+        <td ng-bind="category.name"></td>
+
+        <td class="center aligned collapsing">
+            <div class="ui buttons">
+                <button ui-sref="edit({id:category.id})" class="ui positive button">Edit</button>
+                <button ng-click="showDeleteModal(category)" class="ui negative button">Delete</button>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<modal ng-model="delete_modal">
+    <i ng-click="closeDeleteModal()" class="close icon"></i>
+    <div class="header">
+        Delete Category
+    </div>
+    <div class="content">
+        <div class="ui medium image">
+            <img src="/images/square-image.png">
+        </div>
+        <div class="description">
+            <div class="ui header">Do you want to delete this category?</div>
+            <p>Category ID : <span ng-bind="category.id"></span></p>
+            <p ng-bind="category.email"></p>
+        </div>
+    </div>
+    <div class="actions">
+        <div class="ui black button" ng-click="ajaxDelete(null,false)">
+            No
+        </div>
+        <div class="ui positive right labeled icon button" ng-click="ajaxDelete(category,true)">
+            Yes
+            <i class="checkmark icon"></i>
+        </div>
+    </div>
+</modal>

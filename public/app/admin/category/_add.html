@@ -1,0 +1,28 @@
+<h2>Add Category</h2>
+
+<form class="ui form" ng-submit="save()">
+
+    <div ng-if="message" class="ui negative message">
+        <div class="header">We had some issues</div>
+        <ul class="list">
+            <li ng-repeat="m in message" ng-bind="m"></li>
+
+        </ul>
+    </div>
+
+    <h4 class="ui dividing header">Category Information</h4>
+
+    <div class="field">
+        <label>Name</label>
+        <input ng-model="category.name" type="text" name="title" placeholder="Category Title" required="required">
+    </div>
+
+    <div class="field">
+        <label>Description</label>
+        <textarea ng-model="category.description" rows="4"></textarea>
+    </div>
+
+
+    <button type="submit" class="ui primary submit button">Save</button>
+    <button type="button" ui-sref="home" class="ui submit button">Cancel</button>
+</form>
