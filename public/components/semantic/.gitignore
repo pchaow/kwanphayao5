@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 docs/
 node_modules
 node/server.json
@@ -5,6 +6,15 @@ test/coverage/
 coverage/
 semantic.config
 semanticui/
+=======
+node_modules/
+test/coverage/
+coverage/
+src/**/site/
+theme.config
+semantic.json
+tasks/**/oauth.js
+>>>>>>> chaow
 
 # Numerous always-ignore extensions
 *.diff
@@ -33,3 +43,7 @@ Thumbs.db
 nbproject
 *.sublime-project
 *.sublime-workspace
+<<<<<<< HEAD
+=======
+.build*
+>>>>>>> chaow

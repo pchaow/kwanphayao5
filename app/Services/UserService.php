@@ -6,8 +6,7 @@ use App\Models\UserType;
 use App\Models\Logo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
-use Rhumsaa\Uuid\Uuid;
-
+use Ramsey\Uuid;
 /**
  * Created by PhpStorm.
  * UserRequest: chaow

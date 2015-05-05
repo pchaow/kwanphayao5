@@ -5,24 +5,43 @@ use App\Http\Controllers\Controller;
 
 use App\Services\UserService;
 use Illuminate\Http\Request;
+<<<<<<< HEAD
 use Vinelab\NeoEloquent\Tests\Functional\Events\User;
+=======
+>>>>>>> chaow
 use \Input;
 
 class UserApiController extends Controller {
 
+<<<<<<< HEAD
     public function __construct(UserService $userService)
+=======
+    function __construct(UserService $userService)
+>>>>>>> chaow
     {
         $this->userService = $userService;
     }
 
+<<<<<<< HEAD
 	/**
+=======
+
+    /**
+>>>>>>> chaow
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
 	 */
+<<<<<<< HEAD
 	public function index(){
         return $this->userService->getAll();
     }
+=======
+	public function index()
+	{
+		return $this->userService->getAll();
+	}
+>>>>>>> chaow
 
 	/**
 	 * Show the form for creating a new resource.
@@ -64,7 +83,12 @@ class UserApiController extends Controller {
 	public function edit($id)
 	{
         return $this->userService->get($id);
+<<<<<<< HEAD
 	}
+=======
+
+    }
+>>>>>>> chaow
 
 	/**
 	 * Update the specified resource in storage.
@@ -75,7 +99,12 @@ class UserApiController extends Controller {
 	public function update($id)
 	{
         return $this->userService->save(Input::all());
+<<<<<<< HEAD
 	}
+=======
+
+    }
+>>>>>>> chaow
 
 	/**
 	 * Remove the specified resource from storage.

@@ -23,6 +23,12 @@
     "commit": "0467da5c2820e87623c7f720c7d21493c2655511"
   },
   "_source": "git://github.com/flowjs/flow.js.git",
+<<<<<<< HEAD
   "_target": "~2",
   "_originalSource": "flow.js"
+=======
+  "_target": "~2.9.0",
+  "_originalSource": "flow.js",
+  "_direct": true
+>>>>>>> chaow
 }

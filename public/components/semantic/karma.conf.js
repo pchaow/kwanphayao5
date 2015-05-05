@@ -17,7 +17,11 @@ module.exports = function(config) {
       // read css from compiled css
       'docs/build/uncompressed/**/*.css',
       // read js from src js
+<<<<<<< HEAD
       'src/**/*.js',
+=======
+      'src/definitions/**/*.js',
+>>>>>>> chaow
       // require helpers
       'test/helpers/*.js',
       // require fixtures
@@ -40,7 +44,11 @@ module.exports = function(config) {
 
     preprocessors: {
       '**/*.html': [],
+<<<<<<< HEAD
       'src/**/*.js': 'coverage'
+=======
+      'src/definitions/**/*.js': 'coverage'
+>>>>>>> chaow
     },
 
     // test results reporter to use
