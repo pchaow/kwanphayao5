@@ -14,7 +14,20 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             controller: "HomeCtrl",
             resolve: {
                 categories: function (CategoryService) {
-                    return CategoryService.all();
+                    return CategoryService.all("?children=true");
+                }
+            }
+        })
+        .state('sub', {
+            url: "/add-sub/:id",
+            templateUrl: "/app/admin/category/_sub.html",
+            controller: "AddSubCtrl",
+            resolve: {
+                category: function () {
+                    return {data: { parent : {}}}
+                },
+                parent: function (CategoryService,$stateParams) {
+                    return CategoryService.get($stateParams.id);
                 }
             }
         })
@@ -49,6 +62,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 app.controller("HomeCtrl",function($scope, CategoryService, categories){
     console.log("HomeCtrl Start...");
     $scope.categories = categories.data;
+    $scope.show = [];
 
     $scope.delete_modal = false;
     $scope.showDeleteModal = function (category) {
@@ -72,6 +86,17 @@ app.controller("HomeCtrl",function($scope, CategoryService, categories){
         } else {
             $scope.closeDeleteModal();
         }
+    }
+
+
+    $scope.test = function(id){
+        if ($scope.show[id]) {
+            $scope.show[id] = false;
+        }else {
+            $scope.show[id] = true;
+        }
+        console.log($scope.show[id]);
+        console.log(id);
 
     }
 })
@@ -83,6 +108,21 @@ app.controller("AddCtrl",function($scope, $state, CategoryService, category){
 
     $scope.save = function () {
         CategoryService.store($scope.category).success(function (resposne) {
+            $state.go('home');
+        }).error(function (response) {
+            $scope.message = response;
+        });
+    }
+})
+
+app.controller("AddSubCtrl",function($scope, $state, SubCategoryService,category, parent){
+    console.log("AddSubCtrl Start...");
+
+    $scope.parent = parent.data;
+    $scope.category = category;
+
+    $scope.save = function () {
+        SubCategoryService.store($scope.parent.id,$scope.category).success(function (resposne) {
             $state.go('home');
         }).error(function (response) {
             $scope.message = response;

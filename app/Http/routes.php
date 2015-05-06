@@ -44,7 +44,7 @@ Route::group(['prefix'=>'/api'], function () {
     Route::resource('user',"API\UserApiController");
     Route::resource('role',"API\RoleApiController");
     Route::resource('category',"API\CategoryApiController");
-    //Route::resource('category.category',"API\SubCategoryApiController");
+    Route::resource('category.sub-category',"API\SubCategoryApiController");
 
 });
 

@@ -5,12 +5,21 @@ use App\Http\Controllers\Controller;
 
 use App\Services\CategoryService;
 use Illuminate\Http\Request;
+use \Input;
 
 class CategoryApiController extends Controller {
+
+    protected $children;
 
     function __construct(CategoryService $categoryService)
     {
         $this->categoryService = $categoryService;
+
+        if (Input::has("children")){
+            if (Input::get("children")=="true"){
+                $this->categoryService->addColumn("children");
+            }
+        }
     }
 
 

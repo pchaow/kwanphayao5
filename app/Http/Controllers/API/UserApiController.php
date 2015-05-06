@@ -14,11 +14,14 @@ class UserApiController extends Controller {
     function __construct(UserService $userService)
     {
         $this->userService = $userService;
+
+
+
     }
 
 
 	public function index(){
-        return $this->userService->getAll();
+        return $this->userService->getPaginate();
     }
 
 	/**

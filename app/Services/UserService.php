@@ -17,6 +17,14 @@ use Ramsey\Uuid;
 class UserService extends Service{
 
     var $withArr = ['roles'];
+    var $perPage = 50;
+
+    public function getPaginate($perPage = null){
+        if($perPage){
+            $this->perPage = $perPage;
+        }
+        return  User::with($this->withArr)->paginate($this->perPage);
+    }
 
     public function getAll(){
         return User::with($this->withArr)->get();

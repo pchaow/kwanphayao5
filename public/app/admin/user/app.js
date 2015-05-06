@@ -52,7 +52,8 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 app.controller("HomeCtrl", function ($scope, $state, users, UserService) {
     console.log("HomeCtrl Start...");
 
-    $scope.users = users.data;
+    $scope.pagination = users.data;
+    $scope.users = users.data.data;
     $scope.user = {};
 
     $scope.delete_modal = false;

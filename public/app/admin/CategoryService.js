@@ -1,8 +1,8 @@
 angular.module('Category',[])
     .factory('CategoryService',function($http){
         return {
-            all : function(){
-                return $http.get('/api/category');
+            all : function(query){
+                return $http.get('/api/category'+query);
             },
             get : function(id){
                 return  $http.get('/api/category/'+id);
@@ -27,6 +27,39 @@ angular.module('Category',[])
             save : function(category){
                 return $http({
                     url : '/api/category/' + category.id,
+                    method : 'put',
+                    data : category
+                })
+            }
+        }
+    })
+
+    .factory('SubCategoryService',function($http){
+        return {
+            all : function($id){
+                return $http.get('/api/category/'+$id + "/sub-category");
+            },
+            get : function($id,id){
+                return $http.get('/api/category/'+$id + "/sub-category/"+id);
+            },
+            edit : function(id){
+                return $http.get('/api/category/'+$id + "/sub-category/"+id);
+            },
+
+            store : function($id,category){
+
+                return $http({
+                    url : '/api/category/'+$id + "/sub-category",
+                    method : 'post',
+                    data : category
+                })
+            },
+            delete : function($id,category){
+                return $http.delete('/api/category/'+$id+'/sub-category/'+ category.id);
+            },
+            save : function($id,category){
+                return $http({
+                    url : '/api/category/'+$id + "/sub-category/"+category.id,
                     method : 'put',
                     data : category
                 })

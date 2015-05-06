@@ -20,6 +20,10 @@ class Category extends AbstrctIModel {
         return $this->belongsTo('App\Models\Category','HAS_CATEGORY');
     }
 
+    public function  children(){
+        return $this->hasMany('App\Models\Category','HAS_CATEGORY');
+    }
+
     public function contents(){
         return $this->hasMany("App\Models\Content","HAS");
     }
