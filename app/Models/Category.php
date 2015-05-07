@@ -10,18 +10,22 @@ class Category extends AbstrctIModel {
 
     protected $connection = 'neo4j';
 
-    protected $label = ['Category','Classification'];
+    protected $label = ['Category'];
 
     protected $guarded = ['parent'];
 
-    protected $fillable = ['name','description','content_type'];
+    protected $fillable = ['name','description'];
 
     public function parent(){
-        return $this->belongsTo('MainCategory','HAS_CATEGORY');
+        return $this->belongsTo('App\Models\Category','HAS_CATEGORY');
+    }
+
+    public function  children(){
+        return $this->hasMany('App\Models\Category','HAS_CATEGORY');
     }
 
     public function contents(){
-        return $this->hasMany("Content","HAS");
+        return $this->hasMany("App\Models\Content","HAS");
     }
 
 

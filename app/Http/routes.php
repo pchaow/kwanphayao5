@@ -33,26 +33,22 @@ Route::group(["prefix"=>"register"], function () {
 
 Route::group(['prefix'=>'admin'], function () {
     Route::get('', 'AdminController@index');
-    Route::get('main-category', 'MainCategoryApiController@getIndex');
-    Route::get('content', 'ContentApiController@getIndex');
-    Route::get('user', 'UserApiController@getIndex');
-    Route::get('role', 'RoleApiController@getIndex');
+    Route::get('category', 'AdminController@getCategory');
+    Route::get('content', 'AdminController@getContent');
+    Route::get('user', 'AdminController@getUser');
+    Route::get('role', 'AdminController@getRole');
 });
 
-Route::group(['prefix'=>'admin/api'], function () {
+Route::group(['prefix'=>'/api'], function () {
 
-    Route::resource('category', 'CategoryApiController');
-
-//    Route::resource('user', 'UserApiController');
-    Route::controller('user', 'UserApiController');
-    Route::controller('role', 'RoleApiController');
-    Route::resource('content', 'ContentApiController');
-    Route::resource('content-type', 'ContentTypeApiController');
-
-    Route::post('main-category/{id}/categories/save', 'MainCategoryApiController@postCreateCategory');
-    Route::get('main-category/{id}/categories', 'MainCategoryApiController@getCategories');
-
-    Route::controller('main-category', 'MainCategoryApiController');
-
+    Route::resource('user',"API\UserApiController");
+    Route::resource('role',"API\RoleApiController");
+    Route::resource('category',"API\CategoryApiController");
+    Route::resource('category.sub-category',"API\SubCategoryApiController");
 
 });
+
+
+Route::get('/img/{path}', function (League\Glide\Server $server, \Illuminate\Http\Request $request) {
+    $server->outputImage($request);
+})->where('path', '.*');

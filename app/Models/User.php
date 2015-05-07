@@ -11,6 +11,7 @@ class User extends AbstrctIModel implements AuthenticatableContract, CanResetPas
 
     use Authenticatable, CanResetPassword;
 
+    protected  $label = "User";
     /**
      * The database connection used by the model.
      *
@@ -24,7 +25,7 @@ class User extends AbstrctIModel implements AuthenticatableContract, CanResetPas
      *
      * @var array
      */
-    protected $fillable = ['username', 'password', 'avatar', 'email', 'title', 'firstname', 'lastname', 'biography', 'organization'];
+    protected $fillable = ['password', 'email', 'title', 'firstname', 'lastname', 'biography', 'organization'];
 
     /**
      * The attributes should be guarded to mass-assignment used by the model.
@@ -33,21 +34,20 @@ class User extends AbstrctIModel implements AuthenticatableContract, CanResetPas
      */
     protected $guarded = ['password'];
 
-    /**
-     * The attributes excluded from the model's JSON form.
-     *
-     * @var array
-     */
-//    protected $hidden = ['password', 'remember_token'];
+    protected $hidden = ['password', 'remember_token'];
 
-    // --DEFINE RELATIONSHIPS--
-    /**
-     * a User model "belongs to" role.
-     *
-     * @return object
-     */
-    public function role() {
-        return $this->belongsTo('Role');
+
+    public function roles() {
+        return $this->belongsToMany("App\Models\Role","USER_ROLE");
+    }
+
+
+    public function syncRoles(array $roles){
+        $ids = [];
+        foreach($roles as $role){
+            array_push($ids,$role['id']);
+        }
+        $this->roles()->sync($ids,true);
     }
 
 }

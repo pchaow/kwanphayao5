@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div ng-app="CategoryApp">
+    <div ng-app="CategoryAdmin">
 
         <div ui-view></div>
 
@@ -13,8 +13,7 @@
 @section('javascript')
 
     <script type="text/javascript" src="/app/admin/category/app.js"></script>
-    <script type="text/javascript" src="/app/admin/category/services.js"></script>
-    <script type="text/javascript" src="/app/admin/category/controllers.js"></script>
-    <script type="text/javascript" src="/app/admin/mainCategory/services.js"></script>
+    <script type="text/javascript" src="/app/admin/CategoryService.js"></script>
+
 @stop
 

@@ -33,7 +33,5 @@ class Role extends AbstrctIModel {
      * @var array
      * @return object
      */
-    public function users() {
-        return $this->hasMany('User');
-    }
+
 }

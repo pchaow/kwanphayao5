@@ -1,0 +1,20 @@
+<h2>Roles Management</h2>
+
+<table class="ui celled striped table">
+    <thead>
+    <tr>
+        <th class="center aligned one wide">ID</th>
+        <th class="center aligned three wide">key</th>
+        <th class="center aligned three wide">Role Name</th>
+        <th class="center aligned wide">Role Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="ut in roles">
+        <td class="" ng-bind="ut.id"></td>
+        <td class="" ng-bind="ut.key"></td>
+        <td ng-bind="ut.name"></td>
+        <td ng-bind="ut.description"></td>
+    </tr>
+    </tbody>
+</table>

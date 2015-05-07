@@ -1,71 +1,99 @@
-<?php namespace App\Services;
+<?php
+namespace App\Services;
+use App\Models\Role;
+use App\Models\User;
+use App\Models\UserType;
+use App\Models\Logo;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
+use Ramsey\Uuid;
 /**
  * Created by PhpStorm.
- * User: chaow
- * Date: 2/12/2015 AD
- * Time: 12:21 PM
+ * UserRequest: chaow
+ * Date: 4/7/2015
+ * Time: 3:03 PM
  */
 
-use App\Models\User as User;
-use App\Models\Role as Role;
-//use Illuminate\Http\Request;
-//use Request;
+class UserService extends Service{
 
-class UserService extends BaseService {
+    var $withArr = ['roles'];
+    var $perPage = 50;
 
-    public function all(){
-        return User::all();
+    public function getPaginate($perPage = null){
+        if($perPage){
+            $this->perPage = $perPage;
+        }
+        return  User::with($this->withArr)->paginate($this->perPage);
     }
 
-    public function getById($id){
-        return User::with('role')->find($id);
+    public function getAll(){
+        return User::with($this->withArr)->get();
     }
+
+    public function get($id){
+        $user = User::with($this->withArr)->find($id);
+        return $user;
+    }
+
+    private function linkToRole(User $user, array $input){
+
+        if (isset($input['roles'])){
+            $roles = $input['roles'];
+            $user->syncRoles($roles);
+        }else {
+            $user->syncRoles([]);
+        }
+
+        return $user;
+    }
+
+
+    private function setPassword(User $user, array $input){
+        if(isset($input['password'])){
+            $user->password = \Hash::make($input['password']);
+        }
+
+        return $user;
+    }
+
+    public function store(array $input){
+
+
+        $user = new User();
+        $user->fill($input);
+        $user = $this->setPassword($user,$input);
+        $user->save();
+        $this->linkToRole($user,$input);
+        return $user;
+    }
+
+
 
     public function save(array $input){
 
-        if (isset($input['id'])) {
+        if (array_has($input,'id')){
             $id = $input['id'];
+            /* @var User $user */
             $user = User::find($id);
-            $user->update(array_except($input,['role']));
+            $user->fill($input);
+            $user = $this->setPassword($user,$input);
             $user->save();
-
-            $roleId = $input['role']['id'];
-            $role = Role::find($roleId);
-
-            $user->role()->associate($role)->save();
-
+            $this->linkToRole($user,$input);
             return $user;
-        } else {
-            $user = User::updateOrCreate(array_except($input,['role']));
-            $roleId = $input['role']['id'];
-
-            $role = Role::find($roleId);
-            $user->role()->associate($role)->save();
-
-            return $user;
-        }
-
-    }
-
-    public function delete(array $input){
-
-        if(isset($input['id'])) {
-            $id = $input['id'];
-            $user = User::find($id);
-
-            $role = $user->role()->first();
-
-            if($role != null){
-                $role_id = $role->id;
-                $role = Role::find($role_id);
-                $role->users()->detach($user->id);
-            }
-            $user->delete();
-
-            return [true];
-        } else {
-            return [false];
+        }else {
+            return $this->store($input);
         }
     }
+
+    public function create()
+    {
+        return new User();
+    }
+
+    public function delete($id){
+        return [User::find($id)->delete()];
+    }
+
+
 
 }

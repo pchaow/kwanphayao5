@@ -1,4 +1,5 @@
 <?php namespace App\Services;
+
 /**
  * Created by PhpStorm.
  * User: chaow
@@ -9,77 +10,75 @@ use App\Models\Category;
 use App\Models\MainCategory;
 
 
-class CategoryService extends BaseService {
+class CategoryService extends Service
+{
 
-    public function all(){
-        return Category::all();
+    var $withArr = [];
+
+    public function setWithArray(array $a)
+    {
+        $this->withArr = $a;
     }
 
-
-    public function getById($id){
-        return Category::with('parent')->find($id);
+    public function addColumn($col)
+    {
+        array_push($this->withArr, $col);
     }
 
-    public function save(array $input){
-        if(isset($input['id'])){
-            $id = $input['id'];
-            /* @var $category Category */
-            $category = Category::find($id);
-            $category->update(array_except($input,['content_type']));
-            $category->content_type = $input['content_type']['id'];
-            $category->save();
-
-            $mainCategoryId = $input['parent']['id'];
-            $mainCategory = MainCategory::find($mainCategoryId);
-
-            $category->parent()->associate($mainCategory)->save();
-
-
-            return $category;
-        }else {
-
-            $parent = $input['parent'];
-
-            $category = Category::firstOrNew(array_except($input,['parent','content_type']));
-            $category->content_type = $input['content_type']['id'];
-            $mainCategoryId = $parent['id'];
-
-            $mainCategory = MainCategory::find($mainCategoryId);
-            $category->parent()->associate($mainCategory)->save();
-
-            return $category;
-
+    public function getAll()
+    {
+        $categories = Category::with($this->withArr)->get();
+        $result = [];
+        foreach ($categories as $category) {
+            if ($category->parent == null || $category->parent == []) {
+                array_push($result, $category);
+            }
         }
+
+        return $result;
+
     }
 
-    public function delete(array $input){
+    public function get($id)
+    {
+        return Category::with($this->withArr)->find($id);
+    }
 
-        /* @var $category Category */
-        $category = Category::find($input['id']);
+    public function store(array $input)
+    {
 
-        $mid = $category->parent()->first();
-        if($mid != null){
-            $mmid = $mid->id;
-            $mainCat = MainCategory::find($mmid);
-            $mainCat->categories()->detach($category->id);
-        }
-        $category->delete();
-
+        $category = new Category();
+        $category->fill($input);
+        $category->save();
         return $category;
+
     }
 
+    public function save(array $input)
+    {
 
-    public function updateOrder(array $input){
-        foreach($input as $c){
-            $id = $c['id'];
-            $order = $c['order'];
-            /* @var $category Category */
+        if (array_has($input, 'id')) {
+            $id = $input['id'];
+            /* @var Category $category */
             $category = Category::find($id);
-            $category->order = $order;
+            $category->fill($input);
             $category->save();
+            return $category;
+        } else {
+            return $this->store($input);
         }
+    }
 
-        return [true];
+    public function create()
+    {
+        return new Category();
+    }
+
+    public function delete($id)
+    {
+        $category = Category::find($id);
+        $category->children()->sync([], true);
+        return [$category::find($id)->delete()];
     }
 
 

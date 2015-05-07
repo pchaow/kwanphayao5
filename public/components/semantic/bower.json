@@ -1,0 +1,45 @@
+{
+  "name"        : "semantic",
+  "description" : "Semantic empowers designers and developers by creating a shared vocabulary for UI.",
+  "homepage"    : "http://www.semantic-ui.com",
+<<<<<<< HEAD
+  "main": [
+    "build/packaged/css/semantic.css",
+    "build/packaged/javascript/semantic.js"
+  ],
+=======
+>>>>>>> chaow
+  "author": {
+    "name" : "Jack Lukic",
+    "web"  : "http://www.jacklukic.com"
+  },
+  "dependencies": {
+    "jquery"      : ">=1.8"
+  },
+<<<<<<< HEAD
+=======
+  "main": [
+    "dist/semantic.css",
+    "dist/semantic.js"
+  ],
+>>>>>>> chaow
+  "keywords": [
+    "semantic",
+    "ui",
+    "css3",
+    "framework"
+  ],
+  "license" : [
+    "http://semantic-ui.mit-license.org/"
+  ],
+  "ignore": [
+<<<<<<< HEAD
+    "node",
+    "src",
+    "docs"
+=======
+    "src/site",
+    "test"
+>>>>>>> chaow
+  ]
+}

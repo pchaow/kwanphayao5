@@ -64,10 +64,10 @@
     <script src="/css/history.min.js"></script>
     <script src="/css/tablesort.min.js"></script>
 
-    {{--work for search fn call--}}
+    <%--work for search fn call--%>
     <script src="/components/semantic-ui/dist/semantic.js"></script>
 
-    {{--<script src="/css/docs.js"></script>--}}
+    <%--<script src="/css/docs.js"></script>--%>
 
     <script src="/app/home/js/docs.js"></script>
     <script src="/app/home/js/search.js"></script>
@@ -136,7 +136,7 @@
             </ul>
         </aside>
 
-        {{--<script src="/app/home/js/search.js"></script>--}}
+        <%--<script src="/app/home/js/search.js"></script>--%>
 
         <header><!-- header & menu -->
             <nav>
@@ -204,25 +204,25 @@
                                         <div class="computer only low">
                                             <div class="sixteen wide colum">
                                                 <div class="ui labeled small icon menu">
-                                                    <a id="category-general" class="{{Request::path() == 'general' ? 'active ' : ''}}item" href="{{Request::path() == 'general' ? '#' : '/general'}}">
-                                                        {{--<i class="circular inverted{{Request::path() == 'general' ? ' red ' : ' teal '}}large dashboard icon"></i>--}}
-                                                        <i class="{{Request::path() == 'general' ? 'red ' : 'teal outline '}}huge general icon"></i>
+                                                    <a id="category-general" class="<%Request::path() == 'general' ? 'active ' : ''%>item" href="<%Request::path() == 'general' ? '#' : '/general'%>">
+                                                        <%--<i class="circular inverted<%Request::path() == 'general' ? ' red ' : ' teal '%>large dashboard icon"></i>--%>
+                                                        <i class="<%Request::path() == 'general' ? 'red ' : 'teal outline '%>huge general icon"></i>
                                                         <span class="supermarket-font big-font">ข้อมูลทั่วไปกว๊านพะเยา</span>
                                                     </a>
-                                                    <a id="category-ecology" class="{{Request::path() == 'ecology' ? 'active ' : ''}}item" href="{{Request::path() == 'ecology' ? '#' : '/ecology'}}">
-                                                        <i class="{{Request::path() == 'ecology' ? 'red ' : 'teal outline '}}huge ecology icon"></i>
+                                                    <a id="category-ecology" class="<%Request::path() == 'ecology' ? 'active ' : ''%>item" href="<%Request::path() == 'ecology' ? '#' : '/ecology'%>">
+                                                        <i class="<%Request::path() == 'ecology' ? 'red ' : 'teal outline '%>huge ecology icon"></i>
                                                         <span class="supermarket-font big-font">นิเวศวิทยาและสิ่งแวดล้อม</span>
                                                     </a>
-                                                    <a id="category-travel" class="{{Request::path() == 'travel' ? 'active ' : ''}}item" href="{{Request::path() == 'travel' ? '#' : '/travel'}}">
-                                                        <i class="{{Request::path() == 'travel' ? 'red ' : 'teal outline '}}huge travel phayao icon"></i>
+                                                    <a id="category-travel" class="<%Request::path() == 'travel' ? 'active ' : ''%>item" href="<%Request::path() == 'travel' ? '#' : '/travel'%>">
+                                                        <i class="<%Request::path() == 'travel' ? 'red ' : 'teal outline '%>huge travel phayao icon"></i>
                                                         <span class="supermarket-font big-font">เศรษฐกิจและการท่องเที่ยว</span>
                                                     </a>
-                                                    <a id="category-water" class="{{Request::path() == 'water-resources' ? 'active ' : ''}}item" href="{{Request::path() == 'water-resources' ? '#' : '/water-resources'}}">
-                                                        <i class="{{Request::path() == 'water-resources' ? 'red ' : 'teal outline '}}huge water resources icon"></i>
+                                                    <a id="category-water" class="<%Request::path() == 'water-resources' ? 'active ' : ''%>item" href="<%Request::path() == 'water-resources' ? '#' : '/water-resources'%>">
+                                                        <i class="<%Request::path() == 'water-resources' ? 'red ' : 'teal outline '%>huge water resources icon"></i>
                                                         <span class="supermarket-font big-font">การจัดการทรัพยากรธรรมชาติ</span>
                                                     </a>
-                                                    <a id="category-history" class="{{Request::path() == 'history' ? 'active ' : ''}}item" href="{{Request::path() == 'history' ? '#' : '/history'}}">
-                                                        <i class="{{Request::path() == 'history' ? 'red ' : 'teal outline '}}huge history phayao icon"></i>
+                                                    <a id="category-history" class="<%Request::path() == 'history' ? 'active ' : ''%>item" href="<%Request::path() == 'history' ? '#' : '/history'%>">
+                                                        <i class="<%Request::path() == 'history' ? 'red ' : 'teal outline '%>huge history phayao icon"></i>
                                                         <span class="supermarket-font big-font">ประวัติศาสตร์และวัฒนธรรม</span>
                                                     </a>
                                                 </div>
@@ -231,42 +231,42 @@
 
                                         <div class="tablet only centered low">
                                             <div class="ui icon menu">
-                                                <a id="category-general-tablet" data-title="ข้อมูลทั่วไปกว๊านพะเยา" data-position="top left" class="{{Request::path() == 'general' ? 'active ' : ''}}item" href="{{Request::path() == 'general' ? '#' : '/general'}}">
-                                                    {{--<i class="circular inverted{{Request::path() == 'general' ? ' red ' : ' teal '}}large dashboard icon"></i>--}}
-                                                    <i class="{{Request::path() == 'general' ? 'red ' : 'teal outline '}}huge general icon"></i>
+                                                <a id="category-general-tablet" data-title="ข้อมูลทั่วไปกว๊านพะเยา" data-position="top left" class="<%Request::path() == 'general' ? 'active ' : ''%>item" href="<%Request::path() == 'general' ? '#' : '/general'%>">
+                                                    <%--<i class="circular inverted<%Request::path() == 'general' ? ' red ' : ' teal '%>large dashboard icon"></i>--%>
+                                                    <i class="<%Request::path() == 'general' ? 'red ' : 'teal outline '%>huge general icon"></i>
                                                 </a>
-                                                <a id="category-ecology-tablet" data-title="นิเวศวิทยาและสิ่งแวดล้อม" data-position="top center" class="{{Request::path() == 'ecology' ? 'active ' : ''}}item" href="{{Request::path() == 'ecology' ? '#' : '/ecology'}}">
-                                                    <i class="{{Request::path() == 'ecology' ? 'red ' : 'teal outline '}}huge ecology icon"></i>
+                                                <a id="category-ecology-tablet" data-title="นิเวศวิทยาและสิ่งแวดล้อม" data-position="top center" class="<%Request::path() == 'ecology' ? 'active ' : ''%>item" href="<%Request::path() == 'ecology' ? '#' : '/ecology'%>">
+                                                    <i class="<%Request::path() == 'ecology' ? 'red ' : 'teal outline '%>huge ecology icon"></i>
                                                 </a>
-                                                <a id="category-travel-tablet" data-title="เศรษฐกิจและการท่องเที่ยว" data-position="top center" class="{{Request::path() == 'travel' ? 'active ' : ''}}item" href="{{Request::path() == 'travel' ? '#' : '/travel'}}">
-                                                    <i class="{{Request::path() == 'travel' ? 'red ' : 'teal outline '}}huge travel phayao icon"></i>
+                                                <a id="category-travel-tablet" data-title="เศรษฐกิจและการท่องเที่ยว" data-position="top center" class="<%Request::path() == 'travel' ? 'active ' : ''%>item" href="<%Request::path() == 'travel' ? '#' : '/travel'%>">
+                                                    <i class="<%Request::path() == 'travel' ? 'red ' : 'teal outline '%>huge travel phayao icon"></i>
                                                 </a>
-                                                <a id="category-water-tablet" data-title="การจัดการทรัพยากรธรรมชาติ" data-position="top center" class="{{Request::path() == 'water-resources' ? 'active ' : ''}}item" href="{{Request::path() == 'water-resources' ? '#' : '/water-resources'}}">
-                                                    <i class="{{Request::path() == 'water-resources' ? 'red ' : 'teal outline '}}huge water resources icon"></i>
+                                                <a id="category-water-tablet" data-title="การจัดการทรัพยากรธรรมชาติ" data-position="top center" class="<%Request::path() == 'water-resources' ? 'active ' : ''%>item" href="<%Request::path() == 'water-resources' ? '#' : '/water-resources'%>">
+                                                    <i class="<%Request::path() == 'water-resources' ? 'red ' : 'teal outline '%>huge water resources icon"></i>
                                                 </a>
-                                                <a id="category-history-tablet" data-title="ประวัติศาสตร์และวัฒนธรรม" data-position="top right" class="{{Request::path() == 'history' ? 'active ' : ''}}item" href="{{Request::path() == 'history' ? '#' : '/history'}}">
-                                                    <i class="{{Request::path() == 'history' ? 'red ' : 'teal outline '}}huge history phayao icon"></i>
+                                                <a id="category-history-tablet" data-title="ประวัติศาสตร์และวัฒนธรรม" data-position="top right" class="<%Request::path() == 'history' ? 'active ' : ''%>item" href="<%Request::path() == 'history' ? '#' : '/history'%>">
+                                                    <i class="<%Request::path() == 'history' ? 'red ' : 'teal outline '%>huge history phayao icon"></i>
                                                 </a>
                                             </div>
                                         </div>
 
                                         <div class="mobile only centered low">
                                             <div class="ui icon menu">
-                                                <a id="category-general-mobile" data-title="ข้อมูลทั่วไปกว๊านพะเยา" data-position="top left" class="{{Request::path() == 'general' ? 'active ' : ''}}item" href="{{Request::path() == 'general' ? '#' : '/general'}}">
-                                                    {{--<i class="circular inverted{{Request::path() == 'general' ? ' red ' : ' teal '}}dashboard icon"></i>--}}
-                                                    <i class="{{Request::path() == 'general' ? 'red ' : 'teal outline '}}bigger general icon"></i>
+                                                <a id="category-general-mobile" data-title="ข้อมูลทั่วไปกว๊านพะเยา" data-position="top left" class="<%Request::path() == 'general' ? 'active ' : ''%>item" href="<%Request::path() == 'general' ? '#' : '/general'%>">
+                                                    <%--<i class="circular inverted<%Request::path() == 'general' ? ' red ' : ' teal '%>dashboard icon"></i>--%>
+                                                    <i class="<%Request::path() == 'general' ? 'red ' : 'teal outline '%>bigger general icon"></i>
                                                 </a>
-                                                <a id="category-ecology-mobile" data-title="นิเวศวิทยาและสิ่งแวดล้อม" data-position="top center"class="{{Request::path() == 'ecology' ? 'active ' : ''}}item" href="{{Request::path() == 'ecology' ? '#' : '/ecology'}}">
-                                                    <i class="{{Request::path() == 'ecology' ? 'red ' : 'teal outline '}}bigger ecology icon"></i>
+                                                <a id="category-ecology-mobile" data-title="นิเวศวิทยาและสิ่งแวดล้อม" data-position="top center"class="<%Request::path() == 'ecology' ? 'active ' : ''%>item" href="<%Request::path() == 'ecology' ? '#' : '/ecology'%>">
+                                                    <i class="<%Request::path() == 'ecology' ? 'red ' : 'teal outline '%>bigger ecology icon"></i>
                                                 </a>
-                                                <a id="category-travel-mobile" data-title="เศรษฐกิจและการท่องเที่ยว" data-position="top center" class="{{Request::path() == 'travel' ? 'active ' : ''}}item" href="{{Request::path() == 'travel' ? '#' : '/travel'}}">
-                                                    <i class="{{Request::path() == 'travel' ? 'red ' : 'teal outline '}}bigger travel phayao icon"></i>
+                                                <a id="category-travel-mobile" data-title="เศรษฐกิจและการท่องเที่ยว" data-position="top center" class="<%Request::path() == 'travel' ? 'active ' : ''%>item" href="<%Request::path() == 'travel' ? '#' : '/travel'%>">
+                                                    <i class="<%Request::path() == 'travel' ? 'red ' : 'teal outline '%>bigger travel phayao icon"></i>
                                                 </a>
-                                                <a id="category-water-mobile" data-title="การจัดการทรัพยากรธรรมชาติ" data-position="top center" class="{{Request::path() == 'water-resources' ? 'active ' : ''}}item" href="{{Request::path() == 'water-resources' ? '#' : '/water-resources'}}">
-                                                    <i class="{{Request::path() == 'water-resources' ? 'red ' : 'teal outline '}}bigger water resources icon"></i>
+                                                <a id="category-water-mobile" data-title="การจัดการทรัพยากรธรรมชาติ" data-position="top center" class="<%Request::path() == 'water-resources' ? 'active ' : ''%>item" href="<%Request::path() == 'water-resources' ? '#' : '/water-resources'%>">
+                                                    <i class="<%Request::path() == 'water-resources' ? 'red ' : 'teal outline '%>bigger water resources icon"></i>
                                                 </a>
-                                                <a id="category-history-mobile" data-title="ประวัติศาสตร์และวัฒนธรรม" data-position="top right" class="{{Request::path() == 'history' ? 'active ' : ''}}item" href="{{Request::path() == 'history' ? '#' : '/history'}}">
-                                                    <i class="{{Request::path() == 'history' ? 'red ' : 'teal outline '}}bigger history phayao icon"></i>
+                                                <a id="category-history-mobile" data-title="ประวัติศาสตร์และวัฒนธรรม" data-position="top right" class="<%Request::path() == 'history' ? 'active ' : ''%>item" href="<%Request::path() == 'history' ? '#' : '/history'%>">
+                                                    <i class="<%Request::path() == 'history' ? 'red ' : 'teal outline '%>bigger history phayao icon"></i>
                                                 </a>
                                             </div>
                                         </div>
@@ -277,10 +277,10 @@
                     </div>
                     <div class="sixteen wide colum">
                         <div id="menu-main" class="ui secondary pointing menu"> <!-- secondary pointing menu inverted -->
-                            <a class="{{Request::path() == '/' ? 'active ' : ''}}item" href="{{Request::path() == '/' ? '#' : '/'}}">
+                            <a class="<%Request::path() == '/' ? 'active ' : ''%>item" href="<%Request::path() == '/' ? '#' : '/'%>">
                                 <i class="home icon"></i>หน้าแรก
                             </a>
-                            <a class="{{Request::path() == 'about' ? 'active ' : ''}}item" href="{{Request::path() == 'about' ? '#' : '/about'}}">
+                            <a class="<%Request::path() == 'about' ? 'active ' : ''%>item" href="<%Request::path() == 'about' ? '#' : '/about'%>">
                                 <i class="book icon"></i>เกี่ยวกับสารานุกรมกว๊านพะเยา
                             </a>
                         </div> <!-- // menu -->
@@ -291,10 +291,10 @@
                     @if($showBreadcrumb)
                         <div id="breadcrumb" class="ui huge breadcrumb supermarket-font">
                             <span class="red-font">ขณะนี้คุณอยู่ที่ :</span>
-                            {{--<div class="active section">หน้าแรก</div>--}}
+                            <%--<div class="active section">หน้าแรก</div>--%>
                             <a href="/" class="section">หน้าแรก</a>
                             <i class="black angle double right icon divider"></i>
-                            <div class="active section">{{$activeSection}}</div>
+                            <div class="active section"><%$activeSection%></div>
                         </div>
                     @endif
 
@@ -415,9 +415,9 @@
         <!-- popup register modal area -->
         <div class="ui modal" id="register-modal">
             <i class="close icon"></i>
-            {{--<div class="header">--}}
-                {{--ลงชื่อเข้าใช้งาน หรือ ลงทะเบียน--}}
-            {{--</div>--}}
+            <%--<div class="header">--%>
+                <%--ลงชื่อเข้าใช้งาน หรือ ลงทะเบียน--%>
+            <%--</div>--%>
             <div id="modal-editor-box" class="two colum middle aligned relaxed fitted ui stackable grid">
                 <div id="modal-login-box" class="colum">
                     <div class="ui form segment">
@@ -601,7 +601,7 @@
                     <div class="low field-leading">
                         <div class="sixteen wide mobile thirteen wide tablet thirteen wide computer right floated colum">
                             <div class="required field">
-                                <div class="g-recaptcha" data-sitekey="{{$siteKey}}"></div>
+                                <div class="g-recaptcha" data-sitekey="<%$siteKey%>"></div>
                             </div>
                         </div>
                     </div>
@@ -633,11 +633,11 @@
 </script>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-{{--<script src="/components/jquery/dist/jquery.js"></script>--}}
+<%--<script src="/components/jquery/dist/jquery.js"></script>--%>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 
 <!-- Semantic -->
-{{--<script src="/components/semantic-ui/dist/components/semantic.js"></script>--}}
+<%--<script src="/components/semantic-ui/dist/components/semantic.js"></script>--%>
 <script src="/components/semantic-ui/dist/components/checkbox.js"></script>
 <script src="/components/semantic-ui/dist/components/dimmer.js"></script>
 <script src="/components/semantic-ui/dist/components/form.js"></script>

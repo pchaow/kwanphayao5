@@ -1,0 +1,75 @@
+<h2>Categories Management</h2>
+
+<div ui-sref="add" class="ui primary button">
+    Add Category
+</div>
+
+<table class="ui celled table">
+    <thead>
+    <tr>
+        <th class="center aligned one wide">ID</th>
+        <th class="center aligned  wide">Name</th>
+        <th class="center aligned three wide">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat-start="category in categories">
+        <td class="collapsing" ng-bind="category.id"></td>
+        <td>
+            <div class="ui black horizontal label" ng-click="test(category.id)">
+                <span ng-if="show[category.id]">Collapse</span>
+                <span ng-if="!show[category.id]">Expand</span>
+            </div>
+            {{category.name}}
+            <a ng-if="category.children.length >0" class="ui red circular label">
+                {{category.children.length}}
+            </a>
+
+            <button ui-sref="sub({id:category.id})" class="ui right floated primary button">Add Sub-Category</button>
+        </td>
+        <td class="center aligned collapsing">
+            <div class="ui buttons">
+                <button ui-sref="edit({id:category.id})" class="ui positive button">Edit</button>
+                <button ng-click="showDeleteModal(category)" class="ui negative button">Delete</button>
+            </div>
+        </td>
+    </tr>
+    <tr ng-if="category.children.length>0" ng-show="show[category.id]" ng-repeat="subcat in category.children">
+        <td class="right aligned collapsing" ng-bind="subcat.id"></td>
+        <td>{{subcat.name}}</td>
+        <td class="center aligned collapsing">
+            <div class="ui buttons">
+                <button ui-sref="edit({id:subcat.id})" class="ui positive button">Edit</button>
+                <button ng-click="showDeleteModal(subcat)" class="ui negative button">Delete</button>
+            </div>
+        </td>
+    </tr>
+    <tr ng-if="false" ng-repeat-end></tr>
+    </tbody>
+</table>
+
+<modal ng-model="delete_modal">
+    <i ng-click="closeDeleteModal()" class="close icon"></i>
+    <div class="header">
+        Delete Category
+    </div>
+    <div class="content">
+        <div class="ui medium image">
+            <img src="/images/square-image.png">
+        </div>
+        <div class="description">
+            <div class="ui header">Do you want to delete this category?</div>
+            <p>Category ID : <span ng-bind="category.id"></span></p>
+            <p ng-bind="category.email"></p>
+        </div>
+    </div>
+    <div class="actions">
+        <div class="ui black button" ng-click="ajaxDelete(null,false)">
+            No
+        </div>
+        <div class="ui positive right labeled icon button" ng-click="ajaxDelete(category,true)">
+            Yes
+            <i class="checkmark icon"></i>
+        </div>
+    </div>
+</modal>
