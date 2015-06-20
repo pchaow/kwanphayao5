@@ -16,13 +16,11 @@
     <tr ng-repeat-start="category in categories">
         <td class="collapsing" ng-bind="category.id"></td>
         <td>
-            <div class="ui black horizontal label" ng-click="test(category.id)">
-                <span ng-if="show[category.id]">Collapse</span>
-                <span ng-if="!show[category.id]">Expand</span>
-            </div>
+
             {{category.name}}
-            <a ng-if="category.children.length >0" class="ui red circular label">
-                {{category.children.length}}
+            <a ng-if="category.children.length >0" ng-click="test(category.id)" class="ui red circular label">
+                <span ng-if="show[category.id]">-</span>
+                <span ng-if="!show[category.id]">+</span>
             </a>
 
             <button ui-sref="sub({id:category.id})" class="ui right floated primary button">Add Sub-Category</button>
@@ -36,7 +34,7 @@
     </tr>
     <tr ng-if="category.children.length>0" ng-show="show[category.id]" ng-repeat="subcat in category.children">
         <td class="right aligned collapsing" ng-bind="subcat.id"></td>
-        <td>{{subcat.name}}</td>
+        <td style="text-indent: 2em">{{subcat.name}}</td>
         <td class="center aligned collapsing">
             <div class="ui buttons">
                 <button ui-sref="edit({id:subcat.id})" class="ui positive button">Edit</button>

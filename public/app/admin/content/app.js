@@ -1,97 +1,184 @@
 /**
- * Created by chaow on 2/15/2015 AD.
+ * Created by chaow on 4/7/2015.
  */
 
-var app = angular.module('ContentApp', ['froala','ui.router', 'ngResource', 'ui.bootstrap']);
 
-app.value('froalaConfig', {
-    inlineMode: false,
-    placeholder: 'Enter Text Here',
-    height: 300
+var app = angular.module('ContentAdmin', ['ui.router','ngCookies',
+    'AppConfig','angularify.semantic', 'flow', 'User','Role']);
+
+app.config(function ($stateProvider, $urlRouterProvider) {
+
+    $urlRouterProvider.otherwise("/");
+
+    $stateProvider
+        .state('home', {
+            url: "/",
+            templateUrl: "/app/admin/user/_home.html",
+            controller: "HomeCtrl",
+            resolve: {
+                users: function (UserService) {
+                    return UserService.all();
+                }
+            }
+        })
+        .state('add', {
+            url: "/add",
+            templateUrl: "/app/admin/user/_add.html",
+            controller: "AddCtrl",
+            resolve: {
+                user: function (UserService) {
+                    return {data: { roles : []}}
+                },
+                roles : function(RoleService){
+                    return RoleService.all();
+                }
+            }
+        })
+        .state('edit', {
+            url: "/edit/:id",
+            templateUrl: "/app/admin/user/_edit.html",
+            controller: "EditCtrl",
+            resolve: {
+                user: function (UserService, $stateParams) {
+                    return UserService.edit($stateParams.id)
+                },
+                roles: function (RoleService) {
+                    return RoleService.all();
+                }
+            }
+        })
+});
+
+app.controller("HomeCtrl", function ($scope, $state, users, UserService) {
+    console.log("HomeCtrl Start...");
+
+    $scope.pagination = users.data;
+    $scope.users = users.data.data;
+    $scope.user = {};
+
+    $scope.delete_modal = false;
+    $scope.showDeleteModal = function (user) {
+        $scope.user = user;
+        $scope.delete_modal = true;
+    }
+
+    $scope.closeDeleteModal = function () {
+        $scope.delete_modal = false;
+    }
+
+    $scope.ajaxDelete = function (user, bool) {
+        $scope.user = user;
+        if (bool) {
+            UserService.delete(user).success(function (response) {
+                $scope.closeDeleteModal();
+                UserService.all().success(function (response) {
+                    $scope.users = response;
+                })
+            });
+        } else {
+            $scope.closeDeleteModal();
+        }
+
+    }
+});
+
+app.controller("AddCtrl", function ($scope, $state, user, UserService, roles) {
+    console.log("AddCtrl Start...");
+
+    $scope.user = user.data;
+    $scope.roles = roles.data;
+
+    console.log($scope.roles);
+
+
+    $scope.save = function () {
+        UserService.store($scope.user).success(function (resposne) {
+            $state.go('home');
+            //$state.go("edit",{id:resposne.id});
+        }).error(function (response) {
+            $scope.message = response;
+        });
+    }
+
+    $('.ui.dropdown').dropdown();
+
+    $scope.addRole = function(role){
+        found = false;
+        for(i=0;i<$scope.user.roles.length;i++){
+            if($scope.user.roles[i].id == role.id){
+                found = true;
+                break;
+            }
+        }
+        if (!found){
+            $scope.user.roles.push(role);
+        }
+    }
+
+    $scope.removeRole = function(role){
+        $scope.user.roles.splice($scope.user.roles.indexOf(role),1);
+    }
 
 });
 
-app.config(function ($stateProvider, $urlRouterProvider) {
-    ////
-    //// For any unmatched url, redirect to /state1
-    //
-    $stateProvider
-        .state('list', {
-            url: "/list",
-            templateUrl: "/app/admin/content/list.html",
-            controller: "ListCtrl",
-            controller: "ListCtrl",
-            resolve: {
-                contents: function (ContentService, $stateParams) {
-                    return ContentService.list(1,"");
-                }
+app.controller("EditCtrl", function ($scope, $state, user, UserService,roles,$cookieStore,$cookies) {
+    console.log("EditCtrl Start...");
+
+    var cookies = $cookies['XSRF-TOKEN'];
+
+
+    $scope.user = user.data;
+    $scope.roles = roles.data;
+
+    $scope.addRole = function(role){
+        found = false;
+        for(i=0;i<$scope.user.roles.length;i++){
+            if($scope.user.roles[i].id == role.id){
+                found = true;
+                break;
             }
-        })
+        }
+        if (!found){
+            $scope.user.roles.push(role);
+        }
+    }
 
-        .state('select-category',{
-            url : "/select",
-            templateUrl : "/app/admin/content/select_category.html",
-            controller : "SelectCategoryController",
-            resolve : {
-                content : function(ContentService){
-                    return { data : {} };
-                },
-                mainCategories : function(MainCategoryService){
-                    return MainCategoryService.all();
-                }
+    $scope.removeRole = function(role){
+        $scope.user.roles.splice($scope.user.roles.indexOf(role),1);
+    }
+
+    $('.ui.dropdown').dropdown();
+
+    $scope.upload = {};
+    $scope.upload.myFlow = new Flow({
+        target: '/api/user/' + $scope.user.id + '/logo',
+        singleFile: true,
+        method: 'post',
+        testChunks: false,
+        headers: function (file, chunk, isTest) {
+            return {
+                'X-XSRF-TOKEN': cookies// call func for getting a cookie
             }
-        })
-
-        .state('create',{
-            url : "/create/:category/:type",
-            templateUrl : "/app/admin/content/form.html",
-            controller : "FormCtrl",
-            resolve : {
-                content : function(ContentService){
-                    return { data : {} };
-                },
-                content_type : function(ContentTypeService,$stateParams){
-                    return ContentTypeService.get($stateParams.type)
-                },
-                category : function(CategoryService,$stateParams){
-                    return CategoryService.edit($stateParams.category)
-                }
-            }
-        })
-
-        .state('create.type',{
-            url : '/type',
-            templateUrl: function($stateParams){
-                return "/app/content/form/"+$stateParams.type+".html";
-            }
-        })
-
-        .state('edit',{
-            url : "/edit/:id",
-            templateUrl : "/app/admin/content/form.html",
-            controller : "FormCtrl",
-            resolve : {
-                content : function(ContentService,$stateParams){
-                    return ContentService.edit($stateParams.id);
-                },
-                content_type : function(ContentTypeService,$stateParams){
-                    return {}
-                },
-                category : function(CategoryService,$stateParams){
-                    return {}
-                }
-            }
-        })
-
-        .state('edit.type',{
-            url : "/type/:type",
-            templateUrl: function($stateParams){
-                return "/app/content/form/"+$stateParams.type+".html";
-            }
-        })
+        }
+    })
 
 
-    $urlRouterProvider.otherwise("/list");
+    $scope.upload.uploadFile = function () {
+        $scope.upload.myFlow.upload();
+    }
+
+    $scope.upload.cancelFile = function (file) {
+        var index = $scope.upload.myFlow.files.indexOf(file)
+        $scope.upload.myFlow.files.splice(index, 1);
+
+    }
 
 
+    $scope.save = function () {
+        UserService.save($scope.user).success(function (resposne) {
+            $state.go("home")
+        }).error(function (response) {
+            $scope.message = response;
+        });
+    }
 });

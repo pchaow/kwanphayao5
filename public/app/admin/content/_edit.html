@@ -1,0 +1,113 @@
+<h2>Edit User</h2>
+
+<form class="ui form" ng-submit="save()">
+
+    <div ng-if="message" class="ui negative message">
+        <div class="header">We had some issues</div>
+        <ul class="list">
+            <li ng-repeat="m in message" ng-bind="m"></li>
+        </ul>
+    </div>
+
+    <h4 class="ui dividing header">User Information</h4>
+
+    <div class="field">
+        <label>Title</label>
+        <input ng-model="user.title" type="text" name="title" placeholder="User Title" required="required">
+    </div>
+
+    <div class="field">
+        <label>First Name</label>
+        <input ng-model="user.firstname" type="text" name="firstname" placeholder="User First Name" required="required">
+    </div>
+
+    <div class="field">
+        <label>Last Name</label>
+        <input ng-model="user.lastname" type="text" name="lastname" placeholder="User Last Name" required="required">
+    </div>
+
+    <div class="field">
+        <label>E-mail</label>
+        <input ng-model="user.email" type="text" name="email" placeholder="User E-mail" required="required">
+    </div>
+
+    <div class="field">
+        <label>Password</label>
+        <input ng-model="user.password" type="password" name="password" placeholder="User Password">
+    </div>
+
+    <div class="field">
+        <label>Verify Password</label>
+        <input ng-model="user.vpassword" type="password" name="vpassword" placeholder="Verify Password">
+    </div>
+
+    <div class="field">
+        <label>Roles</label>
+
+        <div class="ui floating dropdown upward labeled icon button">
+            <i class="world icon"></i>
+            <span class="text">Select Roles</span>
+
+            <div class="menu">
+                <div class="item" ng-repeat="role in roles" ng-click="addRole(role)">{{role.name}}</div>
+            </div>
+        </div>
+
+        <div class="ui label" ng-repeat="role in user.roles">
+            {{role.name}}
+            <i class="delete icon" ng-click="removeRole(role)"></i>
+        </div>
+
+    </div>
+
+    <h4 class="ui dividing header">User Profile</h4>
+
+    <div class="field" flow-init flow-object="upload.myFlow"
+         flow-file-success="$file.msg = $message"
+         flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]"
+         flow-file-success="flowSuccess($file,$message)">
+
+        <div flow-drop class="ui bordered medium" style="border: 1px dotted;">
+
+            Drag and Drop Image to change<br/>
+
+            <div ng-if="$flow.files.length==0 && !user.logo" class="ui bordered  small image">
+                <img src="/images/square-image.png"/>
+            </div>
+
+
+            <div ng-if="$flow.files.length==0 && user.logo" class="ui bordered  small image">
+                <img ng-src="{{user.logo.url}}?h=200"/>
+            </div>
+
+            <div ng-repeat="file in upload.myFlow.files">
+                <div class="ui small bordered image">
+                    <a ng-if="file.isComplete()" href="#" class="ui label left corner">
+                        <i class="checkmark green icon"></i>
+                    </a>
+                    <img flow-img="file"/>
+
+                    <div class="ui bottom attached progress" ng-if="file.isUploading()">
+                        <div class="bar" data-percent="{{file.progress() * 100}}"></div>
+                    </div>
+                </div>
+
+                <br/>
+
+                <button ng-if="!file.isComplete()" ng-click="upload.uploadFile()" type="button"
+                        class="ui positive submit button">
+                    Apply Image
+                </button>
+
+                <button ng-if="!file.isComplete()" ng-click="upload.cancelFile(file)" type="button"
+                        class="ui default submit button">
+                    Remove
+                </button>
+
+            </div>
+        </div>
+    </div>
+
+    <button type="submit" class="ui primary submit button">Save</button>
+    <button type="button" ui-sref="home" class="ui submit button">Cancel</button>
+</form>

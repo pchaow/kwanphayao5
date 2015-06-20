@@ -2,7 +2,12 @@ angular.module('Category',[])
     .factory('CategoryService',function($http){
         return {
             all : function(query){
-                return $http.get('/api/category'+query);
+                if(query){
+
+                }else {
+                    query = "?children=true";
+                }
+                return $http.get('/api/category/'+query);
             },
             get : function(id){
                 return  $http.get('/api/category/'+id);
