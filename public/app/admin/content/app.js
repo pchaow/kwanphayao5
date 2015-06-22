@@ -3,8 +3,8 @@
  */
 
 
-var app = angular.module('ContentAdmin', ['ui.router','ngCookies',
-    'AppConfig','angularify.semantic', 'flow', 'User','Role']);
+var app = angular.module('ContentAdmin', ['ui.router','ngCookies','ui.tinymce',
+    'AppConfig','angularify.semantic', 'flow', 'Content','Category']);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
 
@@ -13,86 +13,95 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
         .state('home', {
             url: "/",
-            templateUrl: "/app/admin/user/_home.html",
+            templateUrl: "/app/admin/content/_home.html",
             controller: "HomeCtrl",
+            controllerAs : 'self',
             resolve: {
-                users: function (UserService) {
-                    return UserService.all();
+                contents: function (ContentService) {
+                    return ContentService.all();
                 }
             }
         })
         .state('add', {
             url: "/add",
-            templateUrl: "/app/admin/user/_add.html",
+            templateUrl: "/app/admin/content/_add.html",
             controller: "AddCtrl",
+            controllerAs : 'self',
             resolve: {
-                user: function (UserService) {
-                    return {data: { roles : []}}
+                content: function (CategoryService) {
+                    return {data: { }}
                 },
-                roles : function(RoleService){
-                    return RoleService.all();
+                categories : function (CategoryService){
+                    return CategoryService.all("?children=true")
                 }
             }
         })
         .state('edit', {
             url: "/edit/:id",
-            templateUrl: "/app/admin/user/_edit.html",
+            templateUrl: "/app/admin/content/_edit.html",
             controller: "EditCtrl",
+            controllerAs : 'self',
             resolve: {
-                user: function (UserService, $stateParams) {
-                    return UserService.edit($stateParams.id)
-                },
-                roles: function (RoleService) {
-                    return RoleService.all();
+                content: function (ContentService,$stateParams) {
+                    return ContentService.get($stateParams.id);
+                }
+                ,
+                categories : function (CategoryService){
+                    return CategoryService.all("?children=true");
                 }
             }
         })
 });
 
-app.controller("HomeCtrl", function ($scope, $state, users, UserService) {
+app.controller("HomeCtrl", function ($scope, $state,
+                                     ContentService,
+                                     contents) {
     console.log("HomeCtrl Start...");
+    var self = this;
 
-    $scope.pagination = users.data;
-    $scope.users = users.data.data;
-    $scope.user = {};
+    self.contents = contents.data;
 
-    $scope.delete_modal = false;
-    $scope.showDeleteModal = function (user) {
-        $scope.user = user;
-        $scope.delete_modal = true;
+    self.delete_modal = false;
+    self.showDeleteModal = function (content) {
+        self.content = content;
+        self.delete_modal = true;
     }
 
-    $scope.closeDeleteModal = function () {
-        $scope.delete_modal = false;
+    self.closeDeleteModal = function () {
+        self.delete_modal = false;
     }
 
-    $scope.ajaxDelete = function (user, bool) {
-        $scope.user = user;
+    self.ajaxDelete = function (content, bool) {
+        self.content = content;
         if (bool) {
-            UserService.delete(user).success(function (response) {
-                $scope.closeDeleteModal();
-                UserService.all().success(function (response) {
-                    $scope.users = response;
+            ContentService.delete(content)
+                .success(function(response){
+                    self.closeDeleteModal();
+                    for(var i=0;i<self.contents.length;i++){
+                        if(self.contents[i].id == content.id){
+                            self.contents.splice(i,1);
+                            break;
+                        }
+                    }
                 })
-            });
         } else {
-            $scope.closeDeleteModal();
+            self.closeDeleteModal();
         }
 
     }
 });
 
-app.controller("AddCtrl", function ($scope, $state, user, UserService, roles) {
+app.controller("AddCtrl", function ($scope, $state,
+                                    ContentService,
+                                    content, categories) {
     console.log("AddCtrl Start...");
-
-    $scope.user = user.data;
-    $scope.roles = roles.data;
-
-    console.log($scope.roles);
+    var self = this;
+    self.content = content.data;
+    self.categories = categories.data;
 
 
     $scope.save = function () {
-        UserService.store($scope.user).success(function (resposne) {
+        ContentService.store(self.content).success(function (resposne) {
             $state.go('home');
             //$state.go("edit",{id:resposne.id});
         }).error(function (response) {
@@ -102,83 +111,53 @@ app.controller("AddCtrl", function ($scope, $state, user, UserService, roles) {
 
     $('.ui.dropdown').dropdown();
 
-    $scope.addRole = function(role){
-        found = false;
-        for(i=0;i<$scope.user.roles.length;i++){
-            if($scope.user.roles[i].id == role.id){
-                found = true;
-                break;
-            }
-        }
-        if (!found){
-            $scope.user.roles.push(role);
-        }
-    }
-
-    $scope.removeRole = function(role){
-        $scope.user.roles.splice($scope.user.roles.indexOf(role),1);
-    }
+    self.mceOptions = {
+        inline: false,
+        content_css: '/packages/semantic-ui/dist/semantic.min.css',
+        plugins: "tinyflow image hr",
+        skin: 'lightgray',
+        theme: 'modern',
+        relative_urls: false,
+        height: 400,
+        menubar: true,
+        toolbar1: "undo redo | formatselect fontselect fontsizeselect removeformat  | bold italic | alignleft  aligncenter alignright alignjustify | " +
+        "bullist numlist outdent indent | hr | link unlink | image tinyflow |"
+    } ;
 
 });
 
-app.controller("EditCtrl", function ($scope, $state, user, UserService,roles,$cookieStore,$cookies) {
+app.controller("EditCtrl", function ($scope, $state,
+                                     ContentService,
+                                     content, categories) {
     console.log("EditCtrl Start...");
 
-    var cookies = $cookies['XSRF-TOKEN'];
+    var self = this;
+    self.content = content.data;
+    self.categories = categories.data;
 
 
-    $scope.user = user.data;
-    $scope.roles = roles.data;
-
-    $scope.addRole = function(role){
-        found = false;
-        for(i=0;i<$scope.user.roles.length;i++){
-            if($scope.user.roles[i].id == role.id){
-                found = true;
-                break;
-            }
-        }
-        if (!found){
-            $scope.user.roles.push(role);
-        }
-    }
-
-    $scope.removeRole = function(role){
-        $scope.user.roles.splice($scope.user.roles.indexOf(role),1);
-    }
 
     $('.ui.dropdown').dropdown();
 
-    $scope.upload = {};
-    $scope.upload.myFlow = new Flow({
-        target: '/api/user/' + $scope.user.id + '/logo',
-        singleFile: true,
-        method: 'post',
-        testChunks: false,
-        headers: function (file, chunk, isTest) {
-            return {
-                'X-XSRF-TOKEN': cookies// call func for getting a cookie
-            }
-        }
-    })
-
-
-    $scope.upload.uploadFile = function () {
-        $scope.upload.myFlow.upload();
-    }
-
-    $scope.upload.cancelFile = function (file) {
-        var index = $scope.upload.myFlow.files.indexOf(file)
-        $scope.upload.myFlow.files.splice(index, 1);
-
-    }
-
-
     $scope.save = function () {
-        UserService.save($scope.user).success(function (resposne) {
-            $state.go("home")
+        ContentService.save(self.content).success(function (resposne) {
+            $state.go('home');
+            //$state.go("edit",{id:resposne.id});
         }).error(function (response) {
             $scope.message = response;
         });
     }
+
+    self.mceOptions = {
+        inline: false,
+        content_css: '/packages/semantic-ui/dist/semantic.min.css',
+        plugins: "tinyflow image hr",
+        skin: 'lightgray',
+        theme: 'modern',
+        relative_urls: false,
+        height: 400,
+        menubar: true,
+        toolbar1: "undo redo | formatselect fontselect fontsizeselect removeformat  | bold italic | alignleft  aligncenter alignright alignjustify | " +
+        "bullist numlist outdent indent | hr | link unlink | image tinyflow |"
+    } ;
 });

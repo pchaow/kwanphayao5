@@ -85,6 +85,7 @@
 </script>
 
 @include('admins.js')
+@yield('javascript')
 
 <script type="text/javascript">
     angular.module("MainMenuApp", ['AppConfig'])
@@ -109,7 +110,6 @@
 
 </script>
 
-@yield('javascript')
 
 
 </body>

@@ -1,31 +1,29 @@
-<h2>Users Management</h2>
+<h2>Contents Management</h2>
 
 <div ui-sref="add" class="ui primary button">
-    Add User
+    Add Content
 </div>
 
 <table class="ui celled striped table">
     <thead>
     <tr>
         <th class="center aligned one wide">ID</th>
-        <th class="center aligned four wide">email</th>
-        <th class="center aligned wide">Roles</th>
+        <th class="center aligned four wide">Title</th>
+        <th class="center aligned wide">Category</th>
         <th class="center aligned four wide">Action</th>
     </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="user in users">
-        <td class="collapsing" ng-bind="user.id"></td>
-        <td ng-bind="user.email"></td>
+    <tr ng-repeat="content in self.contents">
+        <td class="collapsing" ng-bind="content.id"></td>
+        <td ng-bind="content.title"></td>
         <td>
-            <div class="ui label" ng-repeat="role in user.roles">
-                {{role.name}}
-            </div>
+            {{content.category.name}}
         </td>
         <td class="center aligned collapsing">
             <div class="ui buttons">
-                <button ui-sref="edit({id:user.id})" class="ui positive button">Edit</button>
-                <button ng-click="showDeleteModal(user)" class="ui negative button">Delete</button>
+                <button ui-sref="edit({id:content.id})" class="ui positive button">Edit</button>
+                <button ng-click="showDeleteModal(content)" class="ui negative button">Delete</button>
             </div>
         </td>
     </tr>

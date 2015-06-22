@@ -1,4 +1,3 @@
-<?php require_once(app_path().'/recaptchainc.php');?>
 <!DOCTYPE html>
 <html lang="th">
 <head>
@@ -601,7 +600,7 @@
                     <div class="low field-leading">
                         <div class="sixteen wide mobile thirteen wide tablet thirteen wide computer right floated colum">
                             <div class="required field">
-                                <div class="g-recaptcha" data-sitekey="<%$siteKey%>"></div>
+
                             </div>
                         </div>
                     </div>
@@ -628,9 +627,6 @@
 </div>
 
 <!-- JavaScript Section -->
-<script type="text/javascript"
-        src="https://www.google.com/recaptcha/api.js?hl=<?php echo $lang;?>">
-</script>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <%--<script src="/components/jquery/dist/jquery.js"></script>--%>

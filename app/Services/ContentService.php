@@ -1,4 +1,5 @@
 <?php namespace App\Services;
+
 /**
  * Created by PhpStorm.
  * User: chaow
@@ -6,75 +7,68 @@
  * Time: 12:21 PM
  */
 
+use App\Models\Category;
 use App\Models\Content;
 
-class ContentService extends BaseService {
+class ContentService extends BaseService
+{
 
-    public function __construct(ContentTypeService $contentTypeService){
+    var $withArr = ['category', 'category.parent'];
+
+    public function __construct(ContentTypeService $contentTypeService)
+    {
         $this->contentTypeService = $contentTypeService;
     }
 
-    public function all(){
-        return Content::all();
+    public function all()
+    {
+        return Content::with($this->withArr)->get();
     }
 
-    public function getById($id){
-        $content = Content::with(['category','category.parent'])->find($id);
-        $category = $content->category;
-        $content_type = $this->contentTypeService->getView($category->content_type);
-        $content->content_type = $content_type;
+    public function getById($id)
+    {
+        $content = Content::with($this->withArr)->find($id);
         return $content;
     }
 
-    public function save(array $input){
-
-        $contentTypeId = $input["content_type"]["id"];
-        $contentType = $this->contentTypeService->getView($contentTypeId);
-        $class=$contentType["class"];
-
-        if (isset($input['id'])) {
-            $id = $input['id'];
-
-            $content = $class::find($id);
-            $content->update(array_except($input,['category','content_type']));
-
-            /* @var $content Content */
-            $content->save();
-
-            return $content;
-        } else {
-            $content = $class::updateOrCreate(array_except($input,['category','content_type']));
-
-            $categoryId = $input['category']['id'];
-
-            $category = Category::find($categoryId);
-            $content->category()->associate($category)->save();
-
-            return $content;
-        }
-
+    public function create()
+    {
+        return new Content();
     }
 
-    public function delete(array $input){
+    public function store(array $input)
+    {
+        $content = Content::create($input);
+        $content->save();
+        $this->linkToCategory($content, $input);
+        return $content;
+    }
 
-        if(isset($input['id'])) {
-            $id = $input['id'];
+    public function save($id, array $input)
+    {
+        /* @var Content $content */
+        $content = Content::find($id);
+        $content->fill($input);
+        $content->save();
+        $this->linkToCategory($content, $input);
 
-            /* @var $content Content */
-            $content = Content::find($id);
+        return $content;
+    }
 
-            $category = $content->category()->first();
+    public function delete($id)
+    {
+        return [Content::find($id)->delete()];
+    }
 
-            if($category != null){
-                $category_id = $category->id;
-                $category = Category::find($category_id);
-                $category->contents()->detach($content->id);
-            }
-
-            return [$content->delete()];
-        } else {
-            return [false];
+    private function linkToCategory(Content $content, array $input)
+    {
+        if (isset($input['category'])) {
+            $cid = $input['category']['id'];
+            $category = Category::find($cid);
+            $content->category()->dissociate();
+            $content->category()->associate($category)->save();
         }
+        return $content;
     }
 
 }

@@ -7,7 +7,7 @@ class Content extends AbstrctIModel {
 	protected $fillable = ['title', 'content'];
 
 	public function category() {
-		return $this->belongsTo("Category","HAS");
+		return $this->belongsTo("App\Models\Category","HAS");
 	}
 
 }

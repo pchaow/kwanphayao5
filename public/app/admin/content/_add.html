@@ -1,4 +1,4 @@
-<h2>Add User</h2>
+<h2>Add Content</h2>
 
 <form class="ui form" ng-submit="save()">
 
@@ -14,52 +14,32 @@
 
     <div class="field">
         <label>Title</label>
-        <input ng-model="user.title" type="text" name="title" placeholder="User Title" required="required">
+        <input ng-model="self.content.title" type="text" placeholder="Title" required="required">
     </div>
 
     <div class="field">
-        <label>First Name</label>
-        <input ng-model="user.firstname" type="text" name="firstname" placeholder="User First Name" required="required">
+        <label>Content</label>
+        <textarea ng-model="self.content.content" placeholder="Content" required="required" ui-tinymce="self.mceOptions" ></textarea>
     </div>
 
-    <div class="field">
-        <label>Last Name</label>
-        <input ng-model="user.lastname" type="text" name="lastname" placeholder="User Last Name" required="required">
-    </div>
 
     <div class="field">
-        <label>E-mail</label>
-        <input ng-model="user.email" type="text" name="email" placeholder="User E-mail" required="required">
-    </div>
-
-    <div class="field">
-        <label>Password</label>
-        <input ng-model="user.password" type="password" name="password" placeholder="User Password" required="required">
-    </div>
-
-    <div class="field">
-        <label>Verify Password</label>
-        <input ng-model="user.vpassword" type="password" name="vpassword" placeholder="Verify Password"
-               required="required">
-    </div>
-
-    <div class="field">
-        <label>Roles</label>
+        <label>Category</label>
 
         <div class="ui floating dropdown upward labeled icon button">
             <i class="world icon"></i>
-            <span class="text">Select Roles</span>
+            <span class="text">Select Category</span>
 
             <div class="menu">
-                <div class="item" ng-repeat="role in roles" ng-click="addRole(role)">{{role.name}}</div>
+                <div class="item" ng-repeat-start="category in self.categories" ng-click="self.content.category = category">
+                    {{category.name}}
+                </div>
+                <div class="item" ng-repeat="subcat in category.children" ng-click="self.content.category = subcat">
+                    {{category.name}}-{{subcat.name}}
+                </div>
+                <div ng-repeat-end=""></div>
             </div>
         </div>
-
-        <div class="ui label" ng-repeat="role in user.roles">
-            {{role.name}}
-            <i class="delete icon" ng-click="removeRole(role)"></i>
-        </div>
-
     </div>
 
     <button type="submit" class="ui primary submit button">Save</button>

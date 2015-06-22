@@ -1,4 +1,5 @@
 <?php
+
 \Blade::setContentTags('<%', '%>'); // for variables and all things Blade
 \Blade::setEscapedContentTags('<%%', '%%>'); // for escaped data
 /*
@@ -42,6 +43,7 @@ Route::group(['prefix'=>'admin'], function () {
 
 Route::group(['prefix'=>'/api'], function () {
 
+    Route::resource('content',"API\ContentApiController");
     Route::resource('user',"API\UserApiController");
     Route::resource('role',"API\RoleApiController");
     Route::resource('category',"API\CategoryApiController");
@@ -53,3 +55,19 @@ Route::group(['prefix'=>'/api'], function () {
 Route::get('/img/{path}', function (League\Glide\Server $server, \Illuminate\Http\Request $request) {
     $server->outputImage($request);
 })->where('path', '.*');
+
+use Rhumsaa\Uuid\Uuid;
+
+Route::post('tinymce-upload',function(){
+    $uuid = Uuid::uuid4();
+    $storage_path = "app/temp/";
+    $destination_path = storage_path($storage_path);
+    Input::file('file')->move($destination_path, $uuid);
+
+    $url = "/img/temp/$uuid";
+    $response = [
+        'url' => $url,
+        'base_url' => url()
+    ];
+    return $response;
+});
