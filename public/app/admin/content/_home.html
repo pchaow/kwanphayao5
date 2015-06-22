@@ -23,15 +23,15 @@
         <td class="center aligned collapsing">
             <div class="ui buttons">
                 <button ui-sref="edit({id:content.id})" class="ui positive button">Edit</button>
-                <button ng-click="showDeleteModal(content)" class="ui negative button">Delete</button>
+                <button ng-click="self.showDeleteModal(content)" class="ui negative button">Delete</button>
             </div>
         </td>
     </tr>
     </tbody>
 </table>
 
-<modal ng-model="delete_modal">
-    <i ng-click="closeDeleteModal()" class="close icon"></i>
+<modal ng-model="self.delete_modal">
+    <i ng-click="self.closeDeleteModal()" class="close icon"></i>
     <div class="header">
         Delete User
     </div>
@@ -40,16 +40,16 @@
             <img src="/images/square-image.png">
         </div>
         <div class="description">
-            <div class="ui header">Do you want to delete this user?</div>
-            <p>User ID : <span ng-bind="user.id"></span></p>
-            <p ng-bind="user.email"></p>
+            <div class="ui header">Do you want to delete this content?</div>
+            <p>Content ID : <span ng-bind="self.content.id"></span></p>
+            <p ng-bind="self.content.title"></p>
         </div>
     </div>
     <div class="actions">
-        <div class="ui black button" ng-click="ajaxDelete(null,false)">
+        <div class="ui black button" ng-click="self.ajaxDelete(null,false)">
             No
         </div>
-        <div class="ui positive right labeled icon button" ng-click="ajaxDelete(user,true)">
+        <div class="ui positive right labeled icon button" ng-click="self.ajaxDelete(self.content,true)">
             Yes
             <i class="checkmark icon"></i>
         </div>

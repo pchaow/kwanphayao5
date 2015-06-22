@@ -113,7 +113,7 @@ app.controller("AddCtrl", function ($scope, $state,
 
     self.mceOptions = {
         inline: false,
-        content_css: '/packages/semantic-ui/dist/semantic.min.css',
+        content_css: '/components/semantic-ui/dist/semantic.min.css',
         plugins: "tinyflow image hr",
         skin: 'lightgray',
         theme: 'modern',
@@ -150,7 +150,7 @@ app.controller("EditCtrl", function ($scope, $state,
 
     self.mceOptions = {
         inline: false,
-        content_css: '/packages/semantic-ui/dist/semantic.min.css',
+        content_css: '/components/semantic-ui/dist/semantic.min.css',
         plugins: "tinyflow image hr",
         skin: 'lightgray',
         theme: 'modern',
