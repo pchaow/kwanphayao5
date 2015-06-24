@@ -53,7 +53,7 @@ app.controller("HomeCtrl", function ($scope, $state, users, UserService) {
     console.log("HomeCtrl Start...");
 
     $scope.pagination = users.data;
-    $scope.users = users.data.data;
+    $scope.users = users.data;
     $scope.user = {};
 
     $scope.delete_modal = false;
