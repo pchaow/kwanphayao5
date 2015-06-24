@@ -1,8 +1,5 @@
 @extends('dashboard_master')
 
-@section('header')
-    @yield('header')
-@stop
 
 @section('sidemenu')
 
@@ -51,47 +48,45 @@
 
 @stop
 
-@section('content')
-    @yield('content')
-@stop
-
-
-
-@include('admins.js')
-
-<script type="text/javascript">
-    angular.module("MainMenuApp", ['AppConfig'])
-            .controller("UserCtrl", function ($scope, $http) {
-                $scope.current_user = {};
-                console.log("UserCtrl MainMenuApp Start...")
-
-                $http.get('/api/auth/user').success(function (response) {
-                    $scope.current_user = response;
-                })
-
-                $scope.logout = function () {
-                    var logout = $http.get('/api/auth/user');
-
-                    logout.success(function () {
-                        window.location = '/auth/login';
-                    })
-                }
-            })
-
-    angular.bootstrap($("#MainMenu"), ['MainMenuApp']);
-
-</script>
-
-@yield('javascript')
-
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('.ui.dropdown').dropdown();
-    })
-</script>
 
 @section('javascript')
+
+    @include('admins.js')
+
+
+
+    <script type="text/javascript">
+        angular.module("MainMenuApp", ['AppConfig'])
+                .controller("UserCtrl", function ($scope, $http) {
+                    $scope.current_user = {};
+                    console.log("UserCtrl MainMenuApp Start...")
+
+                    $http.get('/api/auth/user').success(function (response) {
+                        $scope.current_user = response;
+                    })
+
+                    $scope.logout = function () {
+                        var logout = $http.get('/api/auth/user');
+
+                        logout.success(function () {
+                            window.location = '/auth/login';
+                        })
+                    }
+                })
+
+        angular.bootstrap($("#MainMenu"), ['MainMenuApp']);
+
+    </script>
+
     @yield('javascript')
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.ui.dropdown').dropdown();
+        })
+    </script>
+
+
 @stop
 
