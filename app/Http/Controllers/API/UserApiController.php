@@ -21,7 +21,7 @@ class UserApiController extends Controller {
 
 
 	public function index(){
-        return $this->userService->getPaginate();
+        return $this->userService->getAll();
     }
 
 	/**

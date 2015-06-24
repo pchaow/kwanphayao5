@@ -5,9 +5,7 @@
     <link rel="stylesheet" href="/components/semantic-ui/dist/semantic.min.css"/>
     <link rel="stylesheet" href="/components/semantic-ui/dist/components/dropdown.min.css"/>
 
-    <script src="/components/jquery/dist/jquery.min.js"></script>
-    <script src="/components/semantic-ui/dist/semantic.min.js" type="text/javascript"></script>
-    <script src="/components/semantic-ui/dist/components/dropdown.min.js" type="text/javascript"></script>
+
     <style>
         .avatar-menu {
             height: 2em !important;
@@ -85,6 +83,7 @@
 </script>
 
 @include('admins.js')
+
 @yield('javascript')
 
 <script type="text/javascript">
