@@ -34,7 +34,8 @@
         </div>
 
         <div class="right aligned four wide column middle-align">
-            YY
+            <a href="/register">ลงทะเบียน</a>
+            <a href="/login">เข้าสู่ระบบ</a>
         </div>
     </div>
 
