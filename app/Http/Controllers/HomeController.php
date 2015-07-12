@@ -2,7 +2,8 @@
 
 use Illuminate\Http\Request;
 
-class HomeController extends BaseController {
+class HomeController extends BaseController
+{
 
     /*
     |--------------------------------------------------------------------------
@@ -17,48 +18,31 @@ class HomeController extends BaseController {
     |
     */
 
-    public function getTest3() {
-        return view('test3');
-    }
-
-    public function getTest5() {
-        return view('test5');
-    }
-
-    public function getTest51() {
-        return view('test51');
-    }
-
-    public function index() {
+    public function index()
+    {
         return view('home.index');
     }
 
-    public function getAbout() {
-        return view('home.about');
+    public function login()
+    {
+        return view('home.login');
     }
 
-    public function getGeneral() {
-        return view('home.general');
-    }
+    public function postLogin()
+    {
+        $email = \Input::get('email');
+        $password = \Input::get('password');
 
-    public function getEcology() {
-        return view('home.ecology');
-    }
+        $credentials = [
+            'email' => $email,
+            'password' => $password
+        ];
 
-    public function getTravel() {
-        return view('home.travel');
-    }
-
-    public function getWaterResources() {
-        return view('home.water-resources');
-    }
-
-    public function getHistory() {
-        return view('home.history');
-    }
-
-    public function getForgotPassword() {
-        return view('home.forgot-password');
+        if (\Auth::attempt($credentials)) {
+            return \Redirect::to("/");
+        } else {
+            return $credentials;
+        }
     }
 
 }

@@ -50,4 +50,15 @@ class User extends AbstrctIModel implements AuthenticatableContract, CanResetPas
         $this->roles()->sync($ids,true);
     }
 
+    public function getAuthIdentifier()
+    {
+        return $this->id;
+    }
+
+    public function getAuthPassword()
+    {
+        return $this->password;
+    }
+
+
 }

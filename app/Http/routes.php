@@ -14,14 +14,8 @@
 */
 
 Route::get('/', 'HomeController@index');
-
-Route::get('about', 'HomeController@getAbout');
-Route::get('general', 'HomeController@getGeneral');
-Route::get('ecology', 'HomeController@getEcology');
-Route::get('travel', 'HomeController@getTravel');
-Route::get('water-resources', 'HomeController@getWaterResources');
-Route::get('history', 'HomeController@getHistory');
-Route::get('forgot-password', 'HomeController@getForgotPassword');
+Route::get('/login','HomeController@login');
+Route::post('/login','HomeController@postLogin');
 
 Route::group(["prefix"=>"register"], function () {
     Route::get('', 'RegisterController@getBasicRegister');

@@ -77,14 +77,13 @@
     </div>
 </div>
 
+@include('admins.js')
+
+@yield('javascript')
 
 <script type="text/javascript">
     $('.ui.dropdown').dropdown();
 </script>
-
-@include('admins.js')
-
-@yield('javascript')
 
 <script type="text/javascript">
     angular.module("MainMenuApp", ['AppConfig'])
