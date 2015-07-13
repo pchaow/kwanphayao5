@@ -48,7 +48,32 @@
             </div>
 
             <div class="right menu">
+                <div class="item ui dropdown">
+                    @if(Auth::user()->logo)
+                        <img class="ui avatar avatar-menu image" src="<%Auth::user()->logo->url%>?h=200">
+                    @else
+                        <img class="ui avatar avatar-menu image" src="/images/square-image.png">
+                    @endif
+                    @if(Auth::user())
+                        <span><%Auth::user()->email%></span>
+                    @endif
+                    <div class="menu">
+                        <div class="header">
+                            <i class="tags icon"></i>
+                            เลือกสิทธิ์การใช้งาน
+                        </div>
+                        @foreach( Auth::user()->roles as $role)
+                            <a class=" <% Request::is("$role->key/*") ? 'active' : '' %> item"
+                               href="/<%$role->key%>">
+                                <% $role->name %>
+                            </a>
+                        @endforeach
+                        <div class="divider"></div>
+                        <a class="item">Change Profile</a>
+                        <a class="item" href="/logout">Logout</a>
 
+                    </div>
+                </div>
 
                 <div class="item">
                     Support
@@ -84,31 +109,6 @@
 <script type="text/javascript">
     $('.ui.dropdown').dropdown();
 </script>
-
-<script type="text/javascript">
-    angular.module("MainMenuApp", ['AppConfig'])
-            .controller("UserCtrl", function ($scope, $http) {
-                $scope.current_user = {};
-                console.log("UserCtrl MainMenuApp Start...")
-
-//                $http.get('/api/auth/user').success(function (response) {
-//                    $scope.current_user = response;
-//                })
-
-                $scope.logout = function () {
-                    var logout = $http.get('/api/auth/user');
-
-                    logout.success(function () {
-                        window.location = '/auth/login';
-                    })
-                }
-            })
-
-    angular.bootstrap($("#MainMenu"), ['MainMenuApp']);
-
-</script>
-
-
 
 </body>
 </html>

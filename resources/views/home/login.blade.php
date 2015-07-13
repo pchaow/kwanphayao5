@@ -1,9 +1,16 @@
 @extends('home.layout')
 
 @section('content')
+
     <div class="ui middle aligned center aligned grid">
         <div class="column" style="max-width: 450px;">
-
+@if(isset($loginError))
+            <div class="ui negative message">
+                <div class="header">
+                    <% $loginError  %>
+                </div>
+            </div>
+@endif
             <div class="ui top attached green inverted segment">
                 <h4>เข้าใช้งานระบบ / Sign in</h4>
             </div>

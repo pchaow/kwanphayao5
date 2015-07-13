@@ -32,11 +32,43 @@
                 <i class="circular search link icon"></i>
             </div>
         </div>
+        @if(Auth::user())
+            <div class="right aligned four wide column middle-align">
+                <div id="user_dropdown" class="item ui dropdown">
+                    @if(Auth::user()->logo)
+                        <img class="ui avatar avatar-menu image" src="<%Auth::user()->logo->url%>?h=200">
+                    @else
+                        <img class="ui avatar avatar-menu image" src="/images/square-image.png">
+                    @endif
+                    @if(Auth::user())
+                        <span><%Auth::user()->email%></span>
+                    @endif
+                    <div class="menu">
+                        <div class="header">
+                            <i class="tags icon"></i>
+                            เลือกสิทธิ์การใช้งาน
+                        </div>
+                        @foreach( Auth::user()->roles as $role)
+                            <a class=" <% Request::is("$role->key/*") ? 'active' : '' %> item"
+                               href="/<%$role->key%>">
+                                <% $role->name %>
+                            </a>
+                        @endforeach
+                        <div class="divider"></div>
+                        <a class="item">Change Profile</a>
+                        <a class="item" href="/logout">Logout</a>
 
-        <div class="right aligned four wide column middle-align">
-            <a href="/register">ลงทะเบียน</a>
-            <a href="/login">เข้าสู่ระบบ</a>
-        </div>
+                    </div>
+                </div>
+            </div>
+        @else
+            <div class="right aligned four wide column middle-align">
+                <a href="/register">ลงทะเบียน</a>
+                <a href="/login">เข้าสู่ระบบ</a>
+            </div>
+        @endif
+
+
     </div>
 
     <div class="row">
@@ -51,16 +83,23 @@
     </div>
 
     <div class="row">
-            <div class="column">
-                @yield('content')
-            </div>
+        <div class="column">
+            @yield('content')
+        </div>
     </div>
 
 
 </div>
 
+<script src="components/jquery/dist/jquery.min.js"></script>
+<script src="components/semantic/dist/semantic.min.js"></script>
 
 @yield('js')
+
+<script>
+    $("#user_dropdown").dropdown();
+</script>
+
 
 </body>
 </html>

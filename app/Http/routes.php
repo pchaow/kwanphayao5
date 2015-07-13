@@ -15,6 +15,7 @@
 
 Route::get('/', 'HomeController@index');
 Route::get('/login','HomeController@login');
+Route::get('/logout','HomeController@getLogout');
 Route::post('/login','HomeController@postLogin');
 
 Route::group(["prefix"=>"register"], function () {

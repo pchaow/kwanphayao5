@@ -28,6 +28,11 @@ class HomeController extends BaseController
         return view('home.login');
     }
 
+    public function getLogout(){
+        \Auth::logout();
+        return \Redirect::to('/');
+    }
+
     public function postLogin()
     {
         $email = \Input::get('email');
@@ -41,7 +46,7 @@ class HomeController extends BaseController
         if (\Auth::attempt($credentials)) {
             return \Redirect::to("/");
         } else {
-            return $credentials;
+            return view('home.login')->with('loginError','User e-mail or password is invalid');
         }
     }
 
