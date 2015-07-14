@@ -43,6 +43,7 @@
                     @if(Auth::user())
                         <span><%Auth::user()->email%></span>
                     @endif
+                    <i class="dropdown icon"></i>
                     <div class="menu">
                         <div class="header">
                             <i class="tags icon"></i>

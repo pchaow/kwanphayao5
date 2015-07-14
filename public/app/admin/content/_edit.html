@@ -39,7 +39,7 @@
                 <div class="item" ng-repeat-start="category in self.categories" ng-click="self.content.category = category">
                     {{category.name}}
                 </div>
-                <div class="item" ng-repeat="subcat in category.children" ng-click="self.content.category = subcat">
+                <div class="item"  style="text-indent: 2em;" ng-repeat="subcat in category.children" ng-click="self.content.category = subcat">
                     {{category.name}}-{{subcat.name}}
                 </div>
                 <div ng-repeat-end=""></div>
