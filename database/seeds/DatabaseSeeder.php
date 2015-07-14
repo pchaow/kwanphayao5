@@ -18,8 +18,16 @@ class DatabaseSeeder extends Seeder {
 		Model::unguard();
 
 		$this->call('RoleSeeder');
-		$this->call('AdminSeeder');
 
-	}
+        $admin = new \App\Models\User();
+        $roleAdmin = \App\Models\Role::where('key','=','admin')->first();
+
+        $admin->email = "admin@admin.com";
+        $admin->password = \Hash::make("1234");
+        $admin->save();
+        $admin->roles()->save($roleAdmin);
+
+
+    }
 
 }
