@@ -51,7 +51,7 @@ Route::get('/img/{path}', function (League\Glide\Server $server, \Illuminate\Htt
     $server->outputImage($request);
 })->where('path', '.*');
 
-use Rhumsaa\Uuid\Uuid;
+use Ramsey\Uuid\Uuid;
 
 Route::post('tinymce-upload', function () {
     $uuid = Uuid::uuid4();
