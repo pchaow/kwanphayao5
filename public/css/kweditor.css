@@ -1,21 +1,21 @@
 
-h2 {
+.editor h2 {
     font-family: Tahoma;
     font-size: 18px;
     font-weight: bold;
 }
 
-h3 {
+.editor h3 {
     font-family: Tahoma;
     font-size: 16px;
     font-weight: bold;
 }
 
-p {
+.editor p {
     font-family: Tahoma;
     font-size: 16px;
 }
 
-table {
+.editor table {
     border : solid silver 1px;
 }

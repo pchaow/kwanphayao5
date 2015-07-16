@@ -10,7 +10,6 @@
         </ul>
     </div>
 
-    <h4 class="ui dividing header">User Information</h4>
 
     <div class="field">
         <label>Title</label>
@@ -20,7 +19,7 @@
     <div class="field">
         <label>Content</label>
         <!--textarea ng-model="self.content.content" placeholder="Content" required="required" ui-tinymce="self.mceOptions" ></textarea-->
-        <div ng-model="self.content.content" ui-tinymce="self.mceOptions" style="border: 1px solid black;min-height: 400px;">
+        <div class="editor" ng-model="self.content.content" ui-tinymce="self.mceOptions" style="border: 1px solid black;min-height: 400px;">
     </div>
 
 
