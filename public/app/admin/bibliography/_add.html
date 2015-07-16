@@ -1,0 +1,32 @@
+<h2>เพิ่มข้อความอ้างอิง</h2>
+
+<form class="ui form" ng-submit="save()">
+
+    <div ng-if="message" class="ui negative message">
+        <div class="header">We had some issues</div>
+        <ul class="list">
+            <li ng-repeat="m in message" ng-bind="m"></li>
+
+        </ul>
+    </div>
+
+
+    <div class="field">
+        <label>รหัสเรียกใช้</label>
+        <input ng-model="self.bibliography.call_code" type="text" placeholder="Title" required="required">
+    </div>
+
+    <div class="field">
+        <label>ข้อความแสดงแบบสั้น</label>
+        <input ng-model="self.bibliography.short_text" type="text" placeholder="Title" required="required" ui-tinymce="">
+    </div>
+
+    <div class="field">
+        <label>ข้อความแสดงแบบยาว</label>
+        <input ng-model="self.bibliography.long_text" type="text" placeholder="Title" required="required" ui-tinymce="">
+    </div>
+    
+
+    <button type="submit" class="ui primary submit button">Save</button>
+    <button type="button" ui-sref="home" class="ui submit button">Cancel</button>
+</form>

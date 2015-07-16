@@ -12,6 +12,10 @@ class Content extends AbstrctIModel {
 		return $this->belongsTo("App\Models\Category","HAS");
 	}
 
+    public function bibliographies(){
+        return $this->hasMany('App\Models\Bibliography','BIBLIOGRAPHY');
+    }
+
     public function delete(){
         /* @var Category $category */
         $category = $this->category()->first();
