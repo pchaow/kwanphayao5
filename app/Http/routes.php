@@ -15,8 +15,8 @@
 
 Route::get('/', 'HomeController@index');
 Route::get('/login', 'HomeController@login');
-Route::get('/logout', 'HomeController@getLogout');
 Route::post('/login', 'HomeController@postLogin');
+Route::get('/logout', 'HomeController@getLogout');
 
 Route::group(["prefix" => "register"], function () {
     Route::get('', 'RegisterController@getBasicRegister');
@@ -31,6 +31,7 @@ Route::group(["prefix" => "register"], function () {
 Route::group(['prefix' => 'admin'], function () {
     Route::get('', 'AdminController@index');
     Route::get('category', 'AdminController@getCategory');
+    Route::get('bibliography', 'AdminController@getBibliography');
     Route::get('content', 'AdminController@getContent');
     Route::get('user', 'AdminController@getUser');
     Route::get('role', 'AdminController@getRole');
@@ -39,6 +40,7 @@ Route::group(['prefix' => 'admin'], function () {
 Route::group(['prefix' => '/api'], function () {
 
     Route::resource('content', "API\ContentApiController");
+    Route::resource('bibliography', "API\BibliographyApiController");
     Route::resource('user', "API\UserApiController");
     Route::resource('role', "API\RoleApiController");
     Route::resource('category', "API\CategoryApiController");

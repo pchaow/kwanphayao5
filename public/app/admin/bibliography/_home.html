@@ -1,0 +1,55 @@
+<h2>Contents Management</h2>
+
+<div ui-sref="add" class="ui primary button">
+    Add Content
+</div>
+
+<table class="ui celled striped table">
+    <thead>
+    <tr>
+        <th class="center aligned one wide">ID</th>
+        <th class="center aligned four wide">รหัสเรียกใช้</th>
+        <th class="center aligned wide">ข้อความ (สั้น)</th>
+        <th class="center aligned four wide">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="bibliography in self.bibliographies">
+        <td class="collapsing" ng-bind="bibliography.id"></td>
+        <td ng-bind="bibliography.call_code"></td>
+        <td ng-bind-html="self.getShortText(bibliography)"></td>
+        <td class="center aligned collapsing">
+            <div class="ui buttons">
+                <button ui-sref="edit({id:bibliography.id})" class="ui positive button">Edit</button>
+                <button ng-click="self.showDeleteModal(bibliography)" class="ui negative button">Delete</button>
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<modal ng-model="self.delete_modal">
+    <i ng-click="self.closeDeleteModal()" class="close icon"></i>
+    <div class="header">
+        Delete User
+    </div>
+    <div class="bibliography">
+        <div class="ui medium image">
+            <img src="/images/square-image.png">
+        </div>
+        <div class="description">
+            <div class="ui header">Do you want to delete this bibliography?</div>
+            <p>Content ID : <span ng-bind="self.bibliography.id"></span></p>
+            <p ng-bind="self.bibliography.title"></p>
+        </div>
+    </div>
+    <div class="actions">
+        <div class="ui black button" ng-click="self.ajaxDelete(null,false)">
+            No
+        </div>
+        <div class="ui positive right labeled icon button" ng-click="self.ajaxDelete(self.bibliography,true)">
+            Yes
+            <i class="checkmark icon"></i>
+        </div>
+    </div>
+</modal>

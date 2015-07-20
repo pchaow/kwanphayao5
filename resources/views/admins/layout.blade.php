@@ -29,6 +29,9 @@
             <i class="book icon"></i>
             Content
         </a>
+        <a class=" <% Request::is('admin/bibliography') ? 'active' : '' %> item" href="/admin/bibliography">
+            Bibliography
+        </a>
         <a class=" <% Request::is('admin/category') ? 'active' : '' %> item" href="/admin/category">
             Category
         </a>
