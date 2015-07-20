@@ -22,7 +22,7 @@ class ContentService extends BaseService
 
     public function all()
     {
-        return Content::with($this->withArr)->get();
+        return Content::with($this->withArr)->orderBy('created_at','desc')->get();
     }
 
     public function getById($id)
