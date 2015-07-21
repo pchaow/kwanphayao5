@@ -14,16 +14,16 @@
     <div class="ui page grid" style="padding-left: 0px;;">
         <div class="column" style="padding-left: 0px;">
 
-            <div class="field">
-                <label>Title</label>
-                <input ng-model="self.content.title" type="text" placeholder="Title" required="required">
-            </div>
+            <div class="column" style="padding-left: 0px;">
 
-            <div class="field">
-                <label>Content</label>
+                <h1 class="editor" ng-model="self.content.title" ui-tinymce="self.mceOptionsTitle"
+                    style="border: 1px solid lightgrey;">
+                    Title
+                </h1>
 
                 <div class="editor" ng-model="self.content.content" ui-tinymce="self.mceOptions"
-                     style="border: 1px solid black;min-height: 400px;">
+                     style="border: 1px solid lightgrey;min-height: 400px;">
+                    Content
                 </div>
 
             </div>

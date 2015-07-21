@@ -13,23 +13,17 @@
     <div class="ui page grid" style="padding-left: 0px;;">
         <div class="column" style="padding-left: 0px;">
 
-            <div class="field">
-                <label>Title</label>
-                <input ng-model="self.content.title" type="text" placeholder="Title" required="required">
+            <h1 class="editor" ng-model="self.content.title" ui-tinymce="self.mceOptionsTitle"
+                 style="border: 1px solid lightgrey;">
+            </h1>
+
+            <div class="editor" ng-model="self.content.content" ui-tinymce="self.mceOptions"
+                 style="border: 1px solid lightgrey;min-height: 400px;">
             </div>
 
-            <div class="field">
-                <label>Content</label>
-
-                <div class="editor" ng-model="self.content.content" ui-tinymce="self.mceOptions"
-                     style="border: 1px solid black;min-height: 400px;">
-                </div>
-
-            </div>
         </div>
     </div>
-
-
+    </div>
 
     <div class="field">
         <label>Category</label>
@@ -44,10 +38,12 @@
 
 
             <div class="menu">
-                <div class="item" ng-repeat-start="category in self.categories" ng-click="self.content.category = category">
+                <div class="item" ng-repeat-start="category in self.categories"
+                     ng-click="self.content.category = category">
                     {{category.name}}
                 </div>
-                <div class="item"  style="text-indent: 2em;" ng-repeat="subcat in category.children" ng-click="self.content.category = subcat">
+                <div class="item" style="text-indent: 2em;" ng-repeat="subcat in category.children"
+                     ng-click="self.content.category = subcat">
                     {{category.name}}-{{subcat.name}}
                 </div>
                 <div ng-repeat-end=""></div>

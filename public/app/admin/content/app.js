@@ -29,7 +29,10 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             controllerAs : 'self',
             resolve: {
                 content: function (CategoryService) {
-                    return {data: { }}
+                    return {data: {
+                        title : 'Title',
+                        content : 'Content'
+                    }}
                 },
                 categories : function (CategoryService){
                     return CategoryService.all("?children=true")
@@ -125,6 +128,18 @@ app.controller("AddCtrl", function ($scope, $state,
         toolbar2:"bullist numlist outdent indent | table | hr | link unlink | image tinyflow |"
     } ;
 
+    self.mceOptionsTitle = {
+        inline: false,
+        content_css: ['/components/semantic-ui/dist/semantic.min.css','/css/kweditor.css'],
+        inline : true,
+        plugins: "tinyflow image hr table",
+        skin: 'lightgray',
+        theme: 'modern',
+        relative_urls: false,
+        toolbar: "undo redo",
+        menubar: false
+    } ;
+
 });
 
 app.controller("EditCtrl", function ($scope, $state,
@@ -161,5 +176,17 @@ app.controller("EditCtrl", function ($scope, $state,
         menubar: true,
         toolbar1: "undo redo | formatselect fontselect fontsizeselect removeformat  | bold italic | alignleft  aligncenter alignright alignjustify | ",
         toolbar2:"bullist numlist outdent indent | table | hr | link unlink | image tinyflow |"
+    } ;
+
+    self.mceOptionsTitle = {
+        inline: false,
+        content_css: ['/components/semantic-ui/dist/semantic.min.css','/css/kweditor.css'],
+        inline : true,
+        plugins: "tinyflow image hr table",
+        skin: 'lightgray',
+        theme: 'modern',
+        relative_urls: false,
+        toolbar: "undo redo",
+        menubar: false
     } ;
 });
