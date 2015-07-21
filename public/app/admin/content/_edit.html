@@ -10,18 +10,25 @@
         </ul>
     </div>
 
-    <div class="field">
-        <label>Title</label>
-        <input ng-model="self.content.title" type="text" placeholder="Title" required="required">
-    </div>
+    <div class="ui page grid" style="padding-left: 0px;;">
+        <div class="column" style="padding-left: 0px;">
 
-    <div class="field">
-        <label>Content</label>
-        <!--textarea ng-model="self.content.content" placeholder="Content" required="required" ui-tinymce="self.mceOptions"></--textarea-->
-        <div class="editor" ng-model="self.content.content" ui-tinymce="self.mceOptions" style="border: 1px solid black;min-height: 400px;">
+            <div class="field">
+                <label>Title</label>
+                <input ng-model="self.content.title" type="text" placeholder="Title" required="required">
+            </div>
 
+            <div class="field">
+                <label>Content</label>
+
+                <div class="editor" ng-model="self.content.content" ui-tinymce="self.mceOptions"
+                     style="border: 1px solid black;min-height: 400px;">
+                </div>
+
+            </div>
         </div>
     </div>
+
 
 
     <div class="field">
