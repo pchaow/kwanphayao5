@@ -28,7 +28,7 @@ Route::group(["prefix" => "register"], function () {
     Route::post('account/save', 'RegisterController@doAccountRegister');
 });
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin','middleware'=>'admin'], function () {
     Route::get('', 'AdminController@index');
     Route::get('category', 'AdminController@getCategory');
     Route::get('bibliography', 'AdminController@getBibliography');

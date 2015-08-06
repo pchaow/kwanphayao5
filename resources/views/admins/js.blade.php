@@ -1,6 +1,6 @@
 
 <script type="text/javascript" src="/components/jquery/dist/jquery.min.js"></script>
-<script type="text/javascript" src="/components/semantic-ui/dist/semantic.min.js"></script>
+<script type="text/javascript" src="/components/semantic/dist/semantic.min.js"></script>
 <script type="text/javascript" src="/components/tinymce-dist/tinymce.js"></script>
 <script type="text/javascript" src="/components/flow.js/dist/flow.min.js"></script>
 <script type="text/javascript" src="/components/angular/angular.min.js"></script>

@@ -3,8 +3,8 @@
  */
 
 
-var app = angular.module('ContentAdmin', ['ui.router','ngCookies','ui.tinymce',
-    'AppConfig','angularify.semantic', 'flow', 'Content','Category']);
+var app = angular.module('ContentAdmin', ['ui.router', 'ngCookies', 'ui.tinymce',
+    'AppConfig', 'angularify.semantic', 'flow', 'Content', 'Category']);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
 
@@ -15,7 +15,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             url: "/",
             templateUrl: "/app/admin/content/_home.html",
             controller: "HomeCtrl",
-            controllerAs : 'self',
+            controllerAs: 'self',
             resolve: {
                 contents: function (ContentService) {
                     return ContentService.all();
@@ -26,15 +26,17 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             url: "/add",
             templateUrl: "/app/admin/content/_add.html",
             controller: "AddCtrl",
-            controllerAs : 'self',
+            controllerAs: 'self',
             resolve: {
                 content: function (CategoryService) {
-                    return {data: {
-                        title : 'Title',
-                        content : 'Content'
-                    }}
+                    return {
+                        data: {
+                            title: 'หัวเรื่อง',
+                            content: 'เนื้อหา'
+                        }
+                    }
                 },
-                categories : function (CategoryService){
+                categories: function (CategoryService) {
                     return CategoryService.all("?children=true")
                 }
             }
@@ -43,13 +45,13 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             url: "/edit/:id",
             templateUrl: "/app/admin/content/_edit.html",
             controller: "EditCtrl",
-            controllerAs : 'self',
+            controllerAs: 'self',
             resolve: {
-                content: function (ContentService,$stateParams) {
+                content: function (ContentService, $stateParams) {
                     return ContentService.get($stateParams.id);
                 }
                 ,
-                categories : function (CategoryService){
+                categories: function (CategoryService) {
                     return CategoryService.all("?children=true");
                 }
             }
@@ -78,11 +80,11 @@ app.controller("HomeCtrl", function ($scope, $state,
         self.content = content;
         if (bool) {
             ContentService.delete(content)
-                .success(function(response){
+                .success(function (response) {
                     self.closeDeleteModal();
-                    for(var i=0;i<self.contents.length;i++){
-                        if(self.contents[i].id == content.id){
-                            self.contents.splice(i,1);
+                    for (var i = 0; i < self.contents.length; i++) {
+                        if (self.contents[i].id == content.id) {
+                            self.contents.splice(i, 1);
                             break;
                         }
                     }
@@ -111,34 +113,42 @@ app.controller("AddCtrl", function ($scope, $state,
             $scope.message = response;
         });
     }
-
-    $('.ui.dropdown').dropdown();
+    //$('.ui.dropdown').dropdown();
+    $('#ref_dropdown')
+        .dropdown({
+            apiSettings: {
+                url: '/test'
+            }
+        })
+    ;
 
     self.mceOptions = {
         inline: false,
-        content_css: ['/components/semantic-ui/dist/semantic.min.css','/css/kweditor.css'],
+        content_css: ['/components/semantic-ui/dist/semantic.min.css', '/css/kweditor.css'],
         plugins: "tinyflow image hr table",
         skin: 'lightgray',
-        inline : true,
+        inline: true,
         theme: 'modern',
         relative_urls: false,
         height: 400,
         menubar: true,
         toolbar1: "undo redo | formatselect fontselect fontsizeselect removeformat  | bold italic | alignleft  aligncenter alignright alignjustify | ",
-        toolbar2:"bullist numlist outdent indent | table | hr | link unlink | image tinyflow |"
-    } ;
+        toolbar2: "bullist numlist outdent indent | table | hr | link unlink | image tinyflow |"
+    };
 
     self.mceOptionsTitle = {
         inline: false,
-        content_css: ['/components/semantic-ui/dist/semantic.min.css','/css/kweditor.css'],
-        inline : true,
+        content_css: ['/components/semantic-ui/dist/semantic.min.css', '/css/kweditor.css'],
+        inline: true,
         plugins: "tinyflow image hr table",
         skin: 'lightgray',
         theme: 'modern',
         relative_urls: false,
         toolbar: "undo redo",
         menubar: false
-    } ;
+    };
+
+
 
 });
 
@@ -150,7 +160,6 @@ app.controller("EditCtrl", function ($scope, $state,
     var self = this;
     self.content = content.data;
     self.categories = categories.data;
-
 
 
     $('.ui.dropdown').dropdown();
@@ -166,8 +175,8 @@ app.controller("EditCtrl", function ($scope, $state,
 
     self.mceOptions = {
         inline: false,
-        content_css: ['/components/semantic-ui/dist/semantic.min.css','/css/kweditor.css'],
-        inline : true,
+        content_css: ['/components/semantic-ui/dist/semantic.min.css', '/css/kweditor.css'],
+        inline: true,
         plugins: "tinyflow image hr table",
         skin: 'lightgray',
         theme: 'modern',
@@ -175,18 +184,18 @@ app.controller("EditCtrl", function ($scope, $state,
         height: 400,
         menubar: true,
         toolbar1: "undo redo | formatselect fontselect fontsizeselect removeformat  | bold italic | alignleft  aligncenter alignright alignjustify | ",
-        toolbar2:"bullist numlist outdent indent | table | hr | link unlink | image tinyflow |"
-    } ;
+        toolbar2: "bullist numlist outdent indent | table | hr | link unlink | image tinyflow |"
+    };
 
     self.mceOptionsTitle = {
         inline: false,
-        content_css: ['/components/semantic-ui/dist/semantic.min.css','/css/kweditor.css'],
-        inline : true,
+        content_css: ['/components/semantic-ui/dist/semantic.min.css', '/css/kweditor.css'],
+        inline: true,
         plugins: "tinyflow image hr table",
         skin: 'lightgray',
         theme: 'modern',
         relative_urls: false,
         toolbar: "undo redo",
         menubar: false
-    } ;
+    };
 });
