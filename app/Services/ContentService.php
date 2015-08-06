@@ -13,7 +13,7 @@ use App\Models\Content;
 class ContentService extends BaseService
 {
 
-    var $withArr = ['category', 'category.parent'];
+    var $withArr = ['category', 'category.parent','bibliographies'];
 
     public function __construct(ContentTypeService $contentTypeService)
     {
@@ -41,6 +41,7 @@ class ContentService extends BaseService
         $content = Content::create($input);
         $content->save();
         $this->linkToCategory($content, $input);
+        $this->linkToReferences($content,$input);
         return $content;
     }
 
@@ -51,6 +52,7 @@ class ContentService extends BaseService
         $content->fill($input);
         $content->save();
         $this->linkToCategory($content, $input);
+        $this->linkToReferences($content,$input);
 
         return $content;
     }
@@ -58,6 +60,19 @@ class ContentService extends BaseService
     public function delete($id)
     {
         return [Content::find($id)->delete()];
+    }
+
+    private function linkToReferences(Content $content,array $input){
+        if (isset($input['bibliographies'])){
+            $rArray = [];
+            $references = $input['bibliographies'];
+            foreach ($references as $r) {
+                array_push($rArray,$r['id']);
+            }
+            $content->bibliographies()->sync($rArray,true);
+        }else {
+            $content->bibliographies()->sync([],true);
+        }
     }
 
     private function linkToCategory(Content $content, array $input)

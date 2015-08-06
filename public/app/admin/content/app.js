@@ -32,7 +32,8 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                     return {
                         data: {
                             title: 'หัวเรื่อง',
-                            content: 'เนื้อหา'
+                            content: 'เนื้อหา',
+                            references: []
                         }
                     }
                 },
@@ -96,35 +97,79 @@ app.controller("HomeCtrl", function ($scope, $state,
     }
 });
 
-app.controller("AddCtrl", function ($scope, $state,
+app.controller("AddCtrl", function ($scope, $state,$timeout,$sce,
                                     ContentService,
                                     content, categories) {
     console.log("AddCtrl Start...");
     var self = this;
     self.content = content.data;
+
     self.categories = categories.data;
 
 
     $scope.save = function () {
-        ContentService.store(self.content).success(function (resposne) {
-            $state.go('home');
-            //$state.go("edit",{id:resposne.id});
-        }).error(function (response) {
-            $scope.message = response;
-        });
+            ContentService.store(self.content).success(function (resposne) {
+                $state.go('home');
+                //$state.go("edit",{id:resposne.id});
+            }).error(function (response) {
+                $scope.message = response;
+            });
     }
-    //$('.ui.dropdown').dropdown();
-    $('#ref_dropdown')
-        .dropdown({
-            apiSettings: {
-                url: '/test'
+    $timeout(function(){
+        $('.ui.dropdown').dropdown();
+        $('#ref_dropdown')
+            .dropdown({
+                apiSettings: {
+                    url: '/api/search/reference/{query}',
+                    onResponse: function (response) {
+                        self.ref_dropdown_response = response;
+                    }
+                },
+                onChange: function (value, text, $choice) {
+                    var results = self.ref_dropdown_response.results;
+                    if(!self.content.bibliographies){
+                        self.content.bibliographies = [];
+                    }
+                    for (i = 0; i < results.length; i++) {
+                        if (value == results[i].object.id) {
+                            var hasref= false;
+                            for(j=0;j<self.content.bibliographies.length;j++){
+                                if(value == self.content.bibliographies[j].id){
+                                    hasref = true;
+                                }
+                            }
+                            if(!hasref){
+                                var obj = results[i].object;
+                                self.addReference(obj);
+
+                            }
+
+                        }
+                    }
+                    console.log(self.content.bibliographies);
+                    self.content.i = 0;
+                }
+            })
+        ;
+    },100)
+
+    self.addReference = function(ref){
+        //ref.short_text = $sce.trustAsHtml(ref.short_text);
+        self.content.bibliographies.push(ref);
+        $scope.$apply();
+    }
+
+    self.removeRef = function(reference){
+        for(i=0;i<self.content.bibliographies.length;i++){
+            if(reference.id == self.content.bibliographies[i].id){
+                self.content.bibliographies.splice(i,1);
             }
-        })
-    ;
+        }
+    }
 
     self.mceOptions = {
         inline: false,
-        content_css: ['/components/semantic-ui/dist/semantic.min.css', '/css/kweditor.css'],
+        content_css: ['/components/semantic/dist/semantic.min.css', '/css/kweditor.css'],
         plugins: "tinyflow image hr table",
         skin: 'lightgray',
         inline: true,
@@ -138,7 +183,7 @@ app.controller("AddCtrl", function ($scope, $state,
 
     self.mceOptionsTitle = {
         inline: false,
-        content_css: ['/components/semantic-ui/dist/semantic.min.css', '/css/kweditor.css'],
+        content_css: ['/components/semantic/dist/semantic.min.css', '/css/kweditor.css'],
         inline: true,
         plugins: "tinyflow image hr table",
         skin: 'lightgray',
@@ -148,11 +193,13 @@ app.controller("AddCtrl", function ($scope, $state,
         menubar: false
     };
 
-
+    self.getShortTextRef = function(reference){
+        return $sce.trustAsHtml(reference.short_text);
+    }
 
 });
 
-app.controller("EditCtrl", function ($scope, $state,
+app.controller("EditCtrl", function ($scope, $state,$timeout,$sce,
                                      ContentService,
                                      content, categories) {
     console.log("EditCtrl Start...");
@@ -161,8 +208,61 @@ app.controller("EditCtrl", function ($scope, $state,
     self.content = content.data;
     self.categories = categories.data;
 
+    self.getShortTextRef = function(reference){
+        return $sce.trustAsHtml(reference.short_text);
+    }
 
-    $('.ui.dropdown').dropdown();
+    $timeout(function(){
+        $('.ui.dropdown').dropdown();
+        $('#ref_dropdown')
+            .dropdown({
+                apiSettings: {
+                    url: '/api/search/reference/{query}',
+                    onResponse: function (response) {
+                        self.ref_dropdown_response = response;
+                    }
+                },
+                onChange: function (value, text, $choice) {
+                    var results = self.ref_dropdown_response.results;
+                    if(!self.content.bibliographies){
+                        self.content.bibliographies = [];
+                    }
+                    for (i = 0; i < results.length; i++) {
+                        if (value == results[i].object.id) {
+                            var hasref= false;
+                            for(j=0;j<self.content.bibliographies.length;j++){
+                                if(value == self.content.bibliographies[j].id){
+                                    hasref = true;
+                                }
+                            }
+                            if(!hasref){
+                                var obj = results[i].object;
+                                self.addReference(obj);
+
+                            }
+
+                        }
+                    }
+                    console.log(self.content.bibliographies);
+                    self.content.i = 0;
+                }
+            })
+        ;
+    },100);
+
+    self.removeRef = function(reference){
+        for(i=0;i<self.content.bibliographies.length;i++){
+            if(reference.id == self.content.bibliographies[i].id){
+                self.content.bibliographies.splice(i,1);
+            }
+        }
+    }
+
+    self.addReference = function(ref){
+        //ref.short_text = $sce.trustAsHtml(ref.short_text);
+        self.content.bibliographies.push(ref);
+        $scope.$apply();
+    };
 
     $scope.save = function () {
         ContentService.save(self.content).success(function (resposne) {
@@ -175,7 +275,7 @@ app.controller("EditCtrl", function ($scope, $state,
 
     self.mceOptions = {
         inline: false,
-        content_css: ['/components/semantic-ui/dist/semantic.min.css', '/css/kweditor.css'],
+        content_css: ['/components/semantic/dist/semantic.min.css', '/css/kweditor.css'],
         inline: true,
         plugins: "tinyflow image hr table",
         skin: 'lightgray',
@@ -189,7 +289,7 @@ app.controller("EditCtrl", function ($scope, $state,
 
     self.mceOptionsTitle = {
         inline: false,
-        content_css: ['/components/semantic-ui/dist/semantic.min.css', '/css/kweditor.css'],
+        content_css: ['/components/semantic/dist/semantic.min.css', '/css/kweditor.css'],
         inline: true,
         plugins: "tinyflow image hr table",
         skin: 'lightgray',

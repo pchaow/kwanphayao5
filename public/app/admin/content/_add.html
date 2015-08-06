@@ -65,12 +65,25 @@
                 </div>
             </div>
 
+            <div class="ui list">
+                <div class="item" ng-repeat="r in self.content.bibliographies">
+
+                    <i ng-click="self.removeRef(r)" class="delete red icon" style="cursor:pointer"></i>
+
+                    <div class="content">
+                        <div class="header">{{r.call_code}}</div>
+                        <div class="description" ng-bind-html="self.getShortTextRef(r)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
             <button type="submit" class="ui primary submit button">Save</button>
             <button type="button" ui-sref="home" class="ui submit button">Cancel</button>
 
         </div>
     </div>
-
 
 
 </form>

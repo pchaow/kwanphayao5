@@ -14,43 +14,66 @@
         <div class="column" style="padding-left: 0px;">
 
             <h1 class="editor" ng-model="self.content.title" ui-tinymce="self.mceOptionsTitle"
-                 style="border: 1px solid lightgrey;">
+                style="border: 1px solid lightgrey;">
             </h1>
 
             <div class="editor" ng-model="self.content.content" ui-tinymce="self.mceOptions"
                  style="border: 1px solid lightgrey;min-height: 400px;">
             </div>
 
-        </div>
-    </div>
-    </div>
+            <div class="field">
+                <label>Category</label>
 
-    <div class="field">
-        <label>Category</label>
-
-        <div class="ui floating dropdown upward labeled icon button">
-            <i class="world icon"></i>
-            <span ng-if="!self.content.category" class="text">Select Category</span>
+                <div class="ui floating dropdown upward labeled icon button">
+                    <i class="world icon"></i>
+                    <span ng-if="!self.content.category" class="text">Select Category</span>
             <span ng-if="self.content.category" class="text">
                 <span ng-if="self.content.category.parent">{{self.content.category.parent.name}} - </span>
                 {{self.content.category.name}}
             </span>
 
 
-            <div class="menu">
-                <div class="item" ng-repeat-start="category in self.categories"
-                     ng-click="self.content.category = category">
-                    {{category.name}}
+                    <div class="menu">
+                        <div class="item" ng-repeat-start="category in self.categories"
+                             ng-click="self.content.category = category">
+                            {{category.name}}
+                        </div>
+                        <div class="item" style="text-indent: 2em;" ng-repeat="subcat in category.children"
+                             ng-click="self.content.category = subcat">
+                            {{category.name}}-{{subcat.name}}
+                        </div>
+                        <div ng-repeat-end=""></div>
+                    </div>
                 </div>
-                <div class="item" style="text-indent: 2em;" ng-repeat="subcat in category.children"
-                     ng-click="self.content.category = subcat">
-                    {{category.name}}-{{subcat.name}}
-                </div>
-                <div ng-repeat-end=""></div>
             </div>
+
+            <div class="field">
+                <label>เอกสารอ้างอิง</label>
+
+                <div id="ref_dropdown" class="ui fluid search selection dropdown">
+                    <span class="text">เลือกเอกสารอ้างอิง</span>
+                    <i class="dropdown icon"></i>
+
+                    <div class="menu">
+                    </div>
+                </div>
+            </div>
+
+            <div class="ui list">
+                <div class="item" ng-repeat="r in self.content.bibliographies">
+
+                    <i ng-click="self.removeRef(r)" class="delete red icon" style="cursor:pointer"></i>
+
+                    <div class="content">
+                        <div class="header">{{r.call_code}}</div>
+                        <div class="description" ng-bind-html="self.getShortTextRef(r)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="ui primary submit button">Save</button>
+            <button type="button" ui-sref="home" class="ui submit button">Cancel</button>
         </div>
     </div>
-
-    <button type="submit" class="ui primary submit button">Save</button>
-    <button type="button" ui-sref="home" class="ui submit button">Cancel</button>
 </form>
