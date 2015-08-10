@@ -1,0 +1,19 @@
+
+@font-face {
+    font-family: KunlasatriBold;
+    src: url(../fonts/KunlasatriBold.woff);
+}
+
+.kunla-font {
+    font-family: KunlasatriBold !important;
+}
+
+.kunla-font.small {
+    font-family: KunlasatriBold !important;
+    font-size:medium;
+    padding: 0px !important;
+}
+
+.column.nopadding {
+    padding: 0px !important;
+}
