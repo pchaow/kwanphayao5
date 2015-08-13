@@ -9,7 +9,9 @@
 
 use App\Models\Category;
 use App\Models\Content;
-
+use Illuminate\Support\Facades\Config;
+use Ramsey\Uuid\Uuid;
+use \Request;
 class ContentService extends BaseService
 {
 
@@ -83,6 +85,29 @@ class ContentService extends BaseService
             $content->category()->dissociate();
             $content->category()->associate($category)->save();
         }
+        return $content;
+    }
+
+    public function saveCover($id,  $input)
+    {
+        /* @var Content $content */
+        $content = Content::find($id);
+        $uuid = Uuid::uuid4();
+        $storage_path = "app/content/$id/cover/";
+        $destination_path = storage_path($storage_path);
+        $input->file('file')->move($destination_path, $uuid);
+
+        $logo_url = "/img/content/$id/cover/$uuid";
+        $content->cover_url = $logo_url;
+        $content->save();
+        return $content;
+    }
+
+    public function removeCover($id){
+        /* @var Content $content */
+        $content = Content::find($id);
+        $content->cover_url = null;
+        $content->save();
         return $content;
     }
 

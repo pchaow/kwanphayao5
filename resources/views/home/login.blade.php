@@ -11,7 +11,7 @@
                 </div>
             </div>
 @endif
-            <div class="ui top attached green inverted segment">
+            <div class="ui top attached segment" style="background-color:#009695; color:white;" >
                 <h4>เข้าใช้งานระบบ / Sign in</h4>
             </div>
             <div class="ui attached segment">
@@ -40,7 +40,7 @@
                                 <button type="submit" class="fluid ui primary button">User Login</button>
                             </div>
                             <div class="column">
-                                <a href="#" class="fluid ui positive button">Register</a>
+                                <a href="/register" class="fluid ui positive button">Register</a>
                             </div>
 
                         </div>

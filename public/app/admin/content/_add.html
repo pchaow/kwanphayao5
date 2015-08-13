@@ -31,6 +31,49 @@
                 เนื้อหาสารานุกรม
             </div>
 
+
+            <div class="field" flow-init flow-object="self.upload"
+                 flow-file-success="$file.msg = $message"
+                 flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]"
+                 flow-file-success="flowSuccess($file,$message)">
+
+                <label>ภาพปก</label>
+
+                <div flow-drop class="ui bordered medium" style="border: 1px dotted;">
+
+                    Drag and Drop Image to change<br/>
+
+                    <div ng-if="$flow.files.length==0 && !self.content.cover_url" class="ui bordered  small image">
+                        <img src="/images/square-image.png"/>
+                    </div>
+
+
+                    <div ng-if="$flow.files.length==0 && self.content.cover_url" class="ui bordered  small image">
+                        <img ng-src="{{self.content.cover_url}}?h=200"/>
+                    </div>
+
+                    <div ng-repeat="file in $flow.files">
+                        <div class="ui small bordered image">
+                            <a ng-if="file.isComplete()" href="#" class="ui label left corner">
+                                <i class="checkmark green icon"></i>
+                            </a>
+                            <img flow-img="file"/>
+
+                            <div class="ui bottom attached progress" ng-if="file.isUploading()">
+                                <div class="bar" data-percent="{{file.progress() * 100}}"></div>
+                            </div>
+                        </div>
+
+                        <br/>
+
+                        <button ng-if="!file.isComplete()" ng-click="$flow.removeFile(file)" type="button"
+                                class="ui default submit button">
+                            Remove
+                        </button>
+
+                    </div>
+                </div>
+
             <div class="two fields">
                 <div class="field">
                     <label>Category</label>
@@ -76,14 +119,8 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
-
-
-
-
-
 
             <button type="submit" class="ui primary submit button">Save</button>
             <button type="button" ui-sref="home" class="ui submit button">Cancel</button>
