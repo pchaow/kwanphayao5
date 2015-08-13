@@ -1,0 +1,43 @@
+
+@font-face {
+    font-family: KunlasatriBold;
+    src: url(../fonts/KunlasatriBold.woff);
+}
+
+.kunla-font {
+    font-family: KunlasatriBold !important;
+}
+
+.kunla-font.small {
+    font-family: KunlasatriBold !important;
+    font-size:medium;
+    padding: 0px !important;
+}
+
+.kunla-font-menu.larger {
+    font-family: KunlasatriBold !important;
+    font-size:larger;
+}
+
+.column.nopadding {
+    padding: 0px !important;
+}
+
+.ui.secondary.inverted.pointing.menu .active.item {
+    border-color: red;
+    border-width: 4px;
+    background: #343434;
+}
+
+.ui.secondary.inverted.pointing.menu {
+    background: #009695;
+    border-top-width : 0px;
+    border-left-width : 0px;
+    border-right-width: 0px;
+    border-bottom-width: 0px;
+    border-color: #009695;
+}
+
+.ui.secondary.inverted.menu .link.item, .ui.secondary.inverted.menu a.item  {
+    color : white !important;
+}

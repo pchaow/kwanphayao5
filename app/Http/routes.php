@@ -28,7 +28,7 @@ Route::group(["prefix" => "register"], function () {
     Route::post('account/save', 'RegisterController@doAccountRegister');
 });
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('', 'AdminController@index');
     Route::get('category', 'AdminController@getCategory');
     Route::get('bibliography', 'AdminController@getBibliography');
@@ -40,11 +40,29 @@ Route::group(['prefix' => 'admin'], function () {
 Route::group(['prefix' => '/api'], function () {
 
     Route::resource('content', "API\ContentApiController");
+    Route::resource('content.cover', "API\ContentCoverApiController");
     Route::resource('bibliography', "API\BibliographyApiController");
     Route::resource('user', "API\UserApiController");
     Route::resource('role', "API\RoleApiController");
     Route::resource('category', "API\CategoryApiController");
     Route::resource('category.sub-category', "API\SubCategoryApiController");
+
+    Route::get('/search/reference/{query?}', function ($query = "") {
+        $result = \App\Models\Bibliography::with([])->where('call_code','=~',".*$query.*")->get();
+        $results = [];
+        foreach($result as $r){
+            array_push($results,[
+                "name" => $r->call_code,
+                "value" => $r->id,
+                "object" => $r
+            ]);
+        }
+        return [
+            "query" =>$query,
+            "success" => true,
+            "results" => $results
+        ];
+    });
 
 });
 

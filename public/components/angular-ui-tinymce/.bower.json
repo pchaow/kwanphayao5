@@ -30,6 +30,5 @@
   },
   "_source": "git://github.com/angular-ui/ui-tinymce.git",
   "_target": "~0.0.9",
-  "_originalSource": "angular-ui-tinymce",
-  "_direct": true
+  "_originalSource": "angular-ui-tinymce"
 }

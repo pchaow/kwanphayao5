@@ -2,8 +2,8 @@
 <html>
 <head>
     <meta name="csrf_token" value="<?php echo csrf_token(); ?>">
-    <link rel="stylesheet" href="/components/semantic-ui/dist/semantic.min.css"/>
-    <link rel="stylesheet" href="/components/semantic-ui/dist/components/dropdown.min.css"/>
+    <link rel="stylesheet" href="/components/semantic/dist/semantic.min.css"/>
+    <link rel="stylesheet" href="/components/semantic/dist/components/dropdown.min.css"/>
 
 
     <style>

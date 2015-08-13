@@ -60,5 +60,14 @@ class User extends AbstrctIModel implements AuthenticatableContract, CanResetPas
         return $this->password;
     }
 
+    public function isAdmin(){
+        $roles = $this->roles;
+        foreach($roles as $role){
+            if($role->key == 'admin'){
+                return true;
+            }
+        }
+        return false;
+    }
 
 }

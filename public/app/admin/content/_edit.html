@@ -10,44 +10,117 @@
         </ul>
     </div>
 
-    <div class="field">
-        <label>Title</label>
-        <input ng-model="self.content.title" type="text" placeholder="Title" required="required">
-    </div>
+    <div class="ui page grid" style="padding-left: 0px;;">
+        <div class="column" style="padding-left: 0px;">
 
-    <div class="field">
-        <label>Content</label>
-        <!--textarea ng-model="self.content.content" placeholder="Content" required="required" ui-tinymce="self.mceOptions"></--textarea-->
-        <div class="editor" ng-model="self.content.content" ui-tinymce="self.mceOptions" style="border: 1px solid black;min-height: 400px;">
+            <h1 class="editor" ng-model="self.content.title" ui-tinymce="self.mceOptionsTitle"
+                style="border: 1px solid lightgrey;">
+            </h1>
 
-        </div>
-    </div>
-
-
-    <div class="field">
-        <label>Category</label>
-
-        <div class="ui floating dropdown upward labeled icon button">
-            <i class="world icon"></i>
-            <span ng-if="!self.content.category" class="text">Select Category</span>
-            <span ng-if="self.content.category" class="text">
-                <span ng-if="self.content.category.parent">{{self.content.category.parent.name}} - </span>
-                {{self.content.category.name}}
-            </span>
-
-
-            <div class="menu">
-                <div class="item" ng-repeat-start="category in self.categories" ng-click="self.content.category = category">
-                    {{category.name}}
-                </div>
-                <div class="item"  style="text-indent: 2em;" ng-repeat="subcat in category.children" ng-click="self.content.category = subcat">
-                    {{category.name}}-{{subcat.name}}
-                </div>
-                <div ng-repeat-end=""></div>
+            <div class="editor" ng-model="self.content.content" ui-tinymce="self.mceOptions"
+                 style="border: 1px solid lightgrey;min-height: 400px;">
             </div>
+
+            <div class="field" flow-init flow-object="self.upload"
+                 flow-file-success="$file.msg = $message"
+                 flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]"
+                 flow-file-success="flowSuccess($file,$message)">
+
+                <label>ภาพปก</label>
+
+                <div flow-drop class="ui bordered medium" style="border: 1px dotted;">
+
+                    Drag and Drop Image to change<br/>
+
+                    <div ng-if="$flow.files.length==0 && !self.content.cover_url" class="ui bordered  small image">
+                        <img src="/images/square-image.png"/>
+                    </div>
+
+
+                    <div ng-if="$flow.files.length==0 && self.content.cover_url" class="ui bordered  small image">
+                        <img ng-src="{{self.content.cover_url}}?h=200"/>
+                    </div>
+
+                    <div ng-repeat="file in $flow.files">
+                        <div class="ui small bordered image">
+                            <a ng-if="file.isComplete()" href="#" class="ui label left corner">
+                                <i class="checkmark green icon"></i>
+                            </a>
+                            <img flow-img="file"/>
+
+                            <div class="ui bottom attached progress" ng-if="file.isUploading()">
+                                <div class="bar" data-percent="{{file.progress() * 100}}"></div>
+                            </div>
+                        </div>
+
+                        <br/>
+
+                        <button ng-if="!file.isComplete()" ng-click="$flow.removeFile(file)" type="button"
+                                class="ui default submit button">
+                            Remove
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="two fields">
+                <div class="field">
+                    <label>Category</label>
+
+                    <div class="ui floating fluid dropdown upward labeled icon button">
+                        <i class="world icon"></i>
+                        <span ng-if="!self.content.category" class="text">Select Category</span>
+
+                    <span ng-if="self.content.category" class="text">
+                        <span ng-if="self.content.category.parent">{{self.content.category.parent.name}} - </span>
+                            {{self.content.category.name}}
+                    </span>
+
+
+                        <div class="menu">
+                            <div class="item" ng-repeat-start="category in self.categories"
+                                 ng-click="self.content.category = category">
+                                {{category.name}}
+                            </div>
+                            <div class="item" style="text-indent: 2em;" ng-repeat="subcat in category.children"
+                                 ng-click="self.content.category = subcat">
+                                {{category.name}}-{{subcat.name}}
+                            </div>
+                            <div ng-repeat-end=""></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label>เอกสารอ้างอิง</label>
+
+                    <div id="ref_dropdown" class="ui fluid search selection dropdown">
+                        <span class="text">เลือกเอกสารอ้างอิง</span>
+                        <i class="dropdown icon"></i>
+
+                        <div class="menu">
+                        </div>
+                    </div>
+
+                    <div class="ui list">
+                        <div class="item" ng-repeat="r in self.content.bibliographies">
+
+                            <i ng-click="self.removeRef(r)" class="delete red icon" style="cursor:pointer"></i>
+
+                            <div class="content">
+                                <div class="header">{{r.call_code}}</div>
+                                <div class="description" ng-bind-html="self.getShortTextRef(r)">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <button type="submit" class="ui primary submit button">Save</button>
+            <button type="button" ui-sref="home" class="ui submit button">Cancel</button>
         </div>
     </div>
-
-    <button type="submit" class="ui primary submit button">Save</button>
-    <button type="button" ui-sref="home" class="ui submit button">Cancel</button>
 </form>
