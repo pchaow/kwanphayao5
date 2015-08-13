@@ -20,17 +20,18 @@
             <div class="editor" ng-model="self.content.content" ui-tinymce="self.mceOptions"
                  style="border: 1px solid lightgrey;min-height: 400px;">
             </div>
-
+<div class="two fields">
             <div class="field">
                 <label>Category</label>
 
-                <div class="ui floating dropdown upward labeled icon button">
+                <div class="ui floating fluid dropdown upward labeled icon button">
                     <i class="world icon"></i>
                     <span ng-if="!self.content.category" class="text">Select Category</span>
-            <span ng-if="self.content.category" class="text">
-                <span ng-if="self.content.category.parent">{{self.content.category.parent.name}} - </span>
-                {{self.content.category.name}}
-            </span>
+
+                    <span ng-if="self.content.category" class="text">
+                        <span ng-if="self.content.category.parent">{{self.content.category.parent.name}} - </span>
+                            {{self.content.category.name}}
+                    </span>
 
 
                     <div class="menu">
@@ -57,21 +58,23 @@
                     <div class="menu">
                     </div>
                 </div>
-            </div>
 
-            <div class="ui list">
-                <div class="item" ng-repeat="r in self.content.bibliographies">
+                <div class="ui list">
+                    <div class="item" ng-repeat="r in self.content.bibliographies">
 
-                    <i ng-click="self.removeRef(r)" class="delete red icon" style="cursor:pointer"></i>
+                        <i ng-click="self.removeRef(r)" class="delete red icon" style="cursor:pointer"></i>
 
-                    <div class="content">
-                        <div class="header">{{r.call_code}}</div>
-                        <div class="description" ng-bind-html="self.getShortTextRef(r)">
+                        <div class="content">
+                            <div class="header">{{r.call_code}}</div>
+                            <div class="description" ng-bind-html="self.getShortTextRef(r)">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
+
+</div>
             <button type="submit" class="ui primary submit button">Save</button>
             <button type="button" ui-sref="home" class="ui submit button">Cancel</button>
         </div>
