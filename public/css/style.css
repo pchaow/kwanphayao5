@@ -41,3 +41,8 @@
 .ui.secondary.inverted.menu .link.item, .ui.secondary.inverted.menu a.item  {
     color : white !important;
 }
+
+.segment .content .header {
+    font-size: x-large;
+    color:red;
+}

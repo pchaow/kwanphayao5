@@ -13,19 +13,19 @@ class HomeComposer {
 
 //        if ($request->is('about')) {
         if (\Request::is('about')) {
-            $activeSection = "เกี่ยวกับสารานุกรมกว๊านพะเยา";
+            $activeSection = "๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝวกับ๏ฟฝ๏ฟฝ๏ฟฝานุก๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝาน๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ";
         } elseif (Request::path() == 'general') {
-            $activeSection = "ข้อมูลทั่วไปกว๊านพะเยา";
+            $activeSection = "๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝลท๏ฟฝ๏ฟฝ๏ฟฝไปก๏ฟฝ๏ฟฝาน๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ";
         } elseif (Request::path() == 'ecology') {
-            $activeSection = "นิเวศวิทยาและสิ่งแวดล้อม";
+            $activeSection = "๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝิท๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝวด๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ";
         } elseif (Request::path() == 'travel') {
-            $activeSection = "เศรษฐกิจและการท่องเที่ยว";
+            $activeSection = "๏ฟฝ๏ฟฝ๏ฟฝษฐ๏ฟฝิจ๏ฟฝ๏ฟฝะก๏ฟฝรท๏ฟฝอง๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ";
         } elseif (Request::path() == 'water-resources') {
-            $activeSection = "การจัดการทรัพยากรธรรมชาติ";
+            $activeSection = "๏ฟฝ๏ฟฝรจัด๏ฟฝ๏ฟฝรท๏ฟฝัพ๏ฟฝากรธ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝาต๏ฟฝ";
         } elseif (Request::path() == 'history') {
-            $activeSection = "ประวัติศาสตร์และวัฒนธรรม";
+            $activeSection = "๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝัต๏ฟฝ๏ฟฝ๏ฟฝสต๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝัฒ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ";
         } elseif (Request::path() == 'register' || Request::path() == 'register/profile' || Request::path() == 'register/account') {
-            $activeSection = "ลงทะเบียน";
+            $activeSection = "ลง๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝยน";
         }
 
         if($activeSection == '') {

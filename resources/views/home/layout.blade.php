@@ -3,8 +3,8 @@
 <head>
     <title>สารานุกรมกว๊านพะเยา</title>
 
-    <link rel="stylesheet" href="components/semantic/dist/semantic.min.css">
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="/components/semantic/dist/semantic.min.css">
+    <link rel="stylesheet" href="/css/style.css">
     <style>
         .middle-align {
             margin-top: auto !important;
@@ -19,13 +19,15 @@
 
     <div class="ui row" style="margin-top:14px; padding-bottom: 0px;">
         <div class="centered aligned two wide column">
-            <h2 class="ui icon header" style="margin:0px !important; padding-left:14px;">
-                <img class="ui image" src="/images/KwanEncyclopaedia.png">
+            <a href="/">
+                <h2 class="ui icon header" style="margin:0px !important; padding-left:14px;">
+                    <img class="ui image" src="/images/KwanEncyclopaedia.png">
 
-                <div class="content kunla-font" style="padding: 0px;">
-                    สารานุกรม<br/>กว๊านพะเยา
-                </div>
-            </h2>
+                    <div class="content kunla-font" style="padding: 0px;">
+                        สารานุกรม<br/>กว๊านพะเยา
+                    </div>
+                </h2>
+            </a>
         </div>
 
         <div class="fourteen wide column">
@@ -141,17 +143,49 @@
 
     </div>
 
-    <div class="row">
+    <div class="row" style="">
         <div class="column">
             @yield('content')
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="column">
+            <div class="ui inverted segment footer" style="border-top:4px red solid;">
+                <div class="ui container">
+                    <div class="ui horizontal list">
+                        <div class="item">
+                            <i class="mail outline icon"></i>
+
+                            <div class="content">
+                                ติดต่อสอบถาม
+                            </div>
+                        </div>
+                        <div class="item">
+                            <i class="comment outline icon"></i>
+
+                            <div class="content">
+                                ข้อเสนอแนะ
+                            </div>
+                        </div>
+                        <div class="item">
+                            <i class="edit icon"></i>
+
+                            <div class="content">
+                                แบบสอบถาม
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
 
 </div>
 
-<script src="components/jquery/dist/jquery.min.js"></script>
-<script src="components/semantic/dist/semantic.min.js"></script>
+<script src="/components/jquery/dist/jquery.min.js"></script>
+<script src="/components/semantic/dist/semantic.min.js"></script>
 
 @yield('js')
 

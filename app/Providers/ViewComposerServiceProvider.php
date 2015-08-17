@@ -16,7 +16,7 @@ class ViewComposerServiceProvider extends ServiceProvider {
 //		});
 
 //		View::composer('home.layout', 'App\Http\ViewComposers\HomeComposer@composer');
-		view()->composer('home.layout', 'App\Http\ViewComposers\HomeComposer');
+		//view()->composer('home.layout', 'App\Http\ViewComposers\HomeComposer');
 	}
 
 	/**

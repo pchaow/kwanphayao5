@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\Models\Content;
 use Illuminate\Http\Request;
 
 class HomeController extends BaseController
@@ -20,7 +21,10 @@ class HomeController extends BaseController
 
     public function index()
     {
-        return view('home.index');
+        $contents = Content::with([])->orderBy('created_at', 'desc')->take(5)->get();
+        return view('home.index', [
+            'contents' => $contents
+        ]);
     }
 
     public function login()
@@ -28,7 +32,8 @@ class HomeController extends BaseController
         return view('home.login');
     }
 
-    public function getLogout(){
+    public function getLogout()
+    {
         \Auth::logout();
         return \Redirect::to('/');
     }
@@ -46,8 +51,16 @@ class HomeController extends BaseController
         if (\Auth::attempt($credentials)) {
             return \Redirect::to("/");
         } else {
-            return view('home.login')->with('loginError','User e-mail or password is invalid');
+            return view('home.login')->with('loginError', 'User e-mail or password is invalid');
         }
     }
+
+    public function getContent($id)
+    {
+        $content = Content::find($id);
+
+        return view('home.content')->with('content',$content);
+    }
+
 
 }
