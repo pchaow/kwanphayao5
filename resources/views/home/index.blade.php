@@ -12,7 +12,7 @@
             <div class="column">
                 <div id="mainSegment" class="ui segment">
                     @if(isset($contents[$i]->cover_url))
-                        <img class="ui centered medium image" src="<% $contents[$i]->cover_url %>?w=100">
+                        <img class="ui centered image" style="margin-bottom: 7px;" src="<% $contents[$i]->cover_url %>?h=300">
                     @else
                         <img class="ui centered medium image" src="/images/square-image.png"/>
                     @endif
@@ -23,7 +23,7 @@
 
                         <div class="meta"><% $contents[$i]->updated_at->diffForHumans() %></div>
                         <div class="description">
-                            <%  str_limit(preg_replace('/(<.*?>)|(&.*?;)/', '', $contents[$i]->content),150) %>
+                            <%  str_limit(preg_replace('/(<.*?>)|(&.*?;)/', '', $contents[$i]->content),300) %>
                         </div>
                     </div>
                 </div>
@@ -37,9 +37,9 @@
                     <?php while ($i < $size) : ?>
 
                     <div class="row">
-                        <div class="column">
+                        <div class="column" style="padding-right: 0px;">
                             @if(isset($contents[$i]->cover_url))
-                                <img class="ui image" src="<% $contents[$i]->cover_url %>?w=100">
+                                <img class="ui image" src="<% $contents[$i]->cover_url %>?w=100&h=100&fit=crop">
                             @else
                                 <img class="ui image" src="/images/square-image.png"/>
                             @endif
