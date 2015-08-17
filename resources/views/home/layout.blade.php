@@ -184,8 +184,8 @@
 
 </div>
 
-<script src="components/jquery/dist/jquery.min.js"></script>
-<script src="components/semantic/dist/semantic.min.js"></script>
+<script src="/components/jquery/dist/jquery.min.js"></script>
+<script src="/components/semantic/dist/semantic.min.js"></script>
 
 @yield('js')
 

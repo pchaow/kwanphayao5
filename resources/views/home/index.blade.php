@@ -11,9 +11,16 @@
             <?php while ($i < $size) : ?>
             <div class="column">
                 <div id="mainSegment" class="ui segment">
-                    <img class="ui centered medium image" src="<% $contents[$i]->cover_url %>">
+                    @if(isset($contents[$i]->cover_url))
+                        <img class="ui centered medium image" src="<% $contents[$i]->cover_url %>?w=100">
+                    @else
+                        <img class="ui centered medium image" src="/images/square-image.png"/>
+                    @endif
+
+
                     <div class="content">
-                        <div class="header"><a href="/content/<%$contents[$i]->id%>"><% $contents[$i]->title %></a></div>
+                        <a class="header" href="/content/<%$contents[$i]->id%>"><% $contents[$i]->title %></a>
+
                         <div class="meta"><% $contents[$i]->updated_at->diffForHumans() %></div>
                         <div class="description">
                             <%  str_limit(preg_replace('/(<.*?>)|(&.*?;)/', '', $contents[$i]->content),150) %>
@@ -25,16 +32,34 @@
 
             <div class="column">
 
-                <?php while ($i < $size) : ?>
-                    <h2 class="ui header">
-                        <img class="ui image" src="<% $contents[$i]->cover_url %>">
-                        <div class="content">
-                            <% $contents[$i]->title %>
-                        </div>
-                    </h2>
+                <div class="ui six column grid">
 
-                <?php $i++; ?>
-                <?php endwhile;?>
+                    <?php while ($i < $size) : ?>
+
+                    <div class="row">
+                        <div class="column">
+                            @if(isset($contents[$i]->cover_url))
+                                <img class="ui image" src="<% $contents[$i]->cover_url %>?w=100">
+                            @else
+                                <img class="ui image" src="/images/square-image.png"/>
+                            @endif
+                        </div>
+                        <div class="thirteen wide column">
+                            <h3 style="margin-bottom: 0px;"><a href="/content/<% $contents[$i]->id %>"><% $contents[$i]->title %></a></h3>
+
+                            <div>
+                                <%  str_limit(preg_replace('/(<.*?>)|(&.*?;)/', '', $contents[$i]->content),150) %>
+                            </div>
+                        </div>
+
+                    </div>
+                        <div class="ui divider" style="margin-top:0px; margin-bottom: 0px;"></div>
+                    <?php $i++; ?>
+                    <?php endwhile;?>
+
+                </div>
+                <h5>อ่านเนื้อหาอื่นๆ</h5>
+
             </div>
             <?php endwhile; ?>
 

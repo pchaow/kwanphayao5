@@ -21,7 +21,7 @@ class HomeController extends BaseController
 
     public function index()
     {
-        $contents = Content::with([])->orderBy('updated_at', 'desc')->take(5)->get();
+        $contents = Content::with([])->orderBy('created_at', 'desc')->take(5)->get();
         return view('home.index', [
             'contents' => $contents
         ]);

@@ -7,8 +7,9 @@
         <div>
             <?php echo $content->content; ?>
         </div>
-        <div class="ui divider"></div>
+
         <div class="ui medium header">เอกสารอ้างอิง</div>
+        <div class="ui divider"></div>
         <ul>
             <?php foreach ($content->bibliographies as $b): ?>
             <li><?php echo $b->short_text; ?></li>
