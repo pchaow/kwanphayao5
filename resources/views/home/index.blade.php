@@ -62,10 +62,6 @@
 
             </div>
             <?php endwhile; ?>
-
-
         </div>
-
     </div>
-
 @endsection
