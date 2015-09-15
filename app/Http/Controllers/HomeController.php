@@ -62,5 +62,12 @@ class HomeController extends BaseController
         return view('home.content')->with('content',$content);
     }
 
+    public function getContents()
+    {
+        $contents = Content::orderBy('updated_at','desc')->paginate(15);
+
+        return view('home.contents')->with('contents',$contents);
+    }
+
 
 }

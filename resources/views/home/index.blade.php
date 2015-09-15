@@ -12,7 +12,8 @@
             <div class="column">
                 <div id="mainSegment" class="ui segment">
                     @if(isset($contents[$i]->cover_url))
-                        <img class="ui centered image" style="margin-bottom: 7px;" src="<% $contents[$i]->cover_url %>?h=300">
+                        <img class="ui centered image" style="margin-bottom: 7px;"
+                             src="<% $contents[$i]->cover_url %>?h=300">
                     @else
                         <img class="ui centered medium image" src="/images/square-image.png"/>
                     @endif
@@ -45,7 +46,8 @@
                             @endif
                         </div>
                         <div class="thirteen wide column">
-                            <h3 style="margin-bottom: 0px;"><a href="/content/<% $contents[$i]->id %>"><% $contents[$i]->title %></a></h3>
+                            <h3 style="margin-bottom: 0px;"><a
+                                        href="/content/<% $contents[$i]->id %>"><% $contents[$i]->title %></a></h3>
 
                             <div>
                                 <%  str_limit(preg_replace('/(<.*?>)|(&.*?;)/', '', $contents[$i]->content),150) %>
@@ -53,12 +55,12 @@
                         </div>
 
                     </div>
-                        <div class="ui divider" style="margin-top:0px; margin-bottom: 0px;"></div>
+                    <div class="ui divider" style="margin-top:0px; margin-bottom: 0px;"></div>
                     <?php $i++; ?>
                     <?php endwhile;?>
 
                 </div>
-                <h5>อ่านเนื้อหาอื่นๆ</h5>
+                <h5><a href="/contents">บทความเก่า</a></h5>
 
             </div>
             <?php endwhile; ?>
