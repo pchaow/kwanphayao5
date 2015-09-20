@@ -25,7 +25,8 @@ class User extends AbstrctIModel implements AuthenticatableContract, CanResetPas
      *
      * @var array
      */
-    protected $fillable = ['password', 'email', 'title', 'firstname', 'lastname', 'biography', 'organization'];
+    protected $fillable = ['password', 'email', 'title', 'firstname', 'lastname'
+        ,'sex','position','department','birthdate','graduation','job'];
 
     /**
      * The attributes should be guarded to mass-assignment used by the model.

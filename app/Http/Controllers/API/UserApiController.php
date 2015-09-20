@@ -41,6 +41,7 @@ class UserApiController extends Controller {
 	 */
 	public function store()
 	{
+//		return Input::all();
 		return $this->userService->store(Input::all());
 	}
 
