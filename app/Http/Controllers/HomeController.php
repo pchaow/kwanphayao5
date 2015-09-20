@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use App\Models\Content;
+use App\Services\ContentEvalService;
 use Illuminate\Http\Request;
 
 class HomeController extends BaseController
@@ -18,6 +19,10 @@ class HomeController extends BaseController
     |	Route::get('/', 'HomeController@showWelcome');
     |
     */
+
+    public function __construct(ContentEvalService $contentEvalService){
+        $this->contentEvalService = $contentEvalService;
+    }
 
     public function index()
     {
@@ -59,7 +64,12 @@ class HomeController extends BaseController
     {
         $content = Content::find($id);
 
-        return view('home.content')->with('content',$content);
+        $eval = $this->contentEvalService->all($id);
+
+
+
+        return view('home.content')->with('content',$content)
+            ->with('eval',$eval);
     }
 
     public function getContents()

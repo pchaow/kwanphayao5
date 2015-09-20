@@ -31,12 +31,12 @@ class ContentEval extends AbstrctIModel
 
     public function user()
     {
-        return $this->belongsTo("App\Models\User");
+        return $this->belongsTo("App\Models\User","created_eval");
     }
 
     public function content()
     {
-        return $this->hasOne("App\Models\Content");
+        return $this->hasOne("App\Models\Content","evaluated_this");
     }
 
 
