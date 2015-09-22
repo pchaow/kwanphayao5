@@ -3,8 +3,8 @@
  */
 
 
-var app = angular.module('UserAdmin', ['ui.router','ngCookies',
-    'AppConfig','angularify.semantic', 'flow', 'User','Role']);
+var app = angular.module('UserAdmin', ['ui.router', 'ngCookies',
+    'AppConfig', 'angularify.semantic', 'flow', 'User', 'Role']);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
 
@@ -27,9 +27,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             controller: "AddCtrl",
             resolve: {
                 user: function (UserService) {
-                    return {data: { roles : []}}
+                    return {data: {roles: []}}
                 },
-                roles : function(RoleService){
+                roles: function (RoleService) {
                     return RoleService.all();
                 }
             }
@@ -92,7 +92,8 @@ app.controller("AddCtrl", function ($scope, $state, user, UserService, roles) {
 
 
     $scope.save = function () {
-        UserService.store($scope.user).success(function (resposne) {
+        UserService.store($scope.user).success(function (response) {
+            //console.log(response);
             $state.go('home');
             //$state.go("edit",{id:resposne.id});
         }).error(function (response) {
@@ -102,49 +103,55 @@ app.controller("AddCtrl", function ($scope, $state, user, UserService, roles) {
 
     $('.ui.dropdown').dropdown();
 
-    $scope.addRole = function(role){
+    $scope.addRole = function (role) {
         found = false;
-        for(i=0;i<$scope.user.roles.length;i++){
-            if($scope.user.roles[i].id == role.id){
+        for (i = 0; i < $scope.user.roles.length; i++) {
+            if ($scope.user.roles[i].id == role.id) {
                 found = true;
                 break;
             }
         }
-        if (!found){
+        if (!found) {
             $scope.user.roles.push(role);
         }
     }
 
-    $scope.removeRole = function(role){
-        $scope.user.roles.splice($scope.user.roles.indexOf(role),1);
+    $scope.removeRole = function (role) {
+        $scope.user.roles.splice($scope.user.roles.indexOf(role), 1);
     }
+
+    $('.ui.radio.checkbox')
+        .checkbox()
+    ;
+
 
 });
 
-app.controller("EditCtrl", function ($scope, $state, user, UserService,roles,$cookieStore,$cookies) {
+app.controller("EditCtrl", function ($scope, $state, user, UserService, roles, $cookieStore, $cookies) {
     console.log("EditCtrl Start...");
 
     var cookies = $cookies['XSRF-TOKEN'];
 
 
     $scope.user = user.data;
+    $scope.user.birthdate = new Date($scope.user.birthdate);
     $scope.roles = roles.data;
 
-    $scope.addRole = function(role){
+    $scope.addRole = function (role) {
         found = false;
-        for(i=0;i<$scope.user.roles.length;i++){
-            if($scope.user.roles[i].id == role.id){
+        for (i = 0; i < $scope.user.roles.length; i++) {
+            if ($scope.user.roles[i].id == role.id) {
                 found = true;
                 break;
             }
         }
-        if (!found){
+        if (!found) {
             $scope.user.roles.push(role);
         }
     }
 
-    $scope.removeRole = function(role){
-        $scope.user.roles.splice($scope.user.roles.indexOf(role),1);
+    $scope.removeRole = function (role) {
+        $scope.user.roles.splice($scope.user.roles.indexOf(role), 1);
     }
 
     $('.ui.dropdown').dropdown();
@@ -181,4 +188,9 @@ app.controller("EditCtrl", function ($scope, $state, user, UserService,roles,$co
             $scope.message = response;
         });
     }
+
+    $('.ui.radio.checkbox')
+        .checkbox()
+    ;
+
 });

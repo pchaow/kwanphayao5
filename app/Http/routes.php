@@ -16,6 +16,7 @@
 Route::get('/', 'HomeController@index');
 
 Route::get('/content/{id}','HomeController@getContent');
+Route::get('/contents','HomeController@getContents');
 
 Route::get('/login', 'HomeController@login');
 Route::post('/login', 'HomeController@postLogin');
@@ -44,6 +45,7 @@ Route::group(['prefix' => '/api'], function () {
 
     Route::resource('content', "API\ContentApiController");
     Route::resource('content.cover', "API\ContentCoverApiController");
+    Route::resource('content.eval',"API\ContentEvalApiController");
     Route::resource('bibliography', "API\BibliographyApiController");
     Route::resource('user', "API\UserApiController");
     Route::resource('role', "API\RoleApiController");

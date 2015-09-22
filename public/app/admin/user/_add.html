@@ -1,6 +1,6 @@
 <h2>Add User</h2>
 
-<form class="ui form" ng-submit="save()">
+<form class="ui fluid form" ng-submit="save()">
 
     <div ng-if="message" class="ui negative message">
         <div class="header">We had some issues</div>
@@ -12,20 +12,82 @@
 
     <h4 class="ui dividing header">User Information</h4>
 
-    <div class="field">
-        <label>Title</label>
-        <input ng-model="user.title" type="text" name="title" placeholder="User Title" required="required">
+    <div class="three fields">
+        <div class="field">
+            <label>Title</label>
+            <input ng-model="user.title" type="text" name="title" placeholder="User Title" required="required">
+        </div>
+
+        <div class="field">
+            <label>First Name</label>
+            <input ng-model="user.firstname" type="text" name="firstname" placeholder="User First Name"
+                   required="required">
+        </div>
+
+        <div class="field">
+            <label>Last Name</label>
+            <input ng-model="user.lastname" type="text" name="lastname" placeholder="User Last Name"
+                   required="required">
+        </div>
+    </div>
+    <div class="two fields">
+        <div class="field">
+            <label>วันเกิด</label>
+            <input ng-model="user.birthdate" type="date" name="birthdate" placeholder="birthdate">
+        </div>
+        <div class="field">
+            <label>เพศ</label>
+
+            <div class="sex ui radio checkbox">
+                <input type="radio" ng-click="user.sex = 'ชาย'" name="sex" value="ชาย" tabindex="0" class="hidden">
+                <label ng-click="user.sex = 'ชาย'">ชาย</label>
+            </div>
+            <div class="sex ui radio checkbox">
+                <input type="radio" ng-click="user.sex = 'หญิง'" name="sex" value="หญิง" tabindex="0" class="hidden">
+                <label ng-click="user.sex = 'หญิง'">หญิง</label>
+            </div>
+        </div>
+    </div>
+    <div class="two fields">
+
+        <div class="field">
+            <label>การศึกษา</label>
+
+            <div class="ui floating fluid dropdown upward labeled button">
+                <span class="text">การศึกษา</span>
+
+                <div class="menu">
+                    <div class="item" ng-click="user.graduation = 'ประถมศึกษา'">ประถมศึกษา</div>
+                    <div class="item" ng-click="user.graduation = 'มัธยมศึกษาตอนต้น'">มัธยมศึกษาตอนต้น</div>
+                    <div class="item" ng-click="user.graduation = 'มัธยมปลายตอนปลาย'">มัธยมปลายตอนปลาย</div>
+                    <div class="item" ng-click="user.graduation = 'ปวช'">ปวช</div>
+                    <div class="item" ng-click="user.graduation = 'ปวส'">ปวส</div>
+                    <div class="item" ng-click="user.graduation = 'อนุปริญญา'">อนุปริญญา</div>
+                    <div class="item" ng-click="user.graduation = 'ปริญญาตรี'">ปริญญาตรี</div>
+                    <div class="item" ng-click="user.graduation = 'ปริญญาโท'">ปริญญาโท</div>
+                    <div class="item" ng-click="user.graduation = 'ปริญญาเอก'">ปริญญาเอก</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="field">
+            <label>อาชีพ</label>
+            <input ng-model="user.job" type="text" name="job" placeholder="">
+        </div>
     </div>
 
-    <div class="field">
-        <label>First Name</label>
-        <input ng-model="user.firstname" type="text" name="firstname" placeholder="User First Name" required="required">
+    <div class="two fields">
+
+        <div class="field">
+            <label>ตำแหน่ง</label>
+            <input ng-model="user.position" type="text" name="position">
+        </div>
+        <div class="field">
+            <label>หน่วยงาน</label>
+            <input ng-model="user.department" type="text" name="department">
+        </div>
     </div>
 
-    <div class="field">
-        <label>Last Name</label>
-        <input ng-model="user.lastname" type="text" name="lastname" placeholder="User Last Name" required="required">
-    </div>
 
     <div class="field">
         <label>E-mail</label>
