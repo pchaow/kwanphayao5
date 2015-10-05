@@ -64,12 +64,7 @@ class HomeController extends BaseController
     {
         $content = Content::find($id);
 
-        $eval = $this->contentEvalService->all($id);
-
-
-
-        return view('home.content')->with('content',$content)
-            ->with('eval',$eval);
+        return view('home.content')->with('content',$content);
     }
 
     public function getContents()
