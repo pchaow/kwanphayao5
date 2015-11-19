@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use App\Models\Content;
+use App\Models\Page;
 use App\Services\ContentEvalService;
 use Illuminate\Http\Request;
 
@@ -94,6 +95,13 @@ class HomeController extends BaseController
         return view('home.contents')
             ->with('contents',$contents)
             ->with('category_name',$name);
+    }
+
+    public function getStaticPage($title){
+
+        $content = Page::where('title','=',$title)->first();
+
+        return view('home.staticpage')->with('content',$content);
     }
 
 

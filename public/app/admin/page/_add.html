@@ -1,0 +1,41 @@
+<h2>Add Page</h2>
+
+<form class="ui form" ng-submit="save()">
+
+    <div ng-if="message" class="ui negative message">
+        <div class="header">We had some issues</div>
+        <ul class="list">
+            <li ng-repeat="m in message" ng-bind="m"></li>
+
+        </ul>
+    </div>
+
+
+    <div class="ui page grid" style="padding-left: 0px;;">
+
+        <div class="column" style="padding-left: 0px;">
+
+            <h4 class="ui dividing header">Page Information</h4>
+
+
+            <div class="column" style="padding-left: 0px;">
+                <h1 class="editor" ng-model="self.page.title" ui-tinymce="self.mceOptionsTitle"
+                    style="border: 1px solid lightgrey;">
+                    หัวเรื่อง
+                </h1>
+            </div>
+
+
+            <div class="editor" ng-model="self.page.page" ui-tinymce="self.mceOptions"
+                 style="border: 1px solid lightgrey;min-height: 400px;">
+                เนื้อหา
+            </div>
+
+            <button type="submit" class="ui primary submit button">Save</button>
+            <button type="button" ui-sref="home" class="ui submit button">Cancel</button>
+
+        </div>
+    </div>
+
+
+</form>

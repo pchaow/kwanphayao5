@@ -25,6 +25,10 @@
         <div class="header item">
             Contents
         </div>
+        <a class=" <% Request::is('admin/page') ? 'active' : '' %> item" href="/admin/page">
+            <i class="write icon"></i>
+            Page
+        </a>
         <a class=" <% Request::is('admin/content') ? 'active' : '' %> item" href="/admin/content">
             <i class="book icon"></i>
             Content
