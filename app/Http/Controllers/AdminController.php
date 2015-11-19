@@ -46,4 +46,8 @@ class AdminController extends BaseController {
 		return View::make('admins.bibliography');
 	}
 
+	public function getPage(){
+		return View::make('admins.page');
+	}
+
 }

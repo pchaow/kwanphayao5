@@ -14,7 +14,7 @@
 */
 
 Route::get('/', 'HomeController@index');
-
+Route::get('/page/{title}','HomeController@getStaticPage');
 Route::get('/content/{id}','HomeController@getContent');
 Route::get('/contents','HomeController@getContents');
 Route::get('/category/{name}','HomeController@getCategory');
@@ -39,21 +39,26 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('category', 'AdminController@getCategory');
     Route::get('bibliography', 'AdminController@getBibliography');
     Route::get('content', 'AdminController@getContent');
+    Route::get('page', 'AdminController@getPage');
     Route::get('user', 'AdminController@getUser');
     Route::get('role', 'AdminController@getRole');
 });
 
 Route::group(['prefix' => '/api'], function () {
 
-    Route::delete('content/{id}/cover',"API\ContentCoverApiController@destroy");
-    Route::resource('content', "API\ContentApiController");
-    Route::resource('content.cover', "API\ContentCoverApiController");
-    Route::resource('content.eval',"API\ContentEvalApiController");
-    Route::resource('bibliography', "API\BibliographyApiController");
-    Route::resource('user', "API\UserApiController");
-    Route::resource('role', "API\RoleApiController");
-    Route::resource('category', "API\CategoryApiController");
-    Route::resource('category.sub-category', "API\SubCategoryApiController");
+    Route::delete('content/{id}/cover',"API\\ContentCoverApiController@destroy");
+    Route::resource('content', "API\\ContentApiController");
+    Route::resource('content.cover', "API\\ContentCoverApiController");
+    Route::resource('content.eval',"API\\ContentEvalApiController");
+
+    Route::resource('bibliography', "API\\BibliographyApiController");
+
+    Route::resource('page', "API\\PageApiController");
+
+    Route::resource('user', "API\\UserApiController");
+    Route::resource('role', "API\\RoleApiController");
+    Route::resource('category', "API\\CategoryApiController");
+    Route::resource('category.sub-category', "API\\SubCategoryApiController");
 
     Route::get('/search/reference/{query?}', function ($query = "") {
         $result = \App\Models\Bibliography::with([])->where('call_code','=~',".*$query.*")->get();
