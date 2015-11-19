@@ -30,6 +30,13 @@ angular.module('Content',[])
                     method : 'put',
                     data : content
                 })
+            },
+            removeCover : function(content){
+                console.log(content);
+                return $http({
+                    url : '/api/content/' + content.id + "/cover",
+                    method : 'delete',
+                })
             }
         }
     })

@@ -248,6 +248,13 @@ app.controller("EditCtrl", function ($scope, $state, $timeout, $sce,$cookies,
         }
     });
 
+    self.removeCover = function(){
+
+        ContentService.removeCover(self.content).success(function(response){
+          self.content = response;
+        })
+    }
+
     self.upload.on('complete', function () {
         $state.go('home');
     })

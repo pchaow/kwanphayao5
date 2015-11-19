@@ -47,7 +47,7 @@ class ContentCoverApiController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		return $this->service->removeCover();
+		return $this->service->removeCover($id);
 	}
 
 }
