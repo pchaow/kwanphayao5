@@ -74,5 +74,16 @@ class HomeController extends BaseController
         return view('home.contents')->with('contents',$contents);
     }
 
+    public function getSearch(){
+
+        $keyword = \Input::get('keyword');
+
+        $contents = Content::where('title','=~',".*$keyword.*")->orWhere('content','=~',".*$keyword.*")->orderBy('updated_at','desc')->paginate(15);
+        $contents->appends(['keyword'=>$keyword]);
+        return view('home.contents')
+            ->with('contents',$contents)
+            ->with('keyword',$keyword);
+    }
+
 
 }

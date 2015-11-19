@@ -13,3 +13,4 @@ Procfile
 .cfignore
 manifest.yml
 favicon.ico
+/conf
