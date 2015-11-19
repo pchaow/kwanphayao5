@@ -29,6 +29,12 @@ class PageService extends BaseService
         return $page;
     }
 
+    public function getById($id)
+    {
+        $content = Page::find($id);
+        return $content;
+    }
+
     public function save($id, array $input)
     {
         /* @var Page $page */

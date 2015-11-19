@@ -147,96 +147,17 @@ app.controller("AddCtrl", function ($scope, $state, $timeout, $sce, $cookies,
 
 app.controller("EditCtrl", function ($scope, $state, $timeout, $sce,$cookies,
                                      PageService,
-                                     page, categories) {
+                                     page) {
     console.log("EditCtrl Start...");
     var cookies = $cookies['XSRF-TOKEN'];
     var self = this;
+
     self.page = page.data;
-    self.categories = categories.data;
 
-    self.upload = new Flow({
-        //target: '/api/page/' + self.page.id + '/cover',
-        singleFile: true,
-        method: 'post',
-        testChunks: false,
-        headers: function (file, chunk, isTest) {
-            return {
-                'X-XSRF-TOKEN': cookies// call func for getting a cookie
-            }
-        }
-    });
-
-    self.removeCover = function(){
-
-        PageService.removeCover(self.page).success(function(response){
-          self.page = response;
-        })
-    }
-
-    self.upload.on('complete', function () {
-        $state.go('home');
-    })
-
-    self.getShortTextRef = function (reference) {
-        return $sce.trustAsHtml(reference.short_text);
-    }
-
-    $timeout(function () {
-        $('.ui.dropdown').dropdown();
-        $('#ref_dropdown')
-            .dropdown({
-                apiSettings: {
-                    url: '/api/search/reference/{query}',
-                    onResponse: function (response) {
-                        self.ref_dropdown_response = response;
-                    }
-                },
-                onChange: function (value, text, $choice) {
-                    var results = self.ref_dropdown_response.results;
-                    if (!self.page.bibliographies) {
-                        self.page.bibliographies = [];
-                    }
-                    for (i = 0; i < results.length; i++) {
-                        if (value == results[i].object.id) {
-                            var hasref = false;
-                            for (j = 0; j < self.page.bibliographies.length; j++) {
-                                if (value == self.page.bibliographies[j].id) {
-                                    hasref = true;
-                                }
-                            }
-                            if (!hasref) {
-                                var obj = results[i].object;
-                                self.addReference(obj);
-
-                            }
-
-                        }
-                    }
-                    console.log(self.page.bibliographies);
-                    self.page.i = 0;
-                }
-            })
-        ;
-    }, 100);
-
-    self.removeRef = function (reference) {
-        for (i = 0; i < self.page.bibliographies.length; i++) {
-            if (reference.id == self.page.bibliographies[i].id) {
-                self.page.bibliographies.splice(i, 1);
-            }
-        }
-    }
-
-    self.addReference = function (ref) {
-        //ref.short_text = $sce.trustAsHtml(ref.short_text);
-        self.page.bibliographies.push(ref);
-        $scope.$apply();
-    };
 
     $scope.save = function () {
         PageService.save(self.page).success(function (response) {
-            self.upload.opts.target = '/api/page/' + response.id + '/cover';
-            self.upload.upload();
+            $state.go('home');
         }).error(function (response) {
             $scope.message = response;
         });
