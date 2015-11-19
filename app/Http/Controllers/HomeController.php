@@ -85,5 +85,16 @@ class HomeController extends BaseController
             ->with('keyword',$keyword);
     }
 
+    public function getCategory($name){
+
+        $contents = Content::whereHas('category',function($q) use ($name) {
+            $q->where('name','=',$name);
+        })
+            ->orderBy('updated_at','desc')->paginate(15);
+        return view('home.contents')
+            ->with('contents',$contents)
+            ->with('category_name',$name);
+    }
+
 
 }
