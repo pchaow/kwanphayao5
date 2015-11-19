@@ -32,8 +32,8 @@
         </div>
         <div class="ui divider" style="margin-top:0px; margin-bottom: 0px;"></div>
         <?php $i++; ?>
-        <?php endwhile;?>
-        <div class="two column row">
+        <?php endwhile; ?>
+            <div class="two column row">
             <div class="column">
                 <?php if($contents->currentPage() != 1): ?>
                 <a href="<?php echo $contents->previousPageUrl() ?>" class="ui labeled icon button">
@@ -43,7 +43,7 @@
                 <?php endif;?>
             </div>
             <div class="right aligned column">
-                <?php if(!$contents->lastPage()): ?>
+                <?php if($contents->currentPage() != $contents->lastPage()): ?>
                 <a href="<?php echo $contents->nextPageUrl() ?>" class="ui right labeled icon button">
                     <i class="right arrow icon"></i>
                     Next
