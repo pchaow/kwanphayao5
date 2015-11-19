@@ -39,6 +39,7 @@
 
                     <div ng-if="$flow.files.length==0 && self.content.cover_url" class="ui bordered  small image">
                         <img ng-src="{{self.content.cover_url}}?h=200"/>
+                        <button type="button" ng-click="self.removeCover()">Clear Cover</button>
                     </div>
 
                     <div ng-repeat="file in $flow.files">

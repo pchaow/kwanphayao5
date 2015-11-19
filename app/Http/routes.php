@@ -44,6 +44,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
 
 Route::group(['prefix' => '/api'], function () {
 
+    Route::delete('content/{id}/cover',"API\ContentCoverApiController@destroy");
     Route::resource('content', "API\ContentApiController");
     Route::resource('content.cover', "API\ContentCoverApiController");
     Route::resource('content.eval',"API\ContentEvalApiController");
