@@ -34,10 +34,12 @@
             <div class="ui grid">
                 <div class="ui sixteen columns row" style="padding-bottom: 0px;">
                     <div class="center aligned twelve wide column">
-                        <div class="ui icon fluid input">
-                            <input type="text" placeholder="Search...">
-                            <i class="circular search link icon"></i>
-                        </div>
+                        <form class="ui form" method="get" action="/search">
+                            <div class="ui fluid icon input">
+                                <input type="text" name="keyword" placeholder="ค้นหา">
+                                <i class="search icon"></i>
+                            </div>
+                        </form>
                     </div>
                     <div class="right aligned four wide column">
                         @if(Auth::user())

@@ -17,6 +17,7 @@ Route::get('/', 'HomeController@index');
 
 Route::get('/content/{id}','HomeController@getContent');
 Route::get('/contents','HomeController@getContents');
+Route::get('/search','HomeController@getSearch');
 
 Route::get('/login', 'HomeController@login');
 Route::post('/login', 'HomeController@postLogin');
