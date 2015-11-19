@@ -61,8 +61,8 @@
                                         เลือกสิทธิ์การใช้งาน
                                     </div>
                                     @foreach( Auth::user()->roles as $role)
-                                        <a class=" <% Request::is("$role->key/*") ? 'active' : '' %> item"
-                                           href="/<%$role->key%>">
+                                        <a class=" <% Request::is(" $role->key/*") ? 'active' : '' %> item"
+                                            href="/<%$role->key%>">
                                             <% $role->name %>
                                         </a>
                                     @endforeach
@@ -81,49 +81,61 @@
                 </div>
                 <div class="ui five columns row" style="padding-top: 7px;">
                     <div class="column nopadding" style="padding-left: 14px !important;">
-                        <h2 class="ui icon header">
-                            <img class="ui image" src="/images/general_over.svg">
+                        <a href="/category/ข้อมูลทั่วไป">
+                            <h2 class="ui icon header">
 
-                            <div class="content small kunla-font">
-                                ข้อมูลทั่วไปกว๊านพะเยา
-                            </div>
-                        </h2>
+                                <img class="ui image" src="/images/general_over.svg">
+
+                                <div class="content small kunla-font">
+                                    ข้อมูลทั่วไปกว๊านพะเยา
+                                </div>
+
+                            </h2>
+                        </a>
                     </div>
                     <div class="column nopadding">
-                        <h2 class="ui icon header">
-                            <img class="ui image" src="/images/ecology_over.svg">
+                        <a href="/category/นิเวศวิทยาและสิ่งแวดล้อม">
+                            <h2 class="ui icon header">
+                                <img class="ui image" src="/images/ecology_over.svg">
 
-                            <div class="content small kunla-font">
-                                นิเวศวิทยาและสิ่งแวดล้อม
-                            </div>
-                        </h2>
+                                <div class="content small kunla-font">
+                                    นิเวศวิทยาและสิ่งแวดล้อม
+                                </div>
+                            </h2>
+                        </a>
                     </div>
                     <div class="column nopadding">
-                        <h2 class="ui icon header">
-                            <img class="ui image" src="/images/travel_over.svg">
+                        <a href="/category/เศรษฐกิจและการท่องเที่ยว">
+                            <h2 class="ui icon header">
+                                <img class="ui image" src="/images/travel_over.svg">
 
-                            <div class="content small kunla-font">
-                                เศรษฐกิจและการท่องเที่ยว
-                            </div>
-                        </h2>
+                                <div class="content small kunla-font">
+                                    เศรษฐกิจและการท่องเที่ยว
+                                </div>
+                            </h2>
+                        </a>
                     </div>
                     <div class="column nopadding">
-                        <h2 class="ui icon header">
-                            <img class="ui image" src="/images/water%20resources_over.svg">
+                        <a href="/category/การจัดการทรัพยากรธรรมชาติ">
+                            <h2 class="ui icon header">
+                                <img class="ui image" src="/images/water%20resources_over.svg">
 
-                            <div class="content small kunla-font">
-                                การจัดการทรัพยากรธรรมชาติ
-                            </div>
-                        </h2>
+                                <div class="content small kunla-font">
+                                    การจัดการทรัพยากรธรรมชาติ
+                                </div>
+                            </h2>
+                        </a>
                     </div>
                     <div class="column nopadding">
-                        <h2 class="ui icon header">
-                            <img class="ui image" src="/images/history_over.svg">
+                        <a href="/category/ประวัติศาสตร์และวัฒนธรรม">
+                            <h2 class="ui icon header">
+                                <img class="ui image" src="/images/history_over.svg">
 
-                            <div class="content small kunla-font">
-                                ประวัติศาสตร์และวัฒนธรรม
-                            </div>
-                        </h2>
+                                <div class="content small kunla-font">
+                                    ประวัติศาสตร์และวัฒนธรรม
+                                </div>
+                            </h2>
+                        </a>
                     </div>
                 </div>
 
