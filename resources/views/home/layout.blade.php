@@ -83,9 +83,11 @@
                     <div class="column nopadding" style="padding-left: 14px !important;">
                         <a href="/category/ข้อมูลทั่วไป">
                             <h2 class="ui icon header">
-
+                                <?php if (Request::is('category/ข้อมูลทั่วไป')) : ?>
                                 <img class="ui image" src="/images/general_over.svg">
-
+                                <?php else : ?>
+                                <img class="ui image" src="/images/general_up.svg">
+                                <?php endif?>
                                 <div class="content small kunla-font">
                                     ข้อมูลทั่วไปกว๊านพะเยา
                                 </div>
@@ -96,7 +98,12 @@
                     <div class="column nopadding">
                         <a href="/category/นิเวศวิทยาและสิ่งแวดล้อม">
                             <h2 class="ui icon header">
+                                <?php if (Request::is('category/นิเวศวิทยาและสิ่งแวดล้อม')) : ?>
                                 <img class="ui image" src="/images/ecology_over.svg">
+                                <?php else : ?>
+                                <img class="ui image" src="/images/ecology_up.svg">
+                                <?php endif?>
+
 
                                 <div class="content small kunla-font">
                                     นิเวศวิทยาและสิ่งแวดล้อม
@@ -107,7 +114,11 @@
                     <div class="column nopadding">
                         <a href="/category/เศรษฐกิจและการท่องเที่ยว">
                             <h2 class="ui icon header">
-                                <img class="ui image" src="/images/travel_over.svg">
+                                <?php if (Request::is('category/เศรษฐกิจและการท่องเที่ยว')) : ?>
+                                    <img class="ui image" src="/images/travel_over.svg">
+                                <?php else : ?>
+                                    <img class="ui image" src="/images/travel_up.svg">
+                                <?php endif?>
 
                                 <div class="content small kunla-font">
                                     เศรษฐกิจและการท่องเที่ยว
@@ -118,7 +129,11 @@
                     <div class="column nopadding">
                         <a href="/category/การจัดการทรัพยากรธรรมชาติ">
                             <h2 class="ui icon header">
-                                <img class="ui image" src="/images/water%20resources_over.svg">
+                                <?php if (Request::is('category/การจัดการทรัพยากรธรรมชาติ')) : ?>
+                                    <img class="ui image" src="/images/water%20resources_over.svg">
+                                <?php else : ?>
+                                    <img class="ui image" src="/images/water%20resources_up.svg">
+                                <?php endif?>
 
                                 <div class="content small kunla-font">
                                     การจัดการทรัพยากรธรรมชาติ
@@ -129,7 +144,11 @@
                     <div class="column nopadding">
                         <a href="/category/ประวัติศาสตร์และวัฒนธรรม">
                             <h2 class="ui icon header">
-                                <img class="ui image" src="/images/history_over.svg">
+                                <?php if (Request::is('category/ประวัติศาสตร์และวัฒนธรรม')) : ?>
+                                    <img class="ui image" src="/images/history_over.svg">
+                                <?php else : ?>
+                                    <img class="ui image" src="/images/history_up.svg">
+                                <?php endif?>
 
                                 <div class="content small kunla-font">
                                     ประวัติศาสตร์และวัฒนธรรม
@@ -138,20 +157,16 @@
                         </a>
                     </div>
                 </div>
-
-
             </div>
-
         </div>
-
-
     </div>
 
     <div class="row" style="padding-top: 0px;">
         <div class="column">
             <div class="ui center inverted aligned secondary pointing  menu">
-                <a href="/" class="active item kunla-font-menu larger">หน้าแรก</a>
-                <a href="/page/เกี่ยวกับสารานุกรมกว๊านพะเยา" class="item kunla-font-menu larger">เกี่ยวกับสารานุกรมกว๊านพะเยา</a>
+                <a href="/" class="<% Request::is('/') ? 'active' : '' %> item kunla-font-menu larger">หน้าแรก</a>
+                <a href="/page/เกี่ยวกับสารานุกรมกว๊านพะเยา"
+                   class="<% Request::is('page/เกี่ยวกับสารานุกรมกว๊านพะเยา') ? 'active' : '' %>  item kunla-font-menu larger">เกี่ยวกับสารานุกรมกว๊านพะเยา</a>
             </div>
         </div>
 
