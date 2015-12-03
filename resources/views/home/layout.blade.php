@@ -138,20 +138,15 @@
                         </a>
                     </div>
                 </div>
-
-
             </div>
-
         </div>
-
-
     </div>
 
     <div class="row" style="padding-top: 0px;">
         <div class="column">
             <div class="ui center inverted aligned secondary pointing  menu">
-                <a href="/" class="active item kunla-font-menu larger">หน้าแรก</a>
-                <a href="/page/เกี่ยวกับสารานุกรมกว๊านพะเยา" class="item kunla-font-menu larger">เกี่ยวกับสารานุกรมกว๊านพะเยา</a>
+                <a href="/" class="<% Request::is('/') ? 'active' : '' %> item kunla-font-menu larger">หน้าแรก</a>
+                <a href="/page/เกี่ยวกับสารานุกรมกว๊านพะเยา" class="<% Request::is('page/เกี่ยวกับสารานุกรมกว๊านพะเยา') ? 'active' : '' %>  item kunla-font-menu larger">เกี่ยวกับสารานุกรมกว๊านพะเยา</a>
             </div>
         </div>
 

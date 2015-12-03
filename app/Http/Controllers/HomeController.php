@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Content;
 use App\Models\Page;
 use App\Services\ContentEvalService;
@@ -21,13 +22,14 @@ class HomeController extends BaseController
     |
     */
 
-    public function __construct(ContentEvalService $contentEvalService){
+    public function __construct(ContentEvalService $contentEvalService)
+    {
         $this->contentEvalService = $contentEvalService;
     }
 
     public function index()
     {
-        $contents = Content::with([])->orderBy('created_at', 'desc')->take(5)->get();
+        $contents = Content::with([])->orderBy('updated_at', 'desc')->take(5)->get();
         return view('home.index', [
             'contents' => $contents
         ]);
@@ -65,43 +67,55 @@ class HomeController extends BaseController
     {
         $content = Content::find($id);
 
-        return view('home.content')->with('content',$content);
+        return view('home.content')->with('content', $content);
     }
 
     public function getContents()
     {
-        $contents = Content::orderBy('updated_at','desc')->paginate(15);
+        $contents = Content::orderBy('updated_at', 'desc')->paginate(15);
 
-        return view('home.contents')->with('contents',$contents);
+        return view('home.contents')->with('contents', $contents);
     }
 
-    public function getSearch(){
+    public function getSearch()
+    {
 
         $keyword = \Input::get('keyword');
 
-        $contents = Content::where('title','=~',".*$keyword.*")->orWhere('content','=~',".*$keyword.*")->orderBy('updated_at','desc')->paginate(15);
-        $contents->appends(['keyword'=>$keyword]);
+        $contents = Content::where('title', '=~', ".*$keyword.*")->orWhere('content', '=~', ".*$keyword.*")->orderBy('updated_at', 'desc')->paginate(15);
+        $contents->appends(['keyword' => $keyword]);
         return view('home.contents')
-            ->with('contents',$contents)
-            ->with('keyword',$keyword);
+            ->with('contents', $contents)
+            ->with('keyword', $keyword);
     }
 
-    public function getCategory($name){
+    public function getCategory($name)
+    {
+        $cat_ids = [];
+        $category = Category::with('children')->where('name','=',$name)->first();
+        $cat_ids[] = $category->id;
 
-        $contents = Content::whereHas('category',function($q) use ($name) {
-            $q->where('name','=',$name);
+        foreach ($category->children as $child) {
+            $cat_ids[] = $child->id;
+        }
+
+
+        $contents = Content::whereHas('category', function ($q) use ($cat_ids) {
+            $q->whereIn('id',$cat_ids);
         })
-            ->orderBy('updated_at','desc')->paginate(15);
+            ->orderBy('updated_at', 'desc')->paginate(15);
+
         return view('home.contents')
-            ->with('contents',$contents)
-            ->with('category_name',$name);
+            ->with('contents', $contents)
+            ->with('category_name', $name);
     }
 
-    public function getStaticPage($title){
+    public function getStaticPage($title)
+    {
 
-        $content = Page::where('title','=',$title)->first();
+        $content = Page::where('title', '=', $title)->first();
 
-        return view('home.staticpage')->with('content',$content);
+        return view('home.staticpage')->with('content', $content);
     }
 
 

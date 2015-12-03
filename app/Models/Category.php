@@ -12,7 +12,7 @@ class Category extends AbstrctIModel {
 
     protected $label = ['Category'];
 
-    protected $guarded = ['parent'];
+    protected $guarded = [];
 
     protected $fillable = ['name','description'];
 
