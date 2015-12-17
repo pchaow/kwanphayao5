@@ -20,12 +20,14 @@
                 @endif
             </div>
             <div class="thirteen wide column">
-                <h3 style="margin-bottom: 0px;"><a
-                            href="/content/<% $contents[$i]->id %>"><% $contents[$i]->title %></a>
+                <h3 style="margin-bottom: 0px;">
+                    <a href="/content/<% $contents[$i]->id %>">
+                        <% $contents[$i]->title%>
+                    </a>
                 </h3>
 
                 <div>
-                    <%  str_limit(preg_replace('/(<.*?>)|(&.*?;)/', '', $contents[$i]->content),150) %>
+                    <% str_limit(preg_replace('/(<.*?>)|(&.*?;)/', '', $contents[$i]->content),150) %>
                 </div>
             </div>
 
@@ -33,7 +35,7 @@
         <div class="ui divider" style="margin-top:0px; margin-bottom: 0px;"></div>
         <?php $i++; ?>
         <?php endwhile; ?>
-            <div class="two column row">
+        <div class="two column row">
             <div class="column">
                 <?php if($contents->currentPage() != 1): ?>
                 <a href="<?php echo $contents->previousPageUrl() ?>" class="ui labeled icon button">

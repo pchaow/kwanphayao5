@@ -194,7 +194,7 @@
                             <i class="comment outline icon"></i>
 
                             <div class="content">
-                                ข้อเสนอแนะ
+                                <a href="http://goo.gl/forms/FuhFdOxdlM">ข้อเสนอแนะ</a>
                             </div>
                         </div>
                         <div class="item">
