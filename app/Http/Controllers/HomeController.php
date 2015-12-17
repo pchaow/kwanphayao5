@@ -67,7 +67,13 @@ class HomeController extends BaseController
     {
         $content = Content::find($id);
 
-        return view('home.content')->with('content', $content);
+        $category = $content->category;
+
+        $relateContent = $category->contents()->get()->random(5);
+
+        return view('home.content')
+            ->with('content', $content)
+            ->with('relateContent',$relateContent);
     }
 
     public function getContents()

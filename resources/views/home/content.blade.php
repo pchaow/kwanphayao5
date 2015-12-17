@@ -15,6 +15,18 @@
             <li><?php echo $b->short_text; ?></li>
             <?php endforeach;?>
         </ul>
+
+        <div class="ui medium header">เนื้อหาที่เกี่ยวข้อง</div>
+        <div class="ui divider"></div>
+        <ul>
+            <?php foreach ($relateContent as $rc): ?>
+            <li>
+                <a href="/content/<% $rc->id %>">
+                    <% $rc->title %>
+                </a>
+            </li>
+            <?php endforeach;?>
+        </ul>
     </div>
 
 @endsection
