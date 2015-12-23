@@ -194,14 +194,14 @@
                             <i class="comment outline icon"></i>
 
                             <div class="content">
-                                <a href="http://goo.gl/forms/FuhFdOxdlM">ข้อเสนอแนะ</a>
+                                <a style="color: rgba(255,255,255,.9);" target="_blank" href="https://docs.google.com/forms/d/16dTRa-RZLyU1nBr-0OVjVcNSS0-_wTQL8Y4QhTe61QY/viewform">ข้อเสนอแนะ</a>
                             </div>
                         </div>
                         <div class="item">
                             <i class="edit icon"></i>
 
                             <div class="content">
-                                แบบสอบถาม
+                                <a style="color: rgba(255,255,255,.9);" target="_blank" href="http://goo.gl/forms/FuhFdOxdlM">แบบสอบถาม</a>
                             </div>
                         </div>
                     </div>
