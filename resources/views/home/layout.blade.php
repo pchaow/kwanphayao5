@@ -187,7 +187,8 @@
                             <i class="mail outline icon"></i>
 
                             <div class="content">
-                                ติดต่อสอบถาม
+                                <a style="color: rgba(255,255,255,.9);" target="_blank" href="/page/ติดต่อสอบถาม">ข้อเสนอแนะ</a>
+
                             </div>
                         </div>
                         <div class="item">
