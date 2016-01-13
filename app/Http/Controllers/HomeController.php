@@ -29,7 +29,15 @@ class HomeController extends BaseController
 
     public function index()
     {
-        $contents = Content::with([])->orderBy('updated_at', 'desc')->take(5)->get();
+//        $contents = Content::with([])->orderBy('updated_at', 'desc')->take(5)->get();
+
+        $contents = [
+            Content::find(9),
+            Content::find(60),
+            Content::find(76),
+            Content::find(26),
+            Content::find(58)
+        ];
         return view('home.index', [
             'contents' => $contents
         ]);
@@ -73,7 +81,7 @@ class HomeController extends BaseController
 
         return view('home.content')
             ->with('content', $content)
-            ->with('relateContent',$relateContent);
+            ->with('relateContent', $relateContent);
     }
 
     public function getContents()
@@ -98,7 +106,7 @@ class HomeController extends BaseController
     public function getCategory($name)
     {
         $cat_ids = [];
-        $category = Category::with('children')->where('name','=',$name)->first();
+        $category = Category::with('children')->where('name', '=', $name)->first();
         $cat_ids[] = $category->id;
 
         foreach ($category->children as $child) {
@@ -107,7 +115,7 @@ class HomeController extends BaseController
 
 
         $contents = Content::whereHas('category', function ($q) use ($cat_ids) {
-            $q->whereIn('id',$cat_ids);
+            $q->whereIn('id', $cat_ids);
         })
             ->orderBy('updated_at', 'desc')->paginate(15);
 
