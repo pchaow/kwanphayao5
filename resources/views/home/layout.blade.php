@@ -1,7 +1,12 @@
 <!DOCTYPE html`>
 <html>
 <head>
-    <title>สารานุกรมกว๊านพะเยา</title>
+    
+	<link rel="shortcut icon" href="/img/favicon.ico" />
+	<title>สารานุกรมกว๊านพะเยา</title>
+	
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="/favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href="/components/semantic/dist/semantic.min.css">
     <link rel="stylesheet" href="/css/style.css">
