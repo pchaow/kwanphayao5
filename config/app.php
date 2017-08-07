@@ -1,4 +1,5 @@
 <?php
+error_reporting(E_ALL ^ E_DEPRECATED);
 
 return [
 
@@ -80,7 +81,7 @@ return [
 
     'key' => env('APP_KEY', 'SomeRandomString'),
 
-    'cipher' => MCRYPT_RIJNDAEL_128,
+    'cipher' => MCRYPT_RIJNDAEL_256,
 
     /*
     |--------------------------------------------------------------------------
